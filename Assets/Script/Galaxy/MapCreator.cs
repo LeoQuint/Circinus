@@ -27,6 +27,7 @@ public class MapCreator : MonoBehaviour {
     [SerializeField] bool _UseRandomSeed = false;
     [SerializeField] string _seed;
     [SerializeField] int _smoothFactor = 5;
+    [SerializeField] int _AccretionFactor = 5;
     [SerializeField] int _borderSize = 5;
     ////////////////////////////////
     ///			Public			 ///
@@ -40,6 +41,7 @@ public class MapCreator : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private int[,] map;
+    private int[,] accretionMap;
 
     private List<GameObject> mapList = new List<GameObject>();
     private Transform mapHolder;
@@ -68,7 +70,14 @@ public class MapCreator : MonoBehaviour {
         for (int i = 0; i < _smoothFactor; ++i)
         {
             SmoothMap();
-        }       
+        }
+
+        for (int i = 0; i < _AccretionFactor; ++i)
+        {
+            GenerateAccretion();
+        }
+
+        SpawnGameObjects();
 
         int[,] borderedMap = new int[width + _borderSize * 2, height + _borderSize * 2];
 
@@ -140,6 +149,28 @@ public class MapCreator : MonoBehaviour {
         }
     }
 
+    private void GenerateAccretion()
+    {
+        accretionMap  = new int[width, height];
+        int[] mainCenter = new int[9];
+        //Generate the map of centers.
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int neighbourWallTiles = GetSurroundingWallCount(x, y);
+                accretionMap[x, y] = neighbourWallTiles;
+                ++mainCenter[neighbourWallTiles];
+            }
+        }
+
+        for (int i = mainCenter.Length-1; i > 0; --i)
+        {
+            Debug.Log(i + ": " + mainCenter[i]);
+        }
+
+    }
+
     private int GetSurroundingWallCount(int gridX, int gridY)
     {
         int wallCount = 0;
@@ -154,7 +185,8 @@ public class MapCreator : MonoBehaviour {
                         wallCount += map[neighbourX, neighbourY];
                     }
                 }
-                else {
+                else
+                {
                     wallCount++;
                 }
             }
@@ -204,7 +236,7 @@ public class MapCreator : MonoBehaviour {
 
                 Vector3 pos = new Vector3(-width / 2 + x + 0.5f, -height / 2 + y, -2f);
                 //Debug.Log("Making cube: " + pos);
-                GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 g.GetComponent<Renderer>().material.color = Color.red;
                 g.transform.position = pos;
                 g.transform.SetParent(mapHolder);
