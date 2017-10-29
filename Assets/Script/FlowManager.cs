@@ -50,9 +50,9 @@ public class FlowManager : Singleton {
 
     public void LoadScene(eScene scene, LoadSceneMode loadMode)
     {
-        SceneManager.LoadScene(scene.ToString(), loadMode);
+        SceneManager.LoadScene(scene.ToString(), loadMode);        
     }
-
+    
     public void LoadSceneAsync(eScene scene, LoadSceneMode loadMode)
     {
         SceneManager.LoadSceneAsync(scene.ToString(), loadMode);
