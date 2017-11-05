@@ -8,6 +8,6 @@ using UnityEngine;
 
 public partial class GameConstants {
 
-
+    public string CONFIG_FOLDER_PATH = "";
 
 }
