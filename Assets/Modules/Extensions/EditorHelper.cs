@@ -51,7 +51,6 @@ public class EditorHelper : Editor{
         }
         if (GUILayout.Button("Reset", EditorStyles.miniButtonRight))
         {
-            Debug.Log("...");
             if (isLocal)
             {
                 _target.localPosition = Vector3.zero;

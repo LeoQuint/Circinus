@@ -5,19 +5,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
-public enum eScene
-{
-    NULL,
-    Ship,
-    Galaxy,
-    World,
-    Main_Menu,
-    Count
-}
+using UnityEngine.AI;
 
-public class FlowManager : MonoBehaviour {
+[RequireComponent(typeof(NavMeshAgent))]
+public class Navigator2D : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -30,7 +21,8 @@ public class FlowManager : MonoBehaviour {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    [SerializeField]
+    List<Transform> m_Destinations;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -42,23 +34,27 @@ public class FlowManager : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    
-    #region Unity API
+    private NavMeshAgent m_NavMeshAgent;
 
+    #region Unity API
+    private void Awake()
+    {
+        m_NavMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Debug Navigation test." + m_NavMeshAgent.isOnNavMesh);
+
+            m_NavMeshAgent.SetDestination(m_Destinations[Random.Range(0,m_Destinations.Count)].position); 
+            
+        }
+    }
     #endregion
 
     #region Public API
-
-    public void LoadScene(eScene scene, LoadSceneMode loadMode)
-    {
-        SceneManager.LoadScene(scene.ToString(), loadMode);        
-    }
-    
-    public void LoadSceneAsync(eScene scene, LoadSceneMode loadMode)
-    {
-        SceneManager.LoadSceneAsync(scene.ToString(), loadMode);
-    }
-
     #endregion
 
     #region Protect

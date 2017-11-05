@@ -4,9 +4,11 @@
 //////////////////////////////////////////
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Timers;
 using UnityEngine;
 
-public class Singleton : MonoBehaviour {
+public class AsyncCallback:  MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -15,7 +17,7 @@ public class Singleton : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    public static Singleton Instance;
+
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -32,19 +34,40 @@ public class Singleton : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
 
-    #region Unity API
-    private void Awake()
+    private Timer m_TimeOutTimer;
+    private Action m_OnTimeOut;
+
+    public void Connect(Action OnConnect, Action OnTimeOut, double time )
     {
-        if (Instance != null)
+        if (m_TimeOutTimer != null)
         {
-            Destroy(gameObject);
+            m_TimeOutTimer.Stop();
+            m_TimeOutTimer.Dispose();
+            m_TimeOutTimer = null;
         }
-        else
+        if (m_OnTimeOut != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            m_OnTimeOut = null;
+        }
+        m_TimeOutTimer = new Timer(time);
+        m_OnTimeOut += OnTimeOut;
+        m_TimeOutTimer.Elapsed += OnTimeOutCallback;
+        m_TimeOutTimer.Start();
+    }
+
+    private void OnTimeOutCallback(object source, ElapsedEventArgs e)
+    {
+        m_TimeOutTimer.Stop();
+        m_TimeOutTimer.Dispose();
+        m_TimeOutTimer = null;
+        if (m_OnTimeOut != null)
+        {
+            m_OnTimeOut();
+            m_OnTimeOut = null;
         }
     }
+
+    #region Unity API
     #endregion
 
     #region Public API
