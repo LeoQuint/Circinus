@@ -10,7 +10,7 @@ using CollectionHelper;
 public enum NoticifationType
 {
     OnDestroy,
-    Message, 
+    Message,
     Null
 }
 

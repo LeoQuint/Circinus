@@ -5,19 +5,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System;
-public enum eScene
-{
-    NULL,
-    Ship,
-    Galaxy,
-    World,
-    Main_Menu,
-    Count
-}
-
-public class FlowManager : MonoBehaviour {
+/// <summary>
+/// Saves and loads config related data.
+/// </summary>
+public class SaveManager : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -26,7 +17,7 @@ public class FlowManager : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    public static FlowManager instance;
+    public static SaveManager instance;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -48,7 +39,7 @@ public class FlowManager : MonoBehaviour {
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
@@ -59,17 +50,6 @@ public class FlowManager : MonoBehaviour {
     #endregion
 
     #region Public API
-
-    public void LoadScene(eScene scene, LoadSceneMode loadMode)
-    {
-        SceneManager.LoadScene(scene.ToString(), loadMode);        
-    }
-    
-    public void LoadSceneAsync(eScene scene, LoadSceneMode loadMode)
-    {
-        SceneManager.LoadSceneAsync(scene.ToString(), loadMode);
-    }
-
     #endregion
 
     #region Protect

@@ -5,19 +5,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System;
-public enum eScene
-{
-    NULL,
-    Ship,
-    Galaxy,
-    World,
-    Main_Menu,
-    Count
-}
 
-public class FlowManager : MonoBehaviour {
+public class UniqueIdManager : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -26,7 +16,7 @@ public class FlowManager : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    public static FlowManager instance;
+    public static UniqueIdManager instance;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -42,6 +32,8 @@ public class FlowManager : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
+    private long m_LastID;
+
 
     #region Unity API
     protected void Awake()
@@ -53,6 +45,7 @@ public class FlowManager : MonoBehaviour {
         else
         {
             instance = this;
+            m_LastID = DateTime.Now.Ticks;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -60,14 +53,10 @@ public class FlowManager : MonoBehaviour {
 
     #region Public API
 
-    public void LoadScene(eScene scene, LoadSceneMode loadMode)
+    public long GetID()
     {
-        SceneManager.LoadScene(scene.ToString(), loadMode);        
-    }
-    
-    public void LoadSceneAsync(eScene scene, LoadSceneMode loadMode)
-    {
-        SceneManager.LoadSceneAsync(scene.ToString(), loadMode);
+        ++m_LastID;
+        return m_LastID;
     }
 
     #endregion
