@@ -311,7 +311,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225536699}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 225891435}
   - component: {fileID: 225891434}
   - component: {fileID: 225891433}
+  - component: {fileID: 225891437}
   m_Layer: 0
   m_Name: pointD
   m_TagString: Untagged
@@ -457,6 +458,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &225891437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 225891432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &322323976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,6 +1272,7 @@ GameObject:
   - component: {fileID: 998262995}
   - component: {fileID: 998262994}
   - component: {fileID: 998262993}
+  - component: {fileID: 998262997}
   m_Layer: 0
   m_Name: pointB
   m_TagString: Untagged
@@ -1333,6 +1346,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &998262997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 998262992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1001322360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,10 +1556,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 20
+  m_Acceleration: 1000
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1543,7 +1567,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!23 &1319948378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1892,6 +1916,7 @@ GameObject:
   - component: {fileID: 1832022532}
   - component: {fileID: 1832022531}
   - component: {fileID: 1832022530}
+  - component: {fileID: 1832022534}
   m_Layer: 0
   m_Name: pointA
   m_TagString: Untagged
@@ -1965,6 +1990,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1832022534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1832022529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1911508168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2092,7 @@ GameObject:
   - component: {fileID: 1982120566}
   - component: {fileID: 1982120565}
   - component: {fileID: 1982120564}
+  - component: {fileID: 1982120568}
   m_Layer: 0
   m_Name: pointC
   m_TagString: Untagged
@@ -2129,6 +2166,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1982120568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982120563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061010912
 GameObject:
   m_ObjectHideFlags: 0

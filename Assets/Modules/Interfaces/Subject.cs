@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CollectionHelper;
 
-public enum NoticifationType
+public enum NotificationType
 {
     OnDestroy,
     Message,
@@ -25,7 +25,7 @@ public class Subject: MonoBehaviour {
 
     private void OnDestroy()
     {
-        Notify(NoticifationType.OnDestroy);
+        Notify(NotificationType.OnDestroy);
     }
 
     #endregion
