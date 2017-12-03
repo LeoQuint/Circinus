@@ -23,7 +23,16 @@ public class GalaxyGenerator : MonoBehaviour {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    [Range(0, 100)]
+    public float _FillPercent;
+    public int _Width;
+    public int _Height;
+    public float _Angle;
 
+    public bool _DrawGizmos = false;
+
+    public string _Seed;
+    public bool _UseRandomSeed = false;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -31,25 +40,15 @@ public class GalaxyGenerator : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
-    [Range(0, 100)]
-    public int fillPercent;
-    public int width;
-    public int height;
-
-    public bool _DrawGizmos = false;
-
-    public string _seed;
-    public bool _UseRandomSeed = false;
-
-    public int _smoothFactor = 5;
-    public int _borderSize = 5;
-
-
-    int[,] map;
-
+    private int[,] map;
     private List<GameObject> mapList = new List<GameObject>();
     private Transform mapHolder;
+
+    private float m_SquaredRadiusWidth;
+    private float m_SquaredRadiusHeight;
+
+    private int m_CachedWidth;
+    private int m_CachedHeight;
 
     #region Unity API
     private void Start()
@@ -79,32 +78,16 @@ public class GalaxyGenerator : MonoBehaviour {
 
     public void Generate()
     {
-        map = new int[width, height];
-        RandomFillMap();
-        for (int i = 0; i < _smoothFactor; ++i)
-        {
-            SmoothMap();
-        }
+        m_SquaredRadiusHeight = (_Height/2) * (_Height/2);
+        m_SquaredRadiusWidth = (_Width/2) * (_Width/2);
+        m_CachedHeight = _Height;
+        m_CachedWidth = _Width;
+        map = new int[_Width, _Height];
+        RandomFillMap();      
+        SmoothMap();
+        
 
-        //SpawnGameObjects();
-
-        int[,] borderedMap = new int[width + _borderSize * 2, height + _borderSize * 2];
-
-
-        for (int x = 0; x < borderedMap.GetLength(0); ++x)
-        {
-            for (int y = 0; y < borderedMap.GetLength(1); ++y)
-            {
-                if (x >= _borderSize && x < width + _borderSize && y >= _borderSize && y < height + _borderSize)
-                {
-                    borderedMap[x, y] = map[x - _borderSize, y - _borderSize];
-                }
-                else
-                {
-                    borderedMap[x, y] = 1;
-                }
-            }
-        }
+        //SpawnGameObjects();      
     }
     #endregion
 
@@ -116,21 +99,21 @@ public class GalaxyGenerator : MonoBehaviour {
     {
         if (_UseRandomSeed)
         {
-            _seed = Time.time.ToString();
+            _Seed = Time.time.ToString();
         }
-        System.Random sudoRandom = new System.Random(_seed.GetHashCode());
+        System.Random sudoRandom = new System.Random(_Seed.GetHashCode());
 
-        for (int x = 0; x < width; ++x)
+        for (int x = 0; x < _Width; ++x)
         {
-            for (int y = 0; y < height; ++y)
+            for (int y = 0; y < _Height; ++y)
             {
-                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                if (x == 0 || x == _Width - 1 || y == 0 || y == _Height - 1)
                 {
                     map[x, y] = 1;
                 }
                 else
                 {
-                    map[x, y] = (sudoRandom.Next(0, 100) < fillPercent) ? 1 : 0;
+                    map[x, y] = (sudoRandom.Next(0, 100) < _FillPercent) ? 1 : 0;
                 }
 
             }
@@ -139,20 +122,27 @@ public class GalaxyGenerator : MonoBehaviour {
 
     private void SmoothMap()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < _Width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < _Height; y++)
             {
-                int neighbourWallTiles = GetSurroundingWallCount(x, y);
+                if (map[x, y] == 1)
+                {
+                    if (IsInEllipse(x, y))//Check is the location fits in the ellipse.
+                    {
+                        //Check if there is any other neighbour. Remove if any.
+                        int neighbourWallTiles = GetSurroundingWallCount(x, y);
 
-                if (neighbourWallTiles > 4)
-                {
-                    map[x, y] = 1;
-                }
-                else if (neighbourWallTiles < 4)
-                {
-                    map[x, y] = 0;
-                }
+                        if (neighbourWallTiles > 0)
+                        {
+                            map[x, y] = 0;
+                        }
+                    }
+                    else
+                    {
+                        map[x, y] = 0;
+                    }                    
+                }               
             }
         }
     }
@@ -164,7 +154,7 @@ public class GalaxyGenerator : MonoBehaviour {
         {
             for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY++)
             {
-                if (neighbourX >= 0 && neighbourX < width && neighbourY >= 0 && neighbourY < height)
+                if (neighbourX >= 0 && neighbourX < _Width && neighbourY >= 0 && neighbourY < _Height)
                 {
                     if (neighbourX != gridX || neighbourY != gridY)
                     {
@@ -188,21 +178,22 @@ public class GalaxyGenerator : MonoBehaviour {
         }
         if (_DrawGizmos)
         {
-            for (int x = 0; x < width; ++x)
+            for (int x = 0; x < m_CachedWidth; ++x)
             {
-                for (int y = 0; y < height; ++y)
+                for (int y = 0; y < m_CachedHeight; ++y)
                 {
                     if (map[x, y] == 1)
                     {
                         Gizmos.color = Color.red;
-                        Vector3 pos = new Vector3(-width / 2 + x + 0.5f, -height / 2 + y, -2f);
+                        Vector3 pos = new Vector3(-m_CachedWidth / 2 + x + 0.5f, -m_CachedHeight / 2 + y, -2f);
+                        //x' = x cos f - y sin f
+                        //y' = y cos f + x sin f
+                        pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
                         Gizmos.DrawCube(pos, Vector3.one);
                     }                    
                 }
             }
         }
-
-
     }
 
     private void SpawnGameObjects()
@@ -212,16 +203,16 @@ public class GalaxyGenerator : MonoBehaviour {
             Destroy(g);
         }
         mapList.Clear();
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < _Width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < _Height; y++)
             {
                 if (map[x, y] == 0)
                 {
                     continue;
                 }
 
-                Vector3 pos = new Vector3(-width / 2 + x + 0.5f, -height / 2 + y, -2f);
+                Vector3 pos = new Vector3(-_Width / 2 + x + 0.5f, -_Height / 2 + y, -2f);
                 GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 g.GetComponent<Renderer>().material.color = Color.red;
                 g.transform.position = pos;
@@ -229,6 +220,13 @@ public class GalaxyGenerator : MonoBehaviour {
                 mapList.Add(g);
             }
         }
+    }
+
+    private bool IsInEllipse(int x, int y)
+    {
+        x -= _Width / 2;
+        y -= _Height / 2;
+        return (float)(x*x)/m_SquaredRadiusWidth + (float)(y* y)/ m_SquaredRadiusHeight <= 1f;
     }
     #endregion
 }
