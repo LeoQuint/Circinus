@@ -33,6 +33,8 @@ public class GalaxyGenerator : MonoBehaviour {
 
     public string _Seed;
     public bool _UseRandomSeed = false;
+    [InEditorReadOnly]
+    public int m_NumberOfStars;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -88,6 +90,7 @@ public class GalaxyGenerator : MonoBehaviour {
         m_CachedHeight = _Height;
         m_CachedWidth = _Width;
         map = new int[_Width, _Height];
+        m_NumberOfStars = 0;
         RandomFillMap();      
         SmoothMap();
         
@@ -141,6 +144,10 @@ public class GalaxyGenerator : MonoBehaviour {
                         if (neighbourWallTiles > 0)
                         {
                             map[x, y] = 0;
+                        }
+                        else
+                        {
+                            ++m_NumberOfStars;
                         }
                     }
                     else

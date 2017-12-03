@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(Transform))]
 public class EditorHelper : Editor{
@@ -143,4 +144,23 @@ public class EditorHelper : Editor{
         }
     }
     #endregion
+}
+
+public class InEditorReadOnly : PropertyAttribute
+{  
+}
+
+
+[CustomPropertyDrawer(typeof(InEditorReadOnly))]
+public class InEditorReadOnlyDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        EditorGUI.BeginProperty(position, label, property);
+        EditorGUI.LabelField(position, label);
+        EditorGUI.BeginDisabledGroup(true);
+        EditorGUI.PropertyField(position, property, true);
+        EditorGUI.EndDisabledGroup();
+        EditorGUI.EndProperty();            
+    }
 }
