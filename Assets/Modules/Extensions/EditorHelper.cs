@@ -41,11 +41,12 @@ public class EditorHelper : Editor{
     {
         _target = target as Transform;
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Local", EditorStyles.miniButtonLeft))
+       
+        if (GUILayout.Toggle(isLocal, "Local", EditorStyles.miniButtonLeft))
         {
             isLocal = true;
         }
-        if(GUILayout.Button("World", EditorStyles.miniButtonMid))
+        if(GUILayout.Toggle(!isLocal, "World", EditorStyles.miniButtonMid))
         {
             isLocal = false;
         }
@@ -67,15 +68,15 @@ public class EditorHelper : Editor{
         GUILayout.EndHorizontal();
         if (isLocal)
         {
-            _target.localPosition = EditorGUILayout.Vector3Field("Local Position", _target.localPosition);
-            _target.localRotation = Quaternion.Euler(EditorGUILayout.Vector3Field("Local Rotation", _target.localRotation.eulerAngles));
-            _target.localScale = EditorGUILayout.Vector3Field("Local Scale", _target.localScale);
+            _target.localPosition = EditorGUILayout.Vector3Field("Position", _target.localPosition);
+            _target.localRotation = Quaternion.Euler(EditorGUILayout.Vector3Field("Rotation", _target.localRotation.eulerAngles));
+            _target.localScale = EditorGUILayout.Vector3Field("Scale", _target.localScale);
         }
         else
         {
-            _target.position = EditorGUILayout.Vector3Field("World Position", _target.position);
-            _target.rotation = Quaternion.Euler(EditorGUILayout.Vector3Field("World Rotation", _target.rotation.eulerAngles));
-            EditorGUILayout.Vector3Field("World Scale", _target.lossyScale);            
+            _target.position = EditorGUILayout.Vector3Field("Position", _target.position);
+            _target.rotation = Quaternion.Euler(EditorGUILayout.Vector3Field("Rotation", _target.rotation.eulerAngles));
+            EditorGUILayout.Vector3Field("Scale", _target.lossyScale);            
         }
     }
     #endregion
