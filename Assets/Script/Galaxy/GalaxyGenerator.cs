@@ -64,6 +64,11 @@ public class GalaxyGenerator : MonoBehaviour {
             Generate();
         }
 
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SpawnGameObjects();
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveGalaxy();
@@ -186,8 +191,6 @@ public class GalaxyGenerator : MonoBehaviour {
                     {
                         Gizmos.color = Color.red;
                         Vector3 pos = new Vector3(-m_CachedWidth / 2 + x + 0.5f, -m_CachedHeight / 2 + y, -2f);
-                        //x' = x cos f - y sin f
-                        //y' = y cos f + x sin f
                         pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
                         Gizmos.DrawCube(pos, Vector3.one);
                     }                    
@@ -213,7 +216,8 @@ public class GalaxyGenerator : MonoBehaviour {
                 }
 
                 Vector3 pos = new Vector3(-_Width / 2 + x + 0.5f, -_Height / 2 + y, -2f);
-                GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
+                GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 g.GetComponent<Renderer>().material.color = Color.red;
                 g.transform.position = pos;
                 g.transform.SetParent(mapHolder);
