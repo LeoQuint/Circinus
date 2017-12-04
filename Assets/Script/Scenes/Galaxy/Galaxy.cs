@@ -5,10 +5,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// Saves and loads config related data.
-/// </summary>
-public static partial class SaveManager {
+
+[System.Serializable]
+public class Galaxy {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -29,21 +28,20 @@ public static partial class SaveManager {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-
+    protected StarSystem[,] m_Galaxy;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
+
+    //Constructor
+    public Galaxy(int[,] locations)
+    { }
 
     #region Unity API
     #endregion
 
     #region Public API
-    public static void Load()
-    {
-
-    }
-
-    public static void Save()
+    public void RenderLocation(int x, int y)
     {
 
     }
