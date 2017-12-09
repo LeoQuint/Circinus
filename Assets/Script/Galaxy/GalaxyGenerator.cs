@@ -92,10 +92,7 @@ public class GalaxyGenerator : MonoBehaviour {
         map = new int[_Width, _Height];
         m_NumberOfStars = 0;
         RandomFillMap();      
-        SmoothMap();
-        
-
-        //SpawnGameObjects();      
+        SmoothMap();    
     }
     #endregion
 

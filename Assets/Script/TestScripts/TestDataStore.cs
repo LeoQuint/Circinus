@@ -3,18 +3,15 @@
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-/// <summary>
-/// Saves and loads config related data.
-/// </summary>
-public static partial class SaveManager {
+public class TestDataStore : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-     
+
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -22,7 +19,10 @@ public static partial class SaveManager {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    [SerializeField]
+    private string m_FileName = "savedData.xml";
+    [SerializeField]
+    private TestData testData;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -35,19 +35,33 @@ public static partial class SaveManager {
     ///			Private			 ///
     ////////////////////////////////
 
+    [System.Serializable]
+    public struct TestData
+    {
+        public string name;
+        public int number;
+        public Vector3 position;
+    }
+
     #region Unity API
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("File saved");
+            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, m_FileName);
+            sd.Save();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("File Loaded");
+            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, m_FileName);
+            testData = sd.Load();
+        }
+    }
     #endregion
 
     #region Public API
-    public static void Load()
-    {
-
-    }
-
-    public static void Save()
-    {
-
-    }
     #endregion
 
     #region Protect

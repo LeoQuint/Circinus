@@ -33,7 +33,8 @@ public class ShipController : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private float m_RotationSpeed;
+    private float m_Thrust;
 
     #region Unity API
     protected void Awake()
@@ -45,7 +46,8 @@ public class ShipController : MonoBehaviour {
     {
         //GetCharacterInput();
         GetMouseInput();
-        ApplyMovement();
+        //ApplyMovement();
+        ApplyRotation();
     }
     #endregion
 
@@ -78,9 +80,9 @@ public class ShipController : MonoBehaviour {
         }
     }
 
-    //private float previous
     private void GetMouseInput()
     {
+        m_DirectionInput = Vector3.zero;
         float zMovement = 0f;
         if (Input.GetKey(KeyCode.W))
         {
@@ -90,7 +92,13 @@ public class ShipController : MonoBehaviour {
         {
             zMovement += -1f;
         }
+       
         m_DirectionInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), zMovement);
+    }
+
+    private void ApplyRotation()
+    {
+        transform.Rotate(m_DirectionInput * m_RotationSpeed * Time.deltaTime);
     }
 
     private void ApplyMovement()
