@@ -5,19 +5,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// Saves and loads config related data.
 /// </summary>
-public class SaveManager : MonoBehaviour {
+public static partial class SaveManager {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-
+     
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    public static SaveManager instance;
+
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -35,21 +36,18 @@ public class SaveManager : MonoBehaviour {
     ////////////////////////////////
 
     #region Unity API
-    protected void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
     #endregion
 
     #region Public API
+    public static void Load()
+    {
+
+    }
+
+    public static void Save()
+    {
+
+    }
     #endregion
 
     #region Protect
