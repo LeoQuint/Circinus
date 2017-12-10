@@ -34,23 +34,24 @@ public class Serializer_Deserializer<T> {
     ////////////////////////////////
     private string m_Filename = "save.xml";
     private T m_DataStore;
-
+    private System.Type[] m_Types = null;
     #region Unity API
     #endregion
 
     #region Public API
-    public Serializer_Deserializer(T data, string filename = "")
+    public Serializer_Deserializer(T data, string filename = "", System.Type[] types = null)
     {
         if (!string.IsNullOrEmpty(filename))
         {
             m_Filename = filename;
         }
+        m_Types = types;
         m_DataStore = data;
     }
 
     public void Save()
-    {        
-        XmlSerializer serializer = new XmlSerializer(typeof(T));
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
         FileStream fs = new FileStream(SAVED_PATH + m_Filename, FileMode.Create);
         serializer.Serialize(fs, m_DataStore);
         fs.Close();

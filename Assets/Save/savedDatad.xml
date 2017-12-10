@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<TestData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>ddd</name>
+  <number>23</number>
+  <position>
+    <x>32</x>
+    <y>44</y>
+    <z>66</z>
+  </position>
+</TestData>

@@ -43,6 +43,9 @@ public class GalaxyGenerator : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private int[,] map;
+    private Galaxy m_Galaxy;
+    System.Type[] m_SystemTypes = { typeof(StarSystem), typeof(StarSystem.StarType) };
+
     private List<GameObject> mapList = new List<GameObject>();
     private Transform mapHolder;
 
@@ -75,12 +78,24 @@ public class GalaxyGenerator : MonoBehaviour {
         {
             SaveGalaxy();
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadGalaxy();
+        }
     }
     #endregion
 
     #region Public API
     public void SaveGalaxy()
+    {        
+        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, "Galaxy.xml", m_SystemTypes);
+        sd.Save();
+    }
+
+    public void LoadGalaxy()
     {
+        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, "Galaxy.xml", m_SystemTypes);
+        m_Galaxy = sd.Load();
     }
 
     public void Generate()
@@ -210,6 +225,9 @@ public class GalaxyGenerator : MonoBehaviour {
             Destroy(g);
         }
         mapList.Clear();
+
+        m_Galaxy = new Galaxy(map);
+
         for (int x = 0; x < _Width; x++)
         {
             for (int y = 0; y < _Height; y++)
@@ -222,6 +240,8 @@ public class GalaxyGenerator : MonoBehaviour {
                 Vector3 pos = new Vector3(-_Width / 2 + x + 0.5f, -_Height / 2 + y, -2f);
                 pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH))as GameObject;
+
+                m_Galaxy.SetStarType(new StarSystem.StarType(true) ,x,y);
                 g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f)); 
                 g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
                 g.transform.position = pos;
@@ -229,6 +249,7 @@ public class GalaxyGenerator : MonoBehaviour {
                 mapList.Add(g);
             }
         }
+       
     }
 
     private bool IsInEllipse(int x, int y)
