@@ -221,8 +221,9 @@ public class GalaxyGenerator : MonoBehaviour {
 
                 Vector3 pos = new Vector3(-_Width / 2 + x + 0.5f, -_Height / 2 + y, -2f);
                 pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
-                GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH))as GameObject; //GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //g.GetComponent<Renderer>().material.color = Color.red;
+                GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH))as GameObject;
+                g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f)); 
+                g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
                 g.transform.position = pos;
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);
