@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
+using System;
 
 [System.Serializable]
 [XmlRoot("Galaxy")]
@@ -30,7 +31,7 @@ public class Galaxy {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    public List<List<StarSystem>> m_Galaxy;
+    public List<List<StarSystem>> m_GalacticMap;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -38,19 +39,29 @@ public class Galaxy {
     //Properties
 
     //Constructor
-    public Galaxy(int[,] locations)
+    public Galaxy(int[,] locations, Func<Vector3, Vector3> RepositionFunction = null)
     {
         int locX = locations.GetLength(0);
         int locY = locations.GetLength(1);
-        m_Galaxy = new List<List<StarSystem>>();
+        m_GalacticMap = new List<List<StarSystem>>();
 
         for (int i = 0; i < locations.GetLength(0); i++)
         {
-            m_Galaxy.Add(new List<StarSystem>());
+            m_GalacticMap.Add(new List<StarSystem>());
 
             for (int j = 0; j < locations.GetLength(1); j++)
             {
-                m_Galaxy[i].Add(locations[i, j] == 1? new StarSystem(): new StarSystem(true));
+                if (locations[i, j] == 1)
+                {
+                    if (RepositionFunction != null)
+                    {
+                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f))));
+                    }
+                    else
+                    {
+                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), new Vector3(i, j, 0f)));
+                    }                    
+                }                
             }                
         }
     }
@@ -66,17 +77,17 @@ public class Galaxy {
     #region Public API
     public StarSystem GetStarSystemAtIndex(int x, int y)
     {
-        return m_Galaxy[x][y];
+        return m_GalacticMap[x][y];
     }
 
     public void SetStarSystem(StarSystem system, int x, int y)
     {
-        m_Galaxy[x][y] = system;
+        m_GalacticMap[x][y] = system;
     }
 
     public void SetStarType(StarSystem.StarType type, int x, int y)
     {
-        m_Galaxy[x][y].SetStarType(type);
+        m_GalacticMap[x][y].SetStarType(type);
     }
 
     public void RenderLocation(int x, int y)

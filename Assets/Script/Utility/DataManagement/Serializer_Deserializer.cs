@@ -69,7 +69,7 @@ public class Serializer_Deserializer<T> {
             Debug.LogError("FILE " + SAVED_PATH + m_Filename + " NOT FOUND!");
             return default(T);
         }
-        XmlSerializer serializer = new XmlSerializer(typeof(T));
+        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
         // To read the file, create a FileStream.
         FileStream fs = new FileStream(SAVED_PATH + m_Filename, FileMode.Open);
         // Call the Deserialize method and cast to the object type.

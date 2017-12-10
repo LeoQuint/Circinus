@@ -94,8 +94,28 @@ public class GalaxyGenerator : MonoBehaviour {
 
     public void LoadGalaxy()
     {
+        Debug.Log("Loading Galaxy");
         Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, "Galaxy.xml", m_SystemTypes);
         m_Galaxy = sd.Load();
+        
+        foreach (GameObject g in mapList)
+        {
+            Destroy(g);
+        }
+        mapList.Clear();
+
+        for (int x = 0; x < m_Galaxy.m_GalacticMap.Count; x++)
+        {
+            for (int y = 0; y < m_Galaxy.m_GalacticMap[x].Count; y++)
+            {
+                GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH)) as GameObject;
+                g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f));
+                g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
+                g.transform.position = m_Galaxy.m_GalacticMap[x][y].m_Position;
+                g.transform.SetParent(mapHolder);
+                mapList.Add(g);
+            }
+        }
     }
 
     public void Generate()
@@ -226,7 +246,7 @@ public class GalaxyGenerator : MonoBehaviour {
         }
         mapList.Clear();
 
-        m_Galaxy = new Galaxy(map);
+        m_Galaxy = new Galaxy(map, RepositioningFunction);
 
         for (int x = 0; x < _Width; x++)
         {
@@ -236,15 +256,10 @@ public class GalaxyGenerator : MonoBehaviour {
                 {
                     continue;
                 }
-
-                Vector3 pos = new Vector3(-_Width / 2 + x + 0.5f, -_Height / 2 + y, -2f);
-                pos = new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH))as GameObject;
-
-                m_Galaxy.SetStarType(new StarSystem.StarType(true) ,x,y);
                 g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f)); 
                 g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
-                g.transform.position = pos;
+                g.transform.position = RepositioningFunction(new Vector3(x,y,0f));
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);
             }
@@ -257,6 +272,12 @@ public class GalaxyGenerator : MonoBehaviour {
         x -= _Width / 2;
         y -= _Height / 2;
         return (float)(x*x)/m_SquaredRadiusWidth + (float)(y* y)/ m_SquaredRadiusHeight <= 1f;
+    }
+
+    private Vector3 RepositioningFunction(Vector3 startPos)
+    {
+        Vector3 pos = new Vector3(-_Width / 2 + startPos.x + 0.5f, -_Height / 2 + startPos.y, -2f);
+        return new Vector3(pos.x * Mathf.Cos(_Angle) - pos.y * Mathf.Sin(_Angle), pos.y * Mathf.Cos(_Angle) - pos.x * Mathf.Sin(_Angle), pos.z);
     }
     #endregion
 }
