@@ -18,6 +18,10 @@ namespace CollectionHelper {
             {
                 list.Add(item);
             }
+            else
+            {
+                Debug.LogWarning("Element already in collection.");
+            }
         }
     }
 }

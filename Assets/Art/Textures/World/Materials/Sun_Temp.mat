@@ -60,7 +60,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Alpha: 0.458
-    - _Brightness: 2.06
+    - _Brightness: 3.04
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -68,7 +68,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Index: 0.081
+    - _Index: 0.271
     - _InvFade: 1
     - _Metallic: 0
     - _Mode: 3
