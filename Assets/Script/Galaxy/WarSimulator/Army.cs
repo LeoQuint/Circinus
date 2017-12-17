@@ -3,10 +3,14 @@
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
 using System.Collections;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Xml.Serialization;
+using War;
 
-public class TestDataStore : MonoBehaviour {
+[System.Serializable]
+[XmlRoot("Army")]
+public class Army {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -19,14 +23,11 @@ public class TestDataStore : MonoBehaviour {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-    [SerializeField]
-    private string m_FileName = "savedData.xml";
-    [SerializeField]
-    private TestData testData;
+
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-
+    public List<ArmyUnit> m_Army = new List<ArmyUnit>();
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -35,33 +36,24 @@ public class TestDataStore : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
 
-    [System.Serializable]
-    public struct TestData
+    public int Strength
     {
-        public string name;
-        public int number;
-        public Vector3 position;
+        get
+        {
+            int strength = 0;
+            for (int i = 0; i < m_Army.Count; ++i)
+            {
+                strength += m_Army[i].Strength;
+            }
+            return strength;
+        }
     }
 
     #region Unity API
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("File saved");
-            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, Serializer_Deserializer<TestData>.SavedPath.GameData,  m_FileName);
-            sd.Save();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("File Loaded");
-            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, Serializer_Deserializer<TestData>.SavedPath.GameData, m_FileName);
-            testData = sd.Load();
-        }
-    }
     #endregion
 
     #region Public API
+
     #endregion
 
     #region Protect

@@ -28,15 +28,20 @@ public class ArmyUnit {
     ///			Public			 ///
     ////////////////////////////////
     public EFaction m_Faction;
-
-	////////////////////////////////
+    public int m_Number;
+    public EShipClass m_ShipClass;
+    ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
 
-	////////////////////////////////
+    ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 
+    public int Strength
+    {
+        get { return (int)m_ShipClass * m_Number; }
+    }
 
     #region Unity API
     #endregion

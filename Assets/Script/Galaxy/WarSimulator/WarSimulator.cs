@@ -5,8 +5,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using War;
 
-public class WarSimulator : MonoBehaviour {
+public class WarSimulator : Subject {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -31,6 +32,12 @@ public class WarSimulator : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
+    private Faction m_RedFaction;
+    private Faction m_BlueFaction;
+    private Faction m_NeutralFaction;
+
+    private EFaction m_CurrentTurn;
+    private List<EFaction> m_Factions;
 
     #region Unity API
     private void Awake()
@@ -52,11 +59,25 @@ public class WarSimulator : MonoBehaviour {
     {
 
     }
+
+    public void Load()
+    {
+
+    }
+
+    public void Save()
+    {
+
+    }
     #endregion
 
     #region Protect
     #endregion
 
     #region Private
+    private EFaction NextTurn()
+    {
+        return ++m_CurrentTurn ;
+    }
     #endregion
 }

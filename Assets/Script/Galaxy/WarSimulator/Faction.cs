@@ -36,16 +36,34 @@ public class Faction {
     ///			Private			 ///
     ////////////////////////////////
     private EFaction m_Faction;
+    private List<Army> m_Armies = new List<Army>();
 
     public EFaction Side
     {
         get { return m_Faction; }
     }
 
+    public int Strength
+    {
+        get
+        {
+            int strength = 0;
+            for (int i = 0; i < m_Armies.Count; ++i)
+            {
+                strength += m_Armies[i].Strength;
+            }
+            return strength;
+        }
+    }
+
     #region Unity API
     #endregion
 
     #region Public API
+    public void CalculateNextMove()
+    {
+
+    }
     #endregion
 
     #region Protect
