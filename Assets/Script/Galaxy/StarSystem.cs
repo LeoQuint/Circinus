@@ -76,7 +76,7 @@ public class StarSystem {
     ////////////////////////////////
     public StarType m_StarType;
     public Vector3 m_Position;
-
+    public List<Location> m_Locations;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -87,7 +87,7 @@ public class StarSystem {
 
     //Properties
 
-    //Constructor
+    //Constructors
     public StarSystem(StarType type, Vector3 position)
     {
         m_Position = position;

@@ -76,6 +76,7 @@ public class OverheadBillboard : MonoBehaviour {
 
     public void PopUp()
     {
+        m_IsShowing = true;
         m_Tweener.Kill();
         m_Tweener = null;
         m_Tweener = transform.DOScale(m_OriginalScale, m_AnimationDuration);
@@ -84,6 +85,7 @@ public class OverheadBillboard : MonoBehaviour {
 
     public void PopDown()
     {
+        m_IsShowing = false;
         m_Tweener.Kill();
         m_Tweener = null;
         m_Tweener = transform.DOScale(Vector3.zero, m_AnimationDuration);
