@@ -24,6 +24,7 @@ public class ArmyGenerator : MonoBehaviour {
     ////////////////////////////////
     [SerializeField]
     private int m_BaseStrength = 1000000;
+    [SerializeField]
     private PercentageList<EShipClass> m_UnitOccurenceSettings = new PercentageList<EShipClass>();
     ////////////////////////////////
     ///			Public			 ///
@@ -54,7 +55,7 @@ public class ArmyGenerator : MonoBehaviour {
     #region Public API
     public void GenerateArmy()
     {
-
+        m_UnitOccurenceSettings.Add(EShipClass.Battlecruiser, 0.5f);
     }
 
     public void SaveConfiguration()

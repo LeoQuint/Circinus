@@ -30,8 +30,7 @@ namespace CoreUtility
         ////////////////////////////////
         ///			Protected		 ///
         ////////////////////////////////
-        protected List<T> m_List = new List<T>();
-        protected List<float> m_Percentages = new List<float>();
+        protected List<ItemPercentage<T>> m_List = new List<ItemPercentage<T>>();
         ////////////////////////////////
         ///			Private			 ///
         ////////////////////////////////
@@ -43,38 +42,42 @@ namespace CoreUtility
         public T Random()
         {
             float range = 0f;
-            for (int i = 0; i < m_Percentages.Count; ++i)
+            for (int i = 0; i < m_List.Count; ++i)
             {
-                range += m_Percentages[i];
+                range += m_List[i].percentage;
             }
 
             float randomed = UnityEngine.Random.Range(0f, range);
             float currentVal = 0f;
-            for (int i = 0; i < m_Percentages.Count; ++i)
+            for (int i = 0; i < m_List.Count; ++i)
             {
-                currentVal += m_Percentages[i];
+                currentVal += m_List[i].percentage;
                 if (currentVal >= randomed)
                 {
-                    return m_List[i];
+                    return m_List[i].item;
                 }
             }
             Debug.LogError("Error in randomer.");
-            return m_List[m_List.Count];
+            return m_List[m_List.Count].item;
         }
 
         public void Add(T item, float percentage)
         {
-            m_List.Add(item);
-            m_Percentages.Add(percentage);
+            m_List.Add(new ItemPercentage<T>(item, percentage));
         }
-
+        /// <summary>
+        /// Removes the first element found.
+        /// </summary>
+        /// <param name="item"></param>
         public void Remove(T item)
-        {
-            int index = m_List.IndexOf(item);
-            if (index != -1)
+        {            
+            for (int i = 0; i < m_List.Count; ++i)
             {
-                m_List.RemoveAt(index);
-                m_Percentages.RemoveAt(index);
+                if (EqualityComparer<T>.Default.Equals(item, m_List[i].item))
+                {
+                    m_List.RemoveAt(i);
+                    break;
+                }
             }
         }
 
@@ -83,7 +86,6 @@ namespace CoreUtility
             if (index < m_List.Count)
             {
                 m_List.RemoveAt(index);
-                m_Percentages.RemoveAt(index);
             }
         }
         #endregion
@@ -95,6 +97,18 @@ namespace CoreUtility
         #endregion
     }
 
+    [System.Serializable]
+    public struct ItemPercentage<T>
+    {
+        public T item;
+        public float percentage;
+
+        public ItemPercentage(T item, float percent)
+        {
+            this.item = item;
+            this.percentage = percent;
+        }
+    }
 }
 
 namespace CollectionHelper {
