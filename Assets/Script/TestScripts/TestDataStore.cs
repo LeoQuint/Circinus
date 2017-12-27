@@ -20,7 +20,7 @@ public class TestDataStore : MonoBehaviour {
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
     [SerializeField]
-    private string m_FileName = "savedData.xml";
+    private string m_FileName = "savedData";
     [SerializeField]
     private TestData testData;
     ////////////////////////////////

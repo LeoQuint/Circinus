@@ -5,10 +5,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml.Serialization;
 
 namespace CoreUtility
 {
-    [System.Serializable]
     public class PercentageList<T>
     {
         ////////////////////////////////
@@ -102,7 +102,7 @@ namespace CoreUtility
     {
         public T item;
         public float percentage;
-
+        
         public ItemPercentage(T item, float percent)
         {
             this.item = item;

@@ -17,11 +17,13 @@ public class Serializer_Deserializer<T> {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private readonly Dictionary<SavedPath, string> SAVED_PATH = new Dictionary<SavedPath, string>()
+    private static readonly Dictionary<SavedPath, string> SAVED_PATH = new Dictionary<SavedPath, string>()
     {
         { SavedPath.GameData, "Assets/Save/"},
         { SavedPath.Configuration, "Assets/XMLConfigs/"}
     };
+
+    private string EXTENTION = ".xml";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -59,7 +61,7 @@ public class Serializer_Deserializer<T> {
         }
         else
         {
-            Debug.LogWarning("Filename missing, default '" + m_Filename + "' will be used.");
+            Debug.LogWarning("Filename missing, default '" + m_Filename + EXTENTION + "' will be used.");
         }
         m_Types = types;
         m_DataStore = data;
@@ -68,13 +70,29 @@ public class Serializer_Deserializer<T> {
     public void Save()
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
-        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename, FileMode.Create);
+        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Create);
         serializer.Serialize(fs, m_DataStore);
         fs.Close();
-        m_DataStore = default(T);
     }
 
-    public T Load(SavedPath path = SavedPath.GameData, string filename = "")
+    public T Load()
+    {
+        if (!File.Exists(SAVED_PATH[m_Path] + m_Filename + EXTENTION))
+        {
+            Debug.LogError("FILE " + SAVED_PATH[m_Path] + m_Filename + EXTENTION + " NOT FOUND!");
+            return default(T);
+        }
+        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
+        // To read the file, create a FileStream.
+        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Open);
+        // Call the Deserialize method and cast to the object type.
+        T loadedDataStore = (T)serializer.Deserialize(fs);
+
+        fs.Close();
+        return loadedDataStore;
+    }
+
+    public T Load(SavedPath path, string filename)
     {
         m_Path = path;
         if (!string.IsNullOrEmpty(filename))
@@ -83,16 +101,16 @@ public class Serializer_Deserializer<T> {
         }
         else
         {
-            Debug.LogWarning("Filename missing, default '" + m_Filename + "' will be used.");
+            Debug.LogWarning("Filename missing, default '" + m_Filename + EXTENTION + "' will be used.");
         }
-        if (!File.Exists(SAVED_PATH[m_Path] + m_Filename))
+        if (!File.Exists(SAVED_PATH[m_Path] + m_Filename + EXTENTION))
         {
-            Debug.LogError("FILE " + SAVED_PATH[m_Path] + m_Filename + " NOT FOUND!");
+            Debug.LogError("FILE " + SAVED_PATH[m_Path] + m_Filename + EXTENTION + " NOT FOUND!");
             return default(T);
         }
         XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
         // To read the file, create a FileStream.
-        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename, FileMode.Open);
+        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Open);
         // Call the Deserialize method and cast to the object type.
         T loadedDataStore = (T)serializer.Deserialize(fs);
 

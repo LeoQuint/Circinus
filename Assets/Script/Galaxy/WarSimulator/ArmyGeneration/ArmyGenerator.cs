@@ -14,7 +14,7 @@ public class ArmyGenerator : MonoBehaviour {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const Serializer_Deserializer<ArmyGenerator>.SavedPath SAVED_PATH = Serializer_Deserializer<ArmyGenerator>.SavedPath.Configuration;
+
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////

@@ -53,7 +53,7 @@ public class OverheadBillboard : MonoBehaviour {
     private OnHoverOver m_TargetElement;
 
     #region Unity API
-    public void Awake()
+    public void Start()
     {
         Init();
     }

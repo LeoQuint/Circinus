@@ -41,8 +41,6 @@ public class Galaxy {
     //Constructor
     public Galaxy(int[,] locations, Func<Vector3, Vector3> RepositionFunction = null)
     {
-        int locX = locations.GetLength(0);
-        int locY = locations.GetLength(1);
         m_GalacticMap = new List<List<StarSystem>>();
 
         for (int i = 0; i < locations.GetLength(0); i++)

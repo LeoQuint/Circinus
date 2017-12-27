@@ -44,7 +44,7 @@ public class GalaxyGenerator : MonoBehaviour {
     ////////////////////////////////
     private int[,] map;
     private Galaxy m_Galaxy;
-    System.Type[] m_SystemTypes = { typeof(StarSystem), typeof(StarSystem.StarType) };
+    System.Type[] m_SystemTypes = { typeof(StarSystem), typeof(StarSystem.StarType) , typeof(Location)};
 
     private List<GameObject> mapList = new List<GameObject>();
     private Transform mapHolder;
@@ -88,14 +88,14 @@ public class GalaxyGenerator : MonoBehaviour {
     #region Public API
     public void SaveGalaxy()
     {        
-        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , "Galaxy.xml", m_SystemTypes);
+        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , "Galaxy", m_SystemTypes);
         sd.Save();
     }
 
     public void LoadGalaxy()
     {
         Debug.Log("Loading Galaxy");
-        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData, "Galaxy.xml", m_SystemTypes);
+        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData, "Galaxy", m_SystemTypes);
         m_Galaxy = sd.Load();
         
         foreach (GameObject g in mapList)
