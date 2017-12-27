@@ -28,6 +28,8 @@ public class ArmyConfig {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    public int ArmyStrenghPerStar = 1000000;
+
     public List<ItemPercentage<EShipClass>> ShipOccurence = new List<CoreUtility.ItemPercentage<EShipClass>>()
     {
         new ItemPercentage<EShipClass>
@@ -52,12 +54,12 @@ public class ArmyConfig {
         (EShipClass.LightCarrier,   0.02f),
         new ItemPercentage<EShipClass>
         (EShipClass.HeavyCarrier,   0.01f),
-};
-	////////////////////////////////
+    };
+    ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
 
-	////////////////////////////////
+    ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 

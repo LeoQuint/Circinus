@@ -32,4 +32,14 @@ namespace War {
         LightCarrier = 1200,
         HeavyCarrier = 2000
     }
+
+    /// <summary>
+    /// Type of Army Group. Based on the group's main purpose.
+    /// </summary>
+    public enum EArmyGroupType
+    {
+        PlanetaryDefence,
+        ExpeditionaryForce,
+        MainCorp
+    }
 }

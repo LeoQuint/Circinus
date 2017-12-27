@@ -67,13 +67,9 @@ public class GalaxyGenerator : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.G))
         {
             Generate();
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
             SpawnGameObjects();
+            m_Galaxy.GenerateRandomArmies();
         }
-
         if (Input.GetKeyDown(KeyCode.S))
         {
             SaveGalaxy();

@@ -74,9 +74,11 @@ public class StarSystem {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    public int m_Index;
     public StarType m_StarType;
     public Vector3 m_Position;
     public List<Location> m_Locations;
+    public ArmyGroup m_LocalForces;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -88,10 +90,20 @@ public class StarSystem {
     //Properties
 
     //Constructors
-    public StarSystem(StarType type, Vector3 position)
+    public StarSystem(StarType type, Vector3 position, int index)
     {
+        m_Index = index;
         m_Position = position;
         m_StarType = type;
+        m_LocalForces = new ArmyGroup();
+    }
+
+    public StarSystem(StarType type, Vector3 position, int x, int y)
+    {
+        m_Index = (x*10000) + y;
+        m_Position = position;
+        m_StarType = type;
+        m_LocalForces = new ArmyGroup();
     }
 
     public StarSystem(bool isEmpty)
@@ -100,6 +112,7 @@ public class StarSystem {
         {
             m_StarType = new StarType(TEMPERATURE_CODES[0], SUB_TEMPERATURE_CODES[0], LUMINOSITY_CODES[0]);
         }
+        m_LocalForces = new ArmyGroup();
     }
 
     public StarSystem()

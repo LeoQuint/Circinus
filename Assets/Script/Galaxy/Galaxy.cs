@@ -53,12 +53,12 @@ public class Galaxy {
                 {
                     if (RepositionFunction != null)
                     {
-                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f))));
+                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f)), i, j));
                     }
                     else
                     {
-                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), new Vector3(i, j, 0f)));
-                    }                    
+                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), new Vector3(i, j, 0f), i, j));
+                    }
                 }                
             }                
         }
@@ -92,11 +92,28 @@ public class Galaxy {
     {
 
     }
+
+    public void GenerateRandomArmies()
+    {
+        for (int i = 0; i < m_GalacticMap.Count; ++i)
+        {
+            for (int j = 0; j < m_GalacticMap[i].Count; ++j)
+            {
+                AssignArmyTo(ArmyConfigInterface.instance.GenerateArmyGroup(War.EFaction.Red, War.EArmyGroupType.MainCorp, 1000000), i, j);
+            }
+        }
+    }
+
+    public void AssignArmyTo(ArmyGroup armyGroup, int x, int y)
+    {
+        m_GalacticMap[x][y].m_LocalForces.Add(armyGroup);
+    }
     #endregion
 
     #region Protect
     #endregion
 
     #region Private
+
     #endregion
 }

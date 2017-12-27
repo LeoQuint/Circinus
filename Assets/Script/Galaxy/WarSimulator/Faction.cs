@@ -36,7 +36,7 @@ public class Faction {
     ///			Private			 ///
     ////////////////////////////////
     private EFaction m_Faction;
-    private List<Army> m_Armies = new List<Army>();
+    private List<ArmyGroup> m_Armies = new List<ArmyGroup>();
 
     public EFaction Side
     {

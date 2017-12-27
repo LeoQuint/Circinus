@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 587116105}
-  - component: {fileID: 587116104}
+  - component: {fileID: 587116106}
   m_Layer: 0
   m_Name: ArmyGenerator
   m_TagString: Untagged
@@ -290,18 +290,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &587116104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 587116103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a62549e32b5ecc4c8274e83f4e18082, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BaseStrength: 1000000
 --- !u!4 &587116105
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +303,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587116106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587116103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb06dfe743ea4142b5c9b57fdfa5141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Configs:
+    ArmyStrenghPerStar: 1000000
 --- !u!1001 &669685709
 Prefab:
   m_ObjectHideFlags: 0

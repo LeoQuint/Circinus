@@ -8,6 +8,9 @@ using UnityEngine;
 using System.Xml.Serialization;
 using War;
 
+/// <summary>
+/// Represents 1 unit type wittin an ArmyGroup.
+/// </summary>
 [System.Serializable]
 [XmlRoot("ArmyUnit")]
 public class ArmyUnit {
@@ -27,8 +30,11 @@ public class ArmyUnit {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    [XmlElement("Faction")]
     public EFaction m_Faction;
+    [XmlElement("Number")]
     public int m_Number;
+    [XmlElement("ShipClass")]
     public EShipClass m_ShipClass;
     ////////////////////////////////
     ///			Protected		 ///
@@ -38,9 +44,21 @@ public class ArmyUnit {
     ///			Private			 ///
     ////////////////////////////////
 
+    ///Properties
+    ///
     public int Strength
     {
         get { return (int)m_ShipClass * m_Number; }
+    }
+
+    ///Constructors
+    ///
+    public ArmyUnit() { }
+    public ArmyUnit(EFaction faction, EShipClass shipClass, int number)
+    {
+        m_Faction = faction;
+        m_ShipClass = shipClass;
+        m_Number = number;
     }
 
     #region Unity API
