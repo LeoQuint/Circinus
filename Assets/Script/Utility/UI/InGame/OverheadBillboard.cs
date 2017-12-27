@@ -50,13 +50,12 @@ public class OverheadBillboard : MonoBehaviour {
     private Tweener m_Tweener = null;
     private bool m_IsShowing = false;
     private Vector3 m_OriginalScale;
-    
+    private OnHoverOver m_TargetElement;
+
     #region Unity API
     public void Awake()
     {
-        m_OriginalScale = transform.localScale;
-        transform.localScale = Vector3.zero;
-        m_FacingCamera = CameraManager.instance.CurrentCamera;
+        Init();
     }
     #endregion
 
@@ -64,14 +63,6 @@ public class OverheadBillboard : MonoBehaviour {
     protected void Update()
     {
         FaceCamera();
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            PopUp();
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            PopDown();
-        }
     }
 
     public void PopUp()
@@ -94,6 +85,19 @@ public class OverheadBillboard : MonoBehaviour {
     #endregion
 
     #region Protect
+    protected void Init()
+    {
+        m_OriginalScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        m_FacingCamera = CameraManager.instance.CurrentCamera;
+        m_TargetElement = GetComponentInParent<OnHoverOver>();
+        if (m_TargetElement != null)
+        {
+            m_TargetElement.OnMouseEnterDelegate += PopUp;
+            m_TargetElement.OnMouseExitDelegate += PopDown;
+        }
+    }
+
     protected void FaceCamera()
     {
         switch (m_BillboardType)
