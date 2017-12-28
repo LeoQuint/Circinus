@@ -69,7 +69,16 @@ public class GalaxyViewShip : MonoBehaviour {
     private void LerpTo()
     {
         float ratio = (Time.time - m_LerpStartTime) / m_WarpDuration;
-        transform.position = Vector3.Lerp(transform.position, m_TargetLocation.position, ratio);
+        if (ratio >= 1f)
+        {
+            ratio = 1f;
+            transform.position = Vector3.Lerp(transform.position, m_TargetLocation.position, ratio);
+            m_TargetLocation = null;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, m_TargetLocation.position, ratio);
+        }
     }
     #endregion
 }

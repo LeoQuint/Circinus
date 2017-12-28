@@ -77,7 +77,7 @@ public class ArmyConfigInterface : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Y))
         {
             ArmyGroup testGroup = GenerateArmyGroup(EFaction.Blue, EArmyGroupType.MainCorp, 100000);
-            Serializer_Deserializer<ArmyGroup> sd = new Serializer_Deserializer<ArmyGroup>(testGroup,ARMY_GROUP_SAVED_PATH, "TestGroup", 
+            Serializer_Deserializer<ArmyGroup> sd = new Serializer_Deserializer<ArmyGroup>(testGroup, ARMY_GROUP_SAVED_PATH, "TestGroup", 
                 new System.Type[] { typeof(ArmyUnit) });
             sd.Save();
         }
