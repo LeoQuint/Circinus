@@ -77,7 +77,15 @@ public class WarSimulator : Subject {
     #region Private
     private EFaction NextTurn()
     {
-        return ++m_CurrentTurn ;
+        if (m_CurrentTurn == EFaction.Neutral)
+        {
+            m_CurrentTurn = EFaction.Red;
+        }
+        else
+        {
+            ++m_CurrentTurn;
+        }
+        return m_CurrentTurn;
     }
     #endregion
 }

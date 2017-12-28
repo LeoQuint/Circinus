@@ -78,6 +78,12 @@ public class GalaxyGenerator : MonoBehaviour {
         {
             LoadGalaxy();
         }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            List<StarSystem> nearbySystems = m_Galaxy.GetAccessibleStarSystems(m_Galaxy.m_GalacticMap[3][1]);
+            Debug.Log(nearbySystems.Count);
+        }
     }
     #endregion
 
@@ -105,8 +111,8 @@ public class GalaxyGenerator : MonoBehaviour {
             for (int y = 0; y < m_Galaxy.m_GalacticMap[x].Count; y++)
             {
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH)) as GameObject;
-                g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f));
-                g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
+                g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f));//TODO Leo: Replace with proper colors based on star type.
+                g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));//TODO Leo: Replace with proper colors based on star type.
                 g.transform.position = m_Galaxy.m_GalacticMap[x][y].m_Position;
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);

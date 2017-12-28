@@ -73,9 +73,34 @@ public class Galaxy {
     #endregion
 
     #region Public API
+    public StarSystem GetStarSystemAtIndex(int index)
+    {
+        return m_GalacticMap[index/10000][index%10000];
+    }
+
     public StarSystem GetStarSystemAtIndex(int x, int y)
     {
         return m_GalacticMap[x][y];
+    }
+
+    public List<StarSystem> GetAccessibleStarSystems(StarSystem system)
+    {
+        List<StarSystem> nearbySystems = new List<StarSystem>();
+
+        float maxRange = 50f;
+
+        for (int i = 0; i < m_GalacticMap.Count; ++i)
+        {
+            for (int j = 0; j < m_GalacticMap[i].Count; ++i)
+            {
+                if (Vector3.Distance(system.m_Position, m_GalacticMap[i][j].m_Position) < maxRange)
+                {
+                    nearbySystems.Add(m_GalacticMap[i][j]);
+                }
+            }
+        }
+
+        return nearbySystems;
     }
 
     public void SetStarSystem(StarSystem system, int x, int y)

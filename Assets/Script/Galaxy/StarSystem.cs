@@ -74,10 +74,15 @@ public class StarSystem {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    [XmlElement("Index")]
     public int m_Index;
+    [XmlElement("StarType")]
     public StarType m_StarType;
+    [XmlElement("Position")]
     public Vector3 m_Position;
+    [XmlElement("Locations")]
     public List<Location> m_Locations;
+    [XmlElement("LocalForces")]
     public ArmyGroup m_LocalForces;
     ////////////////////////////////
     ///			Protected		 ///
