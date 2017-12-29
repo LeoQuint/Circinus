@@ -129,7 +129,6 @@ public class ArmyConfigInterface : MonoBehaviour {
 
         return group;
     }
-
     #endregion
 
     #region Protect

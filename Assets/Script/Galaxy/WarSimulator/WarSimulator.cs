@@ -89,3 +89,25 @@ public class WarSimulator : Subject {
     }
     #endregion
 }
+/*
+
+AI Rules for war simulation:
+
+    "TURN BASED"
+
+    Turns will last a set amount of time.
+
+    ->Star System will supply ships(Strenght) overtime.
+        -Star System have varying production.
+        -Better System will be better defended.
+        -Star system produce ArmyGroups. The overall strength of the group will be choosen randomly based on their
+         type.
+
+    ->EArmyGroupType defines the type of "Unit".
+        -This affect's the unit's overall performance executing various tasks(invasion/hit and run/defence/etc.)
+        -The type can be changed but takes time and while waiting makes the unit more vulnerable(Reorganizing)
+        -Each types have varying disctances they can cover without resupply(stopping at the base).
+        
+
+
+*/

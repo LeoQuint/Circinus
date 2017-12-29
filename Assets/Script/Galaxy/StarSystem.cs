@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Xml.Serialization;
-
+using War;
 
 [System.Serializable]
 [XmlRoot("StarSystem")]
@@ -91,7 +91,9 @@ public class StarSystem {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private EArmyGroupType m_CurrentArmyGroup;
+    private int m_CurrentProductionCompleted;
+    private int m_CurrentProductionCost;
     //Properties
 
     //Constructors
@@ -125,6 +127,7 @@ public class StarSystem {
     }
 
     #region Unity API
+
     #endregion
 
     #region Public API    
@@ -137,11 +140,30 @@ public class StarSystem {
     {
         m_StarType = type;
     }
+
+    public int StrengthProduction()
+    {
+        int strength = 0;
+        for (int i = 0; i < m_Locations.Count; ++i)
+        {
+            strength += m_Locations[i].StrengthProduction;
+        }
+        return strength;
+    }
+
+    public void EndOfTurn()
+    {
+
+    }
     #endregion
 
     #region Protect
     #endregion
 
     #region Private
+    private void AddProduction()
+    {
+
+    }
     #endregion
 }

@@ -5,16 +5,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml.Serialization;
 
-[System.Serializable]
-[XmlRoot("Location")]
-public class Location {
+public static class PauseManager {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const string PREFAB_EMPTY_LOCATION = "Galaxy/Prefabs/Locations/Empty";
+
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -26,16 +23,12 @@ public class Location {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-    [XmlElement("Position")]
-    public Vector3 m_Position;
-    [XmlElement("Units")]
-    public ArmyUnit m_Units;
-    [XmlElement("StrengthProduction")]
-    public int StrengthProduction;
+    public static bool IsPaused = false;
+    public static float TimeScaleAtPause = 0f;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    protected GameObject m_Target;
+
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -44,8 +37,23 @@ public class Location {
     #endregion
 
     #region Public API
-    public virtual void Initialize()
+    public static void Pause()
     {
+        if (!IsPaused)
+        {
+            TimeScaleAtPause = Time.timeScale;
+            Time.timeScale = 0f;
+            IsPaused = true;
+        }
+    }
+
+    public static void UnPause()
+    {
+        if (IsPaused)
+        {
+            Time.timeScale = TimeScaleAtPause;
+            IsPaused = false;
+        }
     }
     #endregion
 
@@ -53,9 +61,5 @@ public class Location {
     #endregion
 
     #region Private
-    private void SetPosition()
-    {
-    
-    }
     #endregion
 }

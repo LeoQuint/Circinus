@@ -38,8 +38,11 @@ namespace War {
     /// </summary>
     public enum EArmyGroupType
     {
+        Reorganizing,
         PlanetaryDefence,
         ExpeditionaryForce,
-        MainCorp
+        MainCorp, 
+        ScoutingForce,
+        FastDeployementForce
     }
 }

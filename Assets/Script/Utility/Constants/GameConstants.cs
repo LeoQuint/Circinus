@@ -8,6 +8,10 @@ using UnityEngine;
 
 public partial class GameConstants {
 
-    public string CONFIG_FOLDER_PATH = "";
-    public string NIMMMM = "";
+    /// <summary>
+    /// How long the AI's turns lasts. Used in the simulation. 
+    /// The player will be unaware of any turn taking.
+    /// </summary>
+    public const float TURN_DURATION = 10f;
+
 }
