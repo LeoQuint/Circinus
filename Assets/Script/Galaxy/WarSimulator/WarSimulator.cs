@@ -36,8 +36,10 @@ public class WarSimulator : Subject {
     private Faction m_BlueFaction;
     private Faction m_NeutralFaction;
 
+    private Galaxy m_Galaxy;
+
     private EFaction m_CurrentTurn;
-    private List<EFaction> m_Factions;
+    private float m_NextTurnTimer = 1000f;
 
     #region Unity API
     private void Awake()
@@ -52,22 +54,60 @@ public class WarSimulator : Subject {
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    protected void Start()
+    {
+        Init();
+    }
+
+    protected void Update()
+    {
+        if (m_NextTurnTimer <= Time.time)
+        {
+            Turn();
+        }
+    }
     #endregion
 
     #region Public API
-    public void Initialize()
+    public void Init()
     {
+        m_RedFaction        = new Faction(EFaction.Red);
+        m_BlueFaction       = new Faction(EFaction.Blue);
+        m_NeutralFaction    = new Faction(EFaction.Neutral);
 
+        Turn();
     }
 
-    public void Load()
+    public void Load(Galaxy galaxy)
     {
-
+        m_Galaxy = galaxy;
     }
 
     public void Save()
     {
 
+    }
+
+    public void Turn()
+    {
+        m_NextTurnTimer = Time.time + GameConstants.TURN_DURATION;
+        NextTurn();
+        Debug.Log("New Turn begins for " + m_CurrentTurn.ToString());
+        switch (m_CurrentTurn)
+        {
+            case EFaction.Red:
+                m_RedFaction.TakeTurn();
+                break;
+            case EFaction.Blue:
+                m_BlueFaction.TakeTurn();
+                break;
+            case EFaction.Neutral:
+                m_NeutralFaction.TakeTurn();
+                break;
+            default:
+                break;
+        }
     }
     #endregion
 
@@ -86,6 +126,15 @@ public class WarSimulator : Subject {
             ++m_CurrentTurn;
         }
         return m_CurrentTurn;
+    }
+
+    /// <summary>
+    /// Simulate the start of the war by letting players pick star systems
+    /// one after an other.
+    /// </summary>
+    private void SimulateOutbreak()
+    {
+
     }
     #endregion
 }

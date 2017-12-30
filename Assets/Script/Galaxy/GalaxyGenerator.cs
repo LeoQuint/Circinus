@@ -15,7 +15,7 @@ public class GalaxyGenerator : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-
+    public static GalaxyGenerator instance;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -55,7 +55,27 @@ public class GalaxyGenerator : MonoBehaviour {
     private int m_CachedWidth;
     private int m_CachedHeight;
 
+    /// Properties
+    ///
+    public Galaxy GetGalaxy
+    {
+        get { return m_Galaxy; }
+    }
+
     #region Unity API
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     private void Start()
     {
         mapHolder = new GameObject("Map_Holder").transform;
@@ -88,6 +108,11 @@ public class GalaxyGenerator : MonoBehaviour {
     #endregion
 
     #region Public API
+    public void Init()
+    {
+        LoadGalaxy();
+    }
+
     public void SaveGalaxy()
     {        
         Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , "Galaxy", m_SystemTypes);

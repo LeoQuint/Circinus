@@ -51,6 +51,8 @@ public partial class AppLauncher : MonoBehaviour {
     {
         InitFlowManager();
         InitCameraManger();
+        InitGalaxy();
+        InitWarSimulator();
     }
 
     private void InitFlowManager()
@@ -60,7 +62,17 @@ public partial class AppLauncher : MonoBehaviour {
 
     private void InitCameraManger()
     {
+        
+    }
 
+    private void InitGalaxy()
+    {
+        GalaxyGenerator.instance.Init();
+    }
+
+    private void InitWarSimulator()
+    {
+        WarSimulator.instance.Init();
     }
     #endregion
 }

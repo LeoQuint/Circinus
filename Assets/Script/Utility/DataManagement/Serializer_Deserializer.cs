@@ -48,10 +48,9 @@ public class Serializer_Deserializer<T> {
     private System.Type[] m_Types = null;
     private SavedPath m_Path;
 
-    #region Unity API
-    #endregion
-
-    #region Public API
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public Serializer_Deserializer(T data, SavedPath path = SavedPath.GameData, string filename = "", System.Type[] types = null)
     {
         m_Path = path;
@@ -67,6 +66,10 @@ public class Serializer_Deserializer<T> {
         m_DataStore = data;
     }
 
+    #region Unity API
+    #endregion
+
+    #region Public API
     public void Save()
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);

@@ -83,7 +83,9 @@ public class StarSystem {
     [XmlElement("Locations")]
     public List<Location> m_Locations;
     [XmlElement("LocalForces")]
-    public ArmyGroup m_LocalForces;
+    public List<ArmyGroup> m_LocalForces;
+    [XmlElement("ControllingFaction")]
+    public EFaction m_ControllingFaction;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -91,10 +93,20 @@ public class StarSystem {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private EArmyGroupType m_CurrentArmyGroup;
+    private EArmyGroupType m_CurrentArmyGroupProduced;
     private int m_CurrentProductionCompleted;
     private int m_CurrentProductionCost;
     //Properties
+
+    public bool HasProductionInProgress
+    {
+        get { return m_CurrentArmyGroupProduced != EArmyGroupType.None; }
+    }
+
+    public int TurnsRemainingForProduction
+    {
+        get { return Mathf.CeilToInt((m_CurrentProductionCompleted - m_CurrentProductionCost) / StrengthProduction()); }
+    }
 
     //Constructors
     public StarSystem(StarType type, Vector3 position, int index)
@@ -102,7 +114,7 @@ public class StarSystem {
         m_Index = index;
         m_Position = position;
         m_StarType = type;
-        m_LocalForces = new ArmyGroup();
+        m_LocalForces = new List<ArmyGroup>();
     }
 
     public StarSystem(StarType type, Vector3 position, int x, int y)
@@ -110,7 +122,7 @@ public class StarSystem {
         m_Index = (x*10000) + y;
         m_Position = position;
         m_StarType = type;
-        m_LocalForces = new ArmyGroup();
+        m_LocalForces = new List<ArmyGroup>();
     }
 
     public StarSystem(bool isEmpty)
@@ -119,7 +131,7 @@ public class StarSystem {
         {
             m_StarType = new StarType(TEMPERATURE_CODES[0], SUB_TEMPERATURE_CODES[0], LUMINOSITY_CODES[0]);
         }
-        m_LocalForces = new ArmyGroup();
+        m_LocalForces = new List<ArmyGroup>();
     }
 
     public StarSystem()
@@ -143,17 +155,24 @@ public class StarSystem {
 
     public int StrengthProduction()
     {
-        int strength = 0;
+        int production = 0;
         for (int i = 0; i < m_Locations.Count; ++i)
         {
-            strength += m_Locations[i].StrengthProduction;
+            production += m_Locations[i].StrengthProduction;
         }
-        return strength;
+        return production;
     }
 
-    public void EndOfTurn()
+    public void AssignProduction(EArmyGroupType type, int strength)
     {
+        m_CurrentArmyGroupProduced = type;
+        m_CurrentProductionCost = strength;
+        m_CurrentProductionCompleted = 0;
+    }
 
+    public void BeginTurn()
+    {
+        ExecuteProduction();
     }
     #endregion
 
@@ -161,9 +180,20 @@ public class StarSystem {
     #endregion
 
     #region Private
-    private void AddProduction()
+    private void ExecuteProduction()
     {
-
+        if (m_CurrentArmyGroupProduced != EArmyGroupType.None)
+        {
+            m_CurrentProductionCompleted += StrengthProduction();
+            if (m_CurrentProductionCompleted >= m_CurrentProductionCost)
+            {
+                ArmyGroup ag = ArmyConfigInterface.instance.GenerateArmyGroup(m_ControllingFaction, m_CurrentArmyGroupProduced, m_CurrentProductionCost);
+                m_LocalForces.Add(ag);
+                m_CurrentProductionCompleted = 0;
+                m_CurrentArmyGroupProduced = EArmyGroupType.None;
+                m_CurrentProductionCost = 0;
+            }
+        }
     }
     #endregion
 }

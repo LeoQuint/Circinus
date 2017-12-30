@@ -38,6 +38,7 @@ namespace War {
     /// </summary>
     public enum EArmyGroupType
     {
+        None,
         Reorganizing,
         PlanetaryDefence,
         ExpeditionaryForce,

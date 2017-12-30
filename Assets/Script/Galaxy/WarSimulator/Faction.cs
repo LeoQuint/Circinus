@@ -34,10 +34,13 @@ public class Faction {
 
     ////////////////////////////////
     ///			Private			 ///
-    ////////////////////////////////
+    ////////////////////////////////    
     private EFaction m_Faction;
     private List<ArmyGroup> m_Armies = new List<ArmyGroup>();
+    private List<StarSystem> m_ControlledSystems = new List<StarSystem>();
 
+    /// Properties
+    /// 
     public EFaction Side
     {
         get { return m_Faction; }
@@ -56,13 +59,28 @@ public class Faction {
         }
     }
 
+    ///Constructors
+    ///
+    public Faction() { }
+
+    public Faction(EFaction side)
+    {
+        m_Faction = side;
+    }
+
     #region Unity API
     #endregion
 
     #region Public API
-    public void CalculateNextMove()
+    public void Load(List<ArmyGroup> armies, List<StarSystem> starSystems)
     {
+        m_Armies = new List<ArmyGroup>(armies);
+        m_ControlledSystems = new List<StarSystem>(starSystems);
+    }
 
+    public void TakeTurn()
+    {
+        ExecuteProduction();
     }
     #endregion
 
@@ -70,5 +88,12 @@ public class Faction {
     #endregion
 
     #region Private
+    private void ExecuteProduction()
+    {
+        for (int i = 0; i < m_ControlledSystems.Count; ++i)
+        {
+            m_ControlledSystems[i].BeginTurn();
+        }
+    }
     #endregion
 }

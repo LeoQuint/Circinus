@@ -14,4 +14,6 @@ public partial class GameConstants {
     /// </summary>
     public const float TURN_DURATION = 10f;
 
+    public const int MAX_DECISION_NORMAL = 5;
+
 }
