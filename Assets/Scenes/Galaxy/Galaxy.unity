@@ -570,8 +570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FillPercent: 1
-  _Width: 500
-  _Height: 1000
+  _Width: 100
+  _Height: 200
   _Angle: 30
   _DrawGizmos: 0
   _Seed: 

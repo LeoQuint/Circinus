@@ -57,7 +57,7 @@ public class WarSimulator : Subject {
 
     protected void Start()
     {
-        Init();
+        //Init();
     }
 
     protected void Update()
@@ -75,6 +75,8 @@ public class WarSimulator : Subject {
         m_RedFaction        = new Faction(EFaction.Red);
         m_BlueFaction       = new Faction(EFaction.Blue);
         m_NeutralFaction    = new Faction(EFaction.Neutral);
+
+        SimulateOutbreak();
 
         Turn();
     }
@@ -134,7 +136,15 @@ public class WarSimulator : Subject {
     /// </summary>
     private void SimulateOutbreak()
     {
+        for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
+        {
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            {
+                m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction = (EFaction)Random.Range(0, 3);
+            }
+        }
 
+        GalaxyGenerator.instance.SaveGalaxy();
     }
     #endregion
 }
