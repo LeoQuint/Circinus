@@ -68,7 +68,7 @@
 				{
 					col = _LineColor;
 				}
-				else if(i.uv.x > _LinePosition)
+				else if(i.uv.x < _LinePosition)
 				{
 					col.r = ColorPass(col.r, _BandsLeft);
 					col.g = ColorPass(col.g, _BandsLeft);
