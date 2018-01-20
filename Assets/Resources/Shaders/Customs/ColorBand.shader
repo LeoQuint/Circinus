@@ -63,7 +63,7 @@
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
-				
+
 				if(i.uv.x <= (_LinePosition + _LineSize) && i.uv.x >= (_LinePosition - _LineSize))
 				{
 					col = _LineColor;
