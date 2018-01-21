@@ -12,7 +12,8 @@ namespace War {
     {
         Red,
         Blue,
-        Neutral
+        Neutral,
+        COUNT
     }
     /// <summary>
     /// ShipClass by size
@@ -30,7 +31,8 @@ namespace War {
         Battlecruiser = 400,
         Battleship = 600,
         LightCarrier = 1200,
-        HeavyCarrier = 2000
+        HeavyCarrier = 2000,
+        COUNT
     }
 
     /// <summary>
@@ -44,6 +46,7 @@ namespace War {
         ExpeditionaryForce,
         MainCorp, 
         ScoutingForce,
-        FastDeployementForce
+        FastDeployementForce,
+        COUNT
     }
 }

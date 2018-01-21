@@ -23,7 +23,7 @@ public class Serializer_Deserializer<T> {
         { SavedPath.Configuration, "Assets/XMLConfigs/"}
     };
 
-    private string EXTENTION = ".xml";
+    private const string EXTENTION = ".xml";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////

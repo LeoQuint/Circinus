@@ -66,6 +66,10 @@ public class WarSimulator : Subject {
         {
             Turn();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SimulateOutbreak();
+        }
     }
     #endregion
 
@@ -81,7 +85,7 @@ public class WarSimulator : Subject {
         Turn();
     }
 
-    public void Load(Galaxy galaxy)
+    public void Load(ref Galaxy galaxy)
     {
         m_Galaxy = galaxy;
     }
@@ -140,7 +144,8 @@ public class WarSimulator : Subject {
         {
             for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
             {
-                m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction = (EFaction)Random.Range(0, 3);
+                m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction = (EFaction)Random.Range(0, (int)EFaction.COUNT);
+                Debug.Log(m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction);
             }
         }
 

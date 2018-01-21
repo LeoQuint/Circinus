@@ -98,6 +98,7 @@ public class GalaxyGenerator : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             LoadGalaxy();
+            WarSimulator.instance.Load(ref m_Galaxy);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
