@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33178875903712304}
   - component: {fileID: 135879327739038254}
   - component: {fileID: 23615633927901348}
-  - component: {fileID: 114423617995729590}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -88,6 +87,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6fcf40cf12344fb4d8d3bbab9b619c25, type: 2}
   m_StaticBatchInfo:
@@ -122,6 +122,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: ab77eb06591890242939f876bdd7cd20, type: 3}
   m_StaticBatchInfo:
@@ -192,17 +193,6 @@ MonoBehaviour:
   m_AnimationDuration: 0.3
   m_EaseType: 25
   m_BillboardType: 2
---- !u!114 &114423617995729590
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441756762884398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e637b628a522c240a8696bc89e91ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135879327739038254
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -51,18 +51,40 @@ public class OverheadBillboard : MonoBehaviour {
     private bool m_IsShowing = false;
     private Vector3 m_OriginalScale;
     private OnHoverOver m_TargetElement;
+    private TextMesh m_Text;
 
-    #region Unity API
-    public void Start()
+    /// <summary>
+    /// Properties
+    /// </summary>
+    public string Text
     {
-        Init();
+        get { return m_Text.text; }
+        set { m_Text.text = value;  }
+    }
+
+    #region Unity API 
+    protected void Update()
+    {
+        if (m_IsShowing)
+        {
+            FaceCamera();
+        }
     }
     #endregion
 
     #region Public API
-    protected void Update()
+    public void Init(OnHoverOver overElement)
     {
-        FaceCamera();
+        m_OriginalScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        m_FacingCamera = CameraManager.instance.CurrentCamera;
+        m_TargetElement = overElement;
+        m_Text = GetComponent<TextMesh>();
+        if (m_TargetElement != null)
+        {
+            m_TargetElement.OnMouseEnterDelegate += PopUp;
+            m_TargetElement.OnMouseExitDelegate += PopDown;
+        }
     }
 
     public void PopUp()
@@ -85,19 +107,6 @@ public class OverheadBillboard : MonoBehaviour {
     #endregion
 
     #region Protect
-    protected void Init()
-    {
-        m_OriginalScale = transform.localScale;
-        transform.localScale = Vector3.zero;
-        m_FacingCamera = CameraManager.instance.CurrentCamera;
-        m_TargetElement = GetComponentInParent<OnHoverOver>();
-        if (m_TargetElement != null)
-        {
-            m_TargetElement.OnMouseEnterDelegate += PopUp;
-            m_TargetElement.OnMouseExitDelegate += PopDown;
-        }
-    }
-
     protected void FaceCamera()
     {
         switch (m_BillboardType)

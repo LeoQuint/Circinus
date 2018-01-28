@@ -15,7 +15,7 @@ public class Galaxy {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-
+    private const string STAR_NAME_LIST_PATH = "Assets/Resources/Data/StarNames.txt";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -35,13 +35,17 @@ public class Galaxy {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private string[] StarNameList;
+    private int[] StarRepeatedNameList;
     //Properties
 
     //Constructor
     public Galaxy(int[,] locations, Func<Vector3, Vector3> RepositionFunction = null)
     {
         m_GalacticMap = new List<List<StarSystem>>();
+        LoadNameList();
+
+        int rng = 0;
 
         for (int i = 0; i < locations.GetLength(0); i++)
         {
@@ -51,13 +55,18 @@ public class Galaxy {
             {
                 if (locations[i, j] == 1)
                 {
+                    rng = UnityEngine.Random.Range(0,StarRepeatedNameList.Length);
+                    StarRepeatedNameList[rng]++;
+
+                    string newName = StarNameList[rng] + ((StarRepeatedNameList[rng] > 1) ? StarRepeatedNameList[rng].ToRoman() : "");
+                    console.logInfo(newName);
                     if (RepositionFunction != null)
                     {
-                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f)), i, j));
+                        m_GalacticMap[i].Add(new StarSystem(newName, new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f)), i, j));
                     }
                     else
                     {
-                        m_GalacticMap[i].Add(new StarSystem(new StarSystem.StarType(true), new Vector3(i, j, 0f), i, j));
+                        m_GalacticMap[i].Add(new StarSystem(newName, new StarSystem.StarType(true), new Vector3(i, j, 0f), i, j));
                     }
                 }                
             }                
@@ -139,6 +148,12 @@ public class Galaxy {
     #endregion
 
     #region Private
-
+    private void LoadNameList()
+    {
+        StarNameList = System.IO.File.ReadAllLines(STAR_NAME_LIST_PATH);
+        
+        StarRepeatedNameList = new int[StarNameList.Length];
+        console.logInfo(StarNameList.Length + "||" + StarRepeatedNameList.Length);
+    }
     #endregion
 }

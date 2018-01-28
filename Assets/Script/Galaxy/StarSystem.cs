@@ -86,6 +86,8 @@ public class StarSystem {
     ////////////////////////////////
     [XmlElement("Index")]
     public int m_Index;
+    [XmlElement("Name")]
+    public string m_Name;
     [XmlElement("StarType")]
     public StarType m_StarType;
     [XmlElement("Position")]
@@ -132,16 +134,18 @@ public class StarSystem {
     }
 
     //Constructors
-    public StarSystem(StarType type, Vector3 position, int index)
+    public StarSystem(string name, StarType type, Vector3 position, int index)
     {
+        m_Name = name;
         m_Index = index;
         m_Position = position;
         m_StarType = type;
         m_LocalForces = new List<ArmyGroup>();
     }
 
-    public StarSystem(StarType type, Vector3 position, int x, int y)
+    public StarSystem(string name, StarType type, Vector3 position, int x, int y)
     {
+        m_Name = name;
         m_Index = (x*10000) + y;
         m_Position = position;
         m_StarType = type;

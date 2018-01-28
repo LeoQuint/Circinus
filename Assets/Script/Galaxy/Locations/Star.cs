@@ -29,10 +29,12 @@ public class Star : MonoBehaviour
     ///			Protected		 ///
     ////////////////////////////////
     protected StarSystem m_StarSystem;
+    protected OnHoverOver m_OnHover;
+    protected OverheadBillboard m_Billboard;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-   
+    private string m_StarDisplay;
     ///Properties
     ///
     public StarSystem System
@@ -54,6 +56,10 @@ public class Star : MonoBehaviour
     public void Load(StarSystem starSystem)
     {
         m_StarSystem = starSystem;
+        m_OnHover = gameObject.AddComponent<OnHoverOver>();
+        m_Billboard = GetComponentInChildren<OverheadBillboard>();
+        m_Billboard.Init(m_OnHover);
+        SetDisplay();
     }
     #endregion
 
@@ -61,7 +67,13 @@ public class Star : MonoBehaviour
     #endregion
 
     #region Private
-   
+    private void SetDisplay()
+    {
+        m_StarDisplay = m_StarSystem.m_Name + "\n";
+        m_StarDisplay += m_StarSystem.m_ControllingFaction.ToString() + "\n";
+        m_StarDisplay += "Forces " + m_StarSystem.LocalForcesStrength.ToLargeValues();
 
+        m_Billboard.Text = m_StarDisplay;
+    }
     #endregion
 }

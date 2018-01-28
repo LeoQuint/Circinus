@@ -62,7 +62,7 @@ public class WarSimulator : Subject {
 
     protected void Update()
     {
-        if (m_NextTurnTimer <= Time.time)
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Turn();
         }
