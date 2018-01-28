@@ -19,50 +19,60 @@ public class StarSystem {
     public struct StarType
     {
         //Hotness O,B,A,F,G,K,M : O (Hotest) M (Coolest), Also(D = White Dwarf, S = Sub Dwarf)
-        public char TemperatureCode;
-        //Sub Hotness Zero to Nine: 0 (Hotest) 9 (Coolest)
-        public int SubTemperatureCode;
-        //Luminosity Nulla, Ia, Ib, I, II, III, IV, V, VI, VII
-        public string Luminosity;
+        public Temperature TemperatureCode;
+        public Luminosity Luminosity;
 
-        public StarType(char temperature, int subTemperature, string luminosity)
+        public StarType(Temperature temperature, Luminosity luminosity)
         {
             TemperatureCode = temperature;
-            SubTemperatureCode = subTemperature;
             Luminosity = luminosity;
         }
         public StarType(bool isRandomed)
         {
             if (isRandomed)
             {
-                TemperatureCode = TEMPERATURE_CODES[UnityEngine.Random.Range(0, TEMPERATURE_CODES.Count)];
-                SubTemperatureCode = SUB_TEMPERATURE_CODES[UnityEngine.Random.Range(0, SUB_TEMPERATURE_CODES.Count)];
-                Luminosity = LUMINOSITY_CODES[UnityEngine.Random.Range(0, LUMINOSITY_CODES.Count)];
+                TemperatureCode = (Temperature)UnityEngine.Random.Range(0, (int)Temperature.COUNT);
+                Luminosity = (Luminosity)UnityEngine.Random.Range(0, (int)Luminosity.COUNT);
             }
             else
             {
-                TemperatureCode = 'O';
-                SubTemperatureCode = 0;
-                Luminosity = "Nulla";
+                TemperatureCode = Temperature.O;
+                Luminosity = Luminosity.Nulla;
             }
         }
+    }
+
+    public enum Luminosity
+    {
+        Nulla = 0,
+        Ia = 1,
+        Ib = 2,
+        I = 3,
+        II = 4,
+        III = 5,
+        IV = 6,
+        V = 7,
+        VI = 8,
+        VII = 9,
+        COUNT = 10
+    }
+
+    public enum Temperature
+    {
+        O,
+        B,
+        A,
+        F,
+        G,
+        K,
+        M,
+        COUNT
     }
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    public static readonly List<char> TEMPERATURE_CODES = new List<char>()
-    {
-        'N'/*NULL*/,'O', 'B', 'A', 'F', 'G', 'K', 'M'
-    };
-    public static readonly List<int> SUB_TEMPERATURE_CODES = new List<int>()
-    {
-        -1/*NULL*/,0,1,2,3,4,5,6,7,8,9
-    };
-    public static readonly List<string> LUMINOSITY_CODES = new List<string>()
-    {
-        "Nulla"/*NULL*/, "Ia", "Ib", "I", "II", "III", "IV", "V", "VI", "VII"
-    };
+   
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -108,6 +118,19 @@ public class StarSystem {
         get { return Mathf.CeilToInt((m_CurrentProductionCompleted - m_CurrentProductionCost) / StrengthProduction()); }
     }
 
+    public int LocalForcesStrength
+    {
+        get
+        {
+            int strength = 0;
+            for (int i = 0; i < m_LocalForces.Count; ++i)
+            {
+                strength += m_LocalForces[i].Strength;
+            }
+            return strength;
+        }
+    }
+
     //Constructors
     public StarSystem(StarType type, Vector3 position, int index)
     {
@@ -129,7 +152,7 @@ public class StarSystem {
     {
         if (isEmpty)
         {
-            m_StarType = new StarType(TEMPERATURE_CODES[0], SUB_TEMPERATURE_CODES[0], LUMINOSITY_CODES[0]);
+            m_StarType = new StarType(Temperature.O, Luminosity.Nulla);
         }
         m_LocalForces = new List<ArmyGroup>();
     }
@@ -173,6 +196,17 @@ public class StarSystem {
     public void BeginTurn()
     {
         ExecuteProduction();
+    }
+    /// <summary>
+    /// Used for initialization or if a system is flipped peacefully.
+    /// </summary>
+    public void SetControllingFaction(EFaction faction)
+    {
+        m_ControllingFaction = faction;
+        for (int i = 0; i < m_LocalForces.Count; ++i)
+        {
+            m_LocalForces[i].ChangeFaction(faction);
+        }
     }
     #endregion
 

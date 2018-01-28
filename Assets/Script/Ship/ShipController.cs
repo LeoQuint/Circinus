@@ -40,6 +40,7 @@ public class ShipController : MonoBehaviour {
     protected void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        console.log(m_Rigidbody.velocity + " "  + "jj");
     }
 
     protected void Update()

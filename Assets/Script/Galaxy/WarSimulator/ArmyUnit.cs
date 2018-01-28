@@ -30,8 +30,6 @@ public class ArmyUnit {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-    [XmlElement("Faction")]
-    public EFaction m_Faction;
     [XmlElement("Number")]
     public int m_Number;
     [XmlElement("ShipClass")]
@@ -54,9 +52,8 @@ public class ArmyUnit {
     ///Constructors
     ///
     public ArmyUnit() { }
-    public ArmyUnit(EFaction faction, EShipClass shipClass, int number)
+    public ArmyUnit(EShipClass shipClass, int number)
     {
-        m_Faction = faction;
         m_ShipClass = shipClass;
         m_Number = number;
     }

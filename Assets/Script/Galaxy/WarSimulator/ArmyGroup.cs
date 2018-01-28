@@ -70,6 +70,10 @@ public class ArmyGroup {
     #endregion
 
     #region Public API
+    public void ChangeFaction(EFaction faction)
+    {
+        m_Faction = faction;
+    }
     /// <summary>
     /// Add a single Ship.
     /// </summary>
@@ -84,7 +88,7 @@ public class ArmyGroup {
                 return;
             }
         }
-        m_ArmyUnits.Add(new ArmyUnit(m_Faction, ship, 1));
+        m_ArmyUnits.Add(new ArmyUnit(ship, 1));
     }
     /// <summary>
     /// Add a one or more ships of the same type.

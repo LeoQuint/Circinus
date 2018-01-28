@@ -113,17 +113,19 @@ public class GalaxyGenerator : MonoBehaviour {
     public void Init()
     {
         LoadGalaxy();
+        WarSimulator.instance.Load(ref m_Galaxy);
     }
 
     public void SaveGalaxy()
-    {        
+    {
+        console.logInfo("Save Galaxy");
         Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , FILENAME, m_SystemTypes);
         sd.Save();
     }
 
     public void LoadGalaxy()
     {
-        Debug.Log("Loading Galaxy");
+        console.logStatus("Loading Galaxy");
         Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData, FILENAME, m_SystemTypes);
         m_Galaxy = sd.Load();
         
@@ -138,10 +140,10 @@ public class GalaxyGenerator : MonoBehaviour {
             for (int y = 0; y < m_Galaxy.m_GalacticMap[x].Count; y++)
             {
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH)) as GameObject;
-                //TODO Leo: Replace with proper colors based on star type.
-                g.GetComponent<Renderer>().material.SetFloat("_Index", Random.Range(0f, 1f));
-                //TODO Leo: Replace with proper colors based on star type.
-                g.GetComponent<Renderer>().material.SetFloat("_Brightness", Random.Range(2f, 5f));
+
+                Star s = g.AddComponent<Star>();
+                s.Load(m_Galaxy.m_GalacticMap[x][y]);
+                s.Init();
                 g.transform.position = m_Galaxy.m_GalacticMap[x][y].m_Position;
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);

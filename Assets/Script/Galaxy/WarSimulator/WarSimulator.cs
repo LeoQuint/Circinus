@@ -39,7 +39,7 @@ public class WarSimulator : Subject {
     private Galaxy m_Galaxy;
 
     private EFaction m_CurrentTurn;
-    private float m_NextTurnTimer = 1000f;
+    private float m_NextTurnTimer = 5f;
 
     #region Unity API
     private void Awake()
@@ -86,8 +86,9 @@ public class WarSimulator : Subject {
     }
 
     public void Load(ref Galaxy galaxy)
-    {
+    {       
         m_Galaxy = galaxy;
+        Init();
     }
 
     public void Save()
@@ -99,7 +100,6 @@ public class WarSimulator : Subject {
     {
         m_NextTurnTimer = Time.time + GameConstants.TURN_DURATION;
         NextTurn();
-        Debug.Log("New Turn begins for " + m_CurrentTurn.ToString());
         switch (m_CurrentTurn)
         {
             case EFaction.Red:
@@ -114,6 +114,7 @@ public class WarSimulator : Subject {
             default:
                 break;
         }
+        ShowInfo();
     }
     #endregion
 
@@ -134,6 +135,24 @@ public class WarSimulator : Subject {
         return m_CurrentTurn;
     }
 
+    private void ShowInfo()
+    {
+        int numberOfSystemControlled = 0;
+        int overallStrength = 0;
+        for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
+        {
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            {
+                if (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction == m_CurrentTurn)
+                {
+                    ++numberOfSystemControlled;
+                    overallStrength += m_Galaxy.m_GalacticMap[i][j].LocalForcesStrength;
+                }                
+            }
+        }
+        console.logInfo(m_CurrentTurn.ToString() + " System Controlled: " + numberOfSystemControlled + " Total Strength: " + overallStrength.ToLargeValues());
+    }
+
     /// <summary>
     /// Simulate the start of the war by letting players pick star systems
     /// one after an other.
@@ -144,11 +163,9 @@ public class WarSimulator : Subject {
         {
             for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
             {
-                m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction = (EFaction)Random.Range(0, (int)EFaction.COUNT);
-                Debug.Log(m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction);
+                m_Galaxy.m_GalacticMap[i][j].SetControllingFaction((EFaction)Random.Range(0, (int)EFaction.COUNT));  
             }
         }
-
         GalaxyGenerator.instance.SaveGalaxy();
     }
     #endregion
@@ -171,7 +188,5 @@ AI Rules for war simulation:
         -This affect's the unit's overall performance executing various tasks(invasion/hit and run/defence/etc.)
         -The type can be changed but takes time and while waiting makes the unit more vulnerable(Reorganizing)
         -Each types have varying disctances they can cover without resupply(stopping at the base).
-        
-
 
 */
