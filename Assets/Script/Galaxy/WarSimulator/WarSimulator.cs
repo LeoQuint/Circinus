@@ -32,10 +32,18 @@ public class WarSimulator : Subject {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private Faction m_RedFaction;
-    private Faction m_BlueFaction;
-    private Faction m_NeutralFaction;
 
+    ///*************Factions*************//
+    //Red
+    private Faction m_RedFaction;
+    private AreaDrawer m_RedArea;
+    //Blue
+    private Faction m_BlueFaction;
+    private AreaDrawer m_BlueArea;
+    //Neutral
+    private Faction m_NeutralFaction;
+    private AreaDrawer m_NeutralArea;
+    ///************************************//
     private Galaxy m_Galaxy;
 
     private EFaction m_CurrentTurn;
@@ -65,6 +73,7 @@ public class WarSimulator : Subject {
         if (Input.GetKeyDown(KeyCode.T))
         {
             Turn();
+            UpdateAreas();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -77,11 +86,14 @@ public class WarSimulator : Subject {
     public void Init()
     {
         m_RedFaction        = new Faction(EFaction.Red);
+        m_RedArea           = transform.Find("RedArea").GetComponent<AreaDrawer>();
         m_BlueFaction       = new Faction(EFaction.Blue);
+        m_BlueArea          = transform.Find("BlueArea").GetComponent<AreaDrawer>();
         m_NeutralFaction    = new Faction(EFaction.Neutral);
+        m_NeutralArea       = transform.Find("NeutralArea").GetComponent<AreaDrawer>();
 
         SimulateOutbreak();
-
+        InitializeAreaDrawers();
         Turn();
     }
 
@@ -165,8 +177,49 @@ public class WarSimulator : Subject {
             {
                 m_Galaxy.m_GalacticMap[i][j].SetControllingFaction((EFaction)Random.Range(0, (int)EFaction.COUNT));  
             }
-        }
+        }        
         GalaxyGenerator.instance.SaveGalaxy();
+    }
+
+    private void InitializeAreaDrawers()
+    {
+        m_RedArea.Init();
+        m_BlueArea.Init();
+        m_NeutralArea.Init();
+        UpdateAreas();
+    }
+
+    private void UpdateAreas()
+    {
+        List<Vector3> redStars = new List<Vector3>();
+        List<Vector3> blueStars = new List<Vector3>();
+        List<Vector3> neutralStars = new List<Vector3>();
+
+        for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
+        {
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            {
+                switch (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction)
+                {
+                    case EFaction.Red:
+                        redStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        break;
+                    case EFaction.Blue:
+                        blueStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        break;
+                    case EFaction.Neutral:
+                        neutralStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        break;
+                    case EFaction.COUNT:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        m_RedArea.Points = redStars;
+        m_BlueArea.Points = blueStars;
+        m_NeutralArea.Points = neutralStars;
     }
     #endregion
 }

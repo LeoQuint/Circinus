@@ -57,9 +57,8 @@ public class Galaxy {
                 {
                     rng = UnityEngine.Random.Range(0,StarRepeatedNameList.Length);
                     StarRepeatedNameList[rng]++;
-
                     string newName = StarNameList[rng] + ((StarRepeatedNameList[rng] > 1) ? StarRepeatedNameList[rng].ToRoman() : "");
-                    console.logInfo(newName);
+
                     if (RepositionFunction != null)
                     {
                         m_GalacticMap[i].Add(new StarSystem(newName, new StarSystem.StarType(true), RepositionFunction(new Vector3(i, j, 0f)), i, j));
@@ -150,10 +149,8 @@ public class Galaxy {
     #region Private
     private void LoadNameList()
     {
-        StarNameList = System.IO.File.ReadAllLines(STAR_NAME_LIST_PATH);
-        
+        StarNameList = System.IO.File.ReadAllLines(STAR_NAME_LIST_PATH);        
         StarRepeatedNameList = new int[StarNameList.Length];
-        console.logInfo(StarNameList.Length + "||" + StarRepeatedNameList.Length);
     }
     #endregion
 }
