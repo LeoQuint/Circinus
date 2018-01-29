@@ -47,6 +47,7 @@ public class GalaxyGenerator : MonoBehaviour {
     private Galaxy m_Galaxy;
     System.Type[] m_SystemTypes = { typeof(StarSystem), typeof(StarSystem.StarType) , typeof(Location)};
 
+    private Star[][] starList;
     private List<GameObject> mapList = new List<GameObject>();
     private Transform mapHolder;
 
@@ -58,9 +59,14 @@ public class GalaxyGenerator : MonoBehaviour {
 
     /// Properties
     ///
-    public Galaxy GetGalaxy
+    public Galaxy GalaxyMap
     {
         get { return m_Galaxy; }
+    }
+
+    public Star[][] StarList
+    {
+        get { return starList;  }
     }
 
     #region Unity API
@@ -134,9 +140,10 @@ public class GalaxyGenerator : MonoBehaviour {
             Destroy(g);
         }
         mapList.Clear();
-
+        starList = new Star[m_Galaxy.m_GalacticMap.Count][];
         for (int x = 0; x < m_Galaxy.m_GalacticMap.Count; x++)
         {
+            starList[x] = new Star[m_Galaxy.m_GalacticMap[x].Count];
             for (int y = 0; y < m_Galaxy.m_GalacticMap[x].Count; y++)
             {
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH)) as GameObject;
@@ -147,6 +154,7 @@ public class GalaxyGenerator : MonoBehaviour {
                 g.transform.position = m_Galaxy.m_GalacticMap[x][y].m_Position;
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);
+                starList[x][y] = s;
             }
         }
     }

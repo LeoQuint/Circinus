@@ -20,4 +20,6 @@ public partial class GameConstants {
         { EArmyGroupType.ScoutingForce, 50f },
         { EArmyGroupType.FastDeployementForce, 100f }
     };
+
+    public const float GALAXY_MAX_DISTANCE_TO_NEAR_STARS = 20f;
 }

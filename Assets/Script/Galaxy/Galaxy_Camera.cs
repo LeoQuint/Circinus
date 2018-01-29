@@ -1,0 +1,56 @@
+﻿//////////////////////////////////////////
+//	Create by Leonard Marineau-Quintal  //
+//		www.leoquintgames.com			//
+//////////////////////////////////////////
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Galaxy_Camera : MonoBehaviour {
+
+    ////////////////////////////////
+    ///			Constants		 ///
+    ////////////////////////////////
+
+    ////////////////////////////////
+    ///			Statics			 ///
+    ////////////////////////////////
+
+    ////////////////////////////////
+    ///	  Serialized In Editor	 ///
+    ////////////////////////////////
+
+    ////////////////////////////////
+    ///			Public			 ///
+    ////////////////////////////////
+
+    ////////////////////////////////
+    ///			Protected		 ///
+    ////////////////////////////////
+
+    ////////////////////////////////
+    ///			Private			 ///
+    ////////////////////////////////
+    private float m_MinZPosition = -5f;
+    private float m_MaxZPosition = -40f;
+
+    #region Unity API
+    private void Update()
+    {
+
+    }
+    #endregion
+
+    #region Public API
+    #endregion
+
+    #region Protect
+    protected void GetInput()
+    {
+
+    }
+    #endregion
+
+    #region Private
+    #endregion
+}
