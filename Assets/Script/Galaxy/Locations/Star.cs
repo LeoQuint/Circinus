@@ -40,6 +40,11 @@ public class Star : MonoBehaviour
     private List<Star> m_NearStars = new List<Star>();
     ///Properties
     ///
+    public List<Star> NearStars
+    {
+        get { return m_NearStars;  }
+    }
+
     public StarSystem System
     {
         get { return m_StarSystem; }
@@ -67,11 +72,15 @@ public class Star : MonoBehaviour
     #endregion
 
     #region Public API
+    /// <summary>
+    /// Wait for all stars to be load prior to Init.
+    /// </summary>
     public void Init()
     {
         float color = (1f + (float)m_StarSystem.m_StarType.TemperatureCode) / (float)(StarSystem.Temperature.COUNT);
         GetComponent<Renderer>().material.SetFloat("_Index", color);
         GetComponent<Renderer>().material.SetFloat("_Brightness", (float)m_StarSystem.m_StarType.Luminosity);
+        CalculateNearStars();
     }
 
     public void Load(StarSystem starSystem)
@@ -90,6 +99,10 @@ public class Star : MonoBehaviour
     #region Private
     private void CalculateNearStars()
     {
+        if (m_NearStarsCalculated)
+        {
+            return;
+        }
         Star[][] starList = GalaxyGenerator.instance.StarList;
 
         for (int i = 0; i < starList.Length; ++i)

@@ -22,4 +22,5 @@ public partial class GameConstants {
     };
 
     public const float GALAXY_MAX_DISTANCE_TO_NEAR_STARS = 20f;
+    public const int OUTBREAK_DURATION_IN_TURNS = 20;
 }

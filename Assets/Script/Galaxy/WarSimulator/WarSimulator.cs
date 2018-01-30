@@ -98,7 +98,8 @@ public class WarSimulator : Subject {
     }
 
     public void Load(ref Galaxy galaxy)
-    {       
+    {
+        console.logStatus("Loading War Simulator.");
         m_Galaxy = galaxy;
         Init();
     }
@@ -127,6 +128,21 @@ public class WarSimulator : Subject {
                 break;
         }
         ShowInfo();
+    }
+
+    public void SimulateInitialTurns()
+    {
+        for (int i = 0; i < GameConstants.OUTBREAK_DURATION_IN_TURNS; ++i)
+        {
+            Turn();
+            Star flipped = GetMostVulnerableStar(m_CurrentTurn);
+            if (flipped != null)
+            {
+                console.logInfo("System flipped from " + flipped.System.m_ControllingFaction.ToString() + " to " + m_CurrentTurn.ToString());
+                flipped.System.m_ControllingFaction = m_CurrentTurn;
+            }
+
+        }
     }
     #endregion
 
@@ -177,8 +193,61 @@ public class WarSimulator : Subject {
             {
                 m_Galaxy.m_GalacticMap[i][j].SetControllingFaction((EFaction)Random.Range(0, (int)EFaction.COUNT));  
             }
-        }        
+        }            
         GalaxyGenerator.instance.SaveGalaxy();
+    }    
+
+    private Star GetMostVulnerableStar(EFaction faction)
+    {
+        int largestBalanceOfPower = 0;
+        Star mostVulnerable = null;
+        for (int i = 0; i < GalaxyGenerator.instance.StarList.Length; ++i)
+        {
+            for (int j = 0; j < GalaxyGenerator.instance.StarList[i].Length; ++j)
+            {
+                List<Star> nearStars = GalaxyGenerator.instance.StarList[i][j].NearStars;
+                int redStars = 0;
+                int blueStars = 0;
+                for (int k = 0; k < nearStars.Count; ++k)
+                {
+                    int balanceOfLocalPower = 0;
+                    switch (nearStars[k].System.m_ControllingFaction)
+                    {
+                        case EFaction.Red:
+                            ++redStars;
+                            break;
+                        case EFaction.Blue:
+                            ++blueStars;
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (faction)
+                    {
+                        case EFaction.Red:
+                            {
+                                balanceOfLocalPower = redStars - blueStars;
+                            }
+                            break;
+                        case EFaction.Blue:
+                            {
+                                balanceOfLocalPower = blueStars - redStars;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    if (balanceOfLocalPower > largestBalanceOfPower)
+                    {
+                        largestBalanceOfPower = balanceOfLocalPower;
+                        mostVulnerable = nearStars[k];
+                    }
+                }
+                
+            }
+        }
+
+        return mostVulnerable;
     }
 
     private void InitializeAreaDrawers()

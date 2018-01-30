@@ -103,8 +103,7 @@ public class GalaxyGenerator : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadGalaxy();
-            WarSimulator.instance.Load(ref m_Galaxy);
+            Init();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -120,11 +119,25 @@ public class GalaxyGenerator : MonoBehaviour {
     {
         LoadGalaxy();
         WarSimulator.instance.Load(ref m_Galaxy);
+        InitializeStars();
+        WarSimulator.instance.SimulateInitialTurns();
+    }
+
+    public void InitializeStars()
+    {
+        console.logStatus("Initializing Stars");
+        for (int i = 0; i < starList.Length; ++i)
+        {
+            for (int j = 0; j < starList[i].Length; ++j)
+            {
+                starList[i][j].Init();
+            }
+        }
     }
 
     public void SaveGalaxy()
     {
-        console.logInfo("Save Galaxy");
+        console.logStatus("Save Galaxy");
         Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , FILENAME, m_SystemTypes);
         sd.Save();
     }
@@ -149,8 +162,7 @@ public class GalaxyGenerator : MonoBehaviour {
                 GameObject g = Instantiate(Resources.Load<GameObject>(STAR_PREFAB_PATH)) as GameObject;
 
                 Star s = g.AddComponent<Star>();
-                s.Load(m_Galaxy.m_GalacticMap[x][y]);
-                s.Init();
+                s.Load(m_Galaxy.m_GalacticMap[x][y]);            
                 g.transform.position = m_Galaxy.m_GalacticMap[x][y].m_Position;
                 g.transform.SetParent(mapHolder);
                 mapList.Add(g);

@@ -36,6 +36,10 @@ public class OverheadBillboard : MonoBehaviour {
     private float m_AnimationDuration = 0.3f;
     [SerializeField]
     private Ease m_EaseType = Ease.InOutExpo;
+    [SerializeField]
+    private bool m_ScaleWithDistance = true;
+    [SerializeField]
+    private float m_ScaleRatio = 0.5f;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -50,6 +54,7 @@ public class OverheadBillboard : MonoBehaviour {
     private Tweener m_Tweener = null;
     private bool m_IsShowing = false;
     private Vector3 m_OriginalScale;
+    private Vector3 m_TargetScale;
     private OnHoverOver m_TargetElement;
     private TextMesh m_Text;
 
@@ -89,10 +94,14 @@ public class OverheadBillboard : MonoBehaviour {
 
     public void PopUp()
     {
+        if (m_ScaleWithDistance)
+        {
+            m_TargetScale = m_OriginalScale * Vector3.Distance(transform.position, m_FacingCamera.transform.position) * m_ScaleRatio;
+        }
         m_IsShowing = true;
         m_Tweener.Kill();
         m_Tweener = null;
-        m_Tweener = transform.DOScale(m_OriginalScale, m_AnimationDuration);
+        m_Tweener = transform.DOScale(m_TargetScale, m_AnimationDuration);
         m_Tweener.SetEase(m_EaseType);
     }
 
