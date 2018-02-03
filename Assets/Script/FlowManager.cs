@@ -56,6 +56,11 @@ public class FlowManager : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    protected void Start()
+    {
+
+    }
     #endregion
 
     #region Public API

@@ -143,6 +143,8 @@ public class WarSimulator : Subject {
             }
 
         }
+        GalaxyGenerator.instance.SaveGalaxy();
+        InitializeAreaDrawers();//debug
     }
     #endregion
 
@@ -271,13 +273,13 @@ public class WarSimulator : Subject {
                 switch (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction)
                 {
                     case EFaction.Red:
-                        redStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        redStars.Add(       m_Galaxy.m_GalacticMap[i][j].m_Position);
                         break;
                     case EFaction.Blue:
-                        blueStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        blueStars.Add(      m_Galaxy.m_GalacticMap[i][j].m_Position);
                         break;
                     case EFaction.Neutral:
-                        neutralStars.Add(m_Galaxy.m_GalacticMap[i][j].m_Position);
+                        neutralStars.Add(   m_Galaxy.m_GalacticMap[i][j].m_Position);
                         break;
                     case EFaction.COUNT:
                         break;
