@@ -71,5 +71,6 @@ public class AreaDrawer : MonoBehaviour {
     #endregion
 
     #region Private
+    
     #endregion
 }

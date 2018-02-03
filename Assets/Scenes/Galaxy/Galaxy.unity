@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 320116214}
   - component: {fileID: 320116213}
+  - component: {fileID: 320116215}
   m_Layer: 0
   m_Name: WarSimulator
   m_TagString: Untagged
@@ -260,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968d76ee44de21d4598d5da1ecc62247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IsSimulating: 0
+  debugMat: {fileID: 2100000, guid: 52ade5953df0f7b48a2ffbce262817de, type: 2}
 --- !u!4 &320116214
 Transform:
   m_ObjectHideFlags: 0
@@ -276,6 +279,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320116215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320116212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47d6b49ffdeee94ab7a0eb3b3630c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &587116103
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +379,7 @@ LineRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077249049}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -538,7 +552,7 @@ LineRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1732574861}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -719,7 +733,7 @@ LineRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2115396190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

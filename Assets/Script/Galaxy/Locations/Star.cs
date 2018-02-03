@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Triangle = MeshGenerator.Triangle;
+
 public class Star : MonoBehaviour
 {
 
@@ -122,6 +124,59 @@ public class Star : MonoBehaviour
         }
 
         m_NearStarsCalculated = true;
+    }
+
+    [ContextMenu("Calculate Area")]
+    private void CalculateAreaTriangles()
+    {
+        if (!m_NearStarsCalculated)
+        {
+            CalculateNearStars();
+        }
+        
+        List<Vector3> points = new List<Vector3>();
+
+        //Get the halfway points between all nearby stars
+        for (int i = 0; i < m_NearStars.Count; ++i)
+        {
+            Vector3 halfwayPoint = new Vector3(
+                ((NearStars[i].transform.position.x - transform.position.x) / 2f),
+                ((NearStars[i].transform.position.y - transform.position.y) / 2f),
+                ((NearStars[i].transform.position.z - transform.position.z) / 2f)
+                );
+            points.Add(halfwayPoint);
+        }
+
+        if (points.Count < 2)
+        {
+            console.logWarning("Not enought connecting stars to make an aera.");
+            return;
+        }
+        //Awefull code below. Just for testing.
+        GameObject g = new GameObject();
+        g.transform.SetParent(transform);
+        g.transform.localPosition = Vector3.zero;
+        g.name = "ControlledArea";
+        MeshRenderer mr = g.AddComponent<MeshRenderer>();
+        MeshFilter mf = g.AddComponent<MeshFilter>();
+        mf.mesh = WarSimulator.instance.GetComponent<MeshGenerator>().GenerateMesh(Vector3.zero, points);
+        Color color = Color.white;
+        switch (ControllingFaction)
+        {
+            case War.EFaction.Red:
+                color = Color.red;
+                break;
+            case War.EFaction.Blue:
+                color = Color.blue;
+                break;
+            case War.EFaction.Neutral:
+                color = Color.grey;
+                break;
+            default:
+                break;
+        }
+        mr.material = WarSimulator.instance.debugMat;
+        mr.material.SetColor("_TintColor", color);
     }
 
     private void SetDisplay()
