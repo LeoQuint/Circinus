@@ -169,6 +169,7 @@ public class GalaxyGenerator : MonoBehaviour {
                 starList[x][y] = s;
             }
         }
+        
     }
 
     public void Generate()

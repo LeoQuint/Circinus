@@ -65,14 +65,14 @@ public class FlowManager : MonoBehaviour {
 
     #region Public API
 
-    public void LoadScene(eScene scene, LoadSceneMode loadMode)
+    public void LoadScene(eScene scene, LoadSceneMode loadMode = LoadSceneMode.Additive)
     {
-        SceneManager.LoadScene(scene.ToString(), loadMode);        
+        SceneManager.LoadScene(scene.ToString(), loadMode);     
     }
     
     public void LoadSceneAsync(eScene scene, LoadSceneMode loadMode)
     {
-        SceneManager.LoadSceneAsync(scene.ToString(), loadMode);
+        SceneManager.LoadSceneAsync(scene.ToString(), loadMode = LoadSceneMode.Additive);
     }
 
     #endregion

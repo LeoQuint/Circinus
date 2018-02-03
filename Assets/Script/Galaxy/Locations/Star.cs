@@ -50,6 +50,10 @@ public class Star : MonoBehaviour
         get { return m_StarSystem; }
     }
 
+    public War.EFaction ControllingFaction
+    {
+        get { return m_StarSystem.m_ControllingFaction; }
+    }
     #region Unity API
     private void OnDrawGizmosSelected()
     {

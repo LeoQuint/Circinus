@@ -99,7 +99,7 @@ public class Galaxy {
 
         for (int i = 0; i < m_GalacticMap.Count; ++i)
         {
-            for (int j = 0; j < m_GalacticMap[i].Count; ++i)
+            for (int j = 0; j < m_GalacticMap[i].Count; ++j)
             {
                 if (Vector3.Distance(system.m_Position, m_GalacticMap[i][j].m_Position) < maxRange)
                 {

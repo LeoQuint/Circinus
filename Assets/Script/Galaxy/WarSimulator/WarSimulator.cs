@@ -2,7 +2,6 @@
 //	Create by Leonard Marineau-Quintal  //
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using War;
@@ -20,7 +19,8 @@ public class WarSimulator : Subject {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    [SerializeField]
+    private bool m_IsSimulating = false;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -48,6 +48,13 @@ public class WarSimulator : Subject {
 
     private EFaction m_CurrentTurn;
     private float m_NextTurnTimer = 5f;
+
+    //Properties
+    public bool IsSimulating
+    {
+        get { return m_IsSimulating; }
+        set { m_IsSimulating = true; }
+    }
 
     #region Unity API
     private void Awake()
@@ -78,6 +85,16 @@ public class WarSimulator : Subject {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SimulateOutbreak();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpdateAreas();
+        }
+
+
+        if (m_IsSimulating && Time.time > m_NextTurnTimer)
+        {
+            Turn();
         }
     }
     #endregion
@@ -171,7 +188,7 @@ public class WarSimulator : Subject {
         int overallStrength = 0;
         for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
         {
-            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++j)
             {
                 if (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction == m_CurrentTurn)
                 {
@@ -191,7 +208,7 @@ public class WarSimulator : Subject {
     {
         for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
         {
-            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++j)
             {
                 m_Galaxy.m_GalacticMap[i][j].SetControllingFaction((EFaction)Random.Range(0, (int)EFaction.COUNT));  
             }
@@ -207,12 +224,17 @@ public class WarSimulator : Subject {
         {
             for (int j = 0; j < GalaxyGenerator.instance.StarList[i].Length; ++j)
             {
+                if (GalaxyGenerator.instance.StarList[i][j].ControllingFaction == faction)
+                {
+                    continue;
+                }
                 List<Star> nearStars = GalaxyGenerator.instance.StarList[i][j].NearStars;
                 int redStars = 0;
                 int blueStars = 0;
+
+                int balanceOfLocalPower = 0;
                 for (int k = 0; k < nearStars.Count; ++k)
                 {
-                    int balanceOfLocalPower = 0;
                     switch (nearStars[k].System.m_ControllingFaction)
                     {
                         case EFaction.Red:
@@ -223,29 +245,28 @@ public class WarSimulator : Subject {
                             break;
                         default:
                             break;
-                    }
-                    switch (faction)
-                    {
-                        case EFaction.Red:
-                            {
-                                balanceOfLocalPower = redStars - blueStars;
-                            }
-                            break;
-                        case EFaction.Blue:
-                            {
-                                balanceOfLocalPower = blueStars - redStars;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                    if (balanceOfLocalPower > largestBalanceOfPower)
-                    {
-                        largestBalanceOfPower = balanceOfLocalPower;
-                        mostVulnerable = nearStars[k];
-                    }
+                    }                   
                 }
-                
+                switch (faction)
+                {
+                    case EFaction.Red:
+                        {
+                            balanceOfLocalPower = redStars - blueStars;
+                        }
+                        break;
+                    case EFaction.Blue:
+                        {
+                            balanceOfLocalPower = blueStars - redStars;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                if (balanceOfLocalPower > largestBalanceOfPower)
+                {
+                    largestBalanceOfPower = balanceOfLocalPower;
+                    mostVulnerable = GalaxyGenerator.instance.StarList[i][j];
+                }
             }
         }
 
@@ -265,11 +286,12 @@ public class WarSimulator : Subject {
         List<Vector3> redStars = new List<Vector3>();
         List<Vector3> blueStars = new List<Vector3>();
         List<Vector3> neutralStars = new List<Vector3>();
-
+        console.logStatus(m_Galaxy.m_GalacticMap.Count);
         for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
         {
-            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++i)
+            for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++j)
             {
+                console.logStatus(m_Galaxy.m_GalacticMap[i].Count);
                 switch (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction)
                 {
                     case EFaction.Red:
