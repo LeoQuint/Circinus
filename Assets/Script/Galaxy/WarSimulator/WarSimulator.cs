@@ -287,12 +287,11 @@ public class WarSimulator : Subject {
         List<Vector3> redStars = new List<Vector3>();
         List<Vector3> blueStars = new List<Vector3>();
         List<Vector3> neutralStars = new List<Vector3>();
-        console.logStatus(m_Galaxy.m_GalacticMap.Count);
+
         for (int i = 0; i < m_Galaxy.m_GalacticMap.Count; ++i)
         {
             for (int j = 0; j < m_Galaxy.m_GalacticMap[i].Count; ++j)
-            {
-                console.logStatus(m_Galaxy.m_GalacticMap[i].Count);
+            {         
                 switch (m_Galaxy.m_GalacticMap[i][j].m_ControllingFaction)
                 {
                     case EFaction.Red:

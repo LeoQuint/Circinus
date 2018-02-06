@@ -139,20 +139,39 @@ public class Star : MonoBehaviour
         //Get the halfway points between all nearby stars
         for (int i = 0; i < m_NearStars.Count; ++i)
         {
-            Vector3 halfwayPoint = new Vector3(
+            Vector3 halfwayPoint = Vector3.zero;
+            if (NearStars[i].ControllingFaction == ControllingFaction)
+            {
+                halfwayPoint = new Vector3(
+               ((NearStars[i].transform.position.x - transform.position.x)),
+               ((NearStars[i].transform.position.y - transform.position.y)),
+               ((NearStars[i].transform.position.z - transform.position.z))
+               );
+            }
+            else
+            {
+                halfwayPoint = new Vector3(
                 ((NearStars[i].transform.position.x - transform.position.x) / 2f),
                 ((NearStars[i].transform.position.y - transform.position.y) / 2f),
                 ((NearStars[i].transform.position.z - transform.position.z) / 2f)
                 );
+            }
+            
             points.Add(halfwayPoint);
         }
 
         if (points.Count < 2)
         {
-            console.logWarning("Not enought connecting stars to make an aera.");
+            console.logWarning("Not enought connecting stars to make an area.");
             return;
         }
-        //Awefull code below. Just for testing.
+
+        GenerateAreaMesh(points);
+    }
+
+    private void GenerateAreaMesh(List<Vector3> points)
+    {
+        //Todo: Awefull code below. Just for testing. Make good
         GameObject g = new GameObject();
         g.transform.SetParent(transform);
         g.transform.localPosition = Vector3.zero;

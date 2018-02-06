@@ -66,14 +66,26 @@ public class MeshGenerator : MonoBehaviour
     private List<Vector3> vertices = new List<Vector3>();
     private List<int> triangles = new List<int>();
     private HashSet<int> checkedVertices = new HashSet<int>();
-   
+
+    private Camera mainCamera;
     #region Unity API
     private void Start()
     {
-       
-        
-       
-        
+        mainCamera = CameraManager.instance.CurrentCamera;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (mainCamera != null)
+        {
+            Vector3 pos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+            StarSystem ss = GetNearestStarSystem(pos);
+            if (ss != null)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(pos, ss.m_Position);
+            }            
+        }       
     }
     #endregion
 
@@ -114,6 +126,32 @@ public class MeshGenerator : MonoBehaviour
     #endregion
 
     #region Private
+    private StarSystem GetNearestStarSystem(Vector3 position)
+    {
+        if (GalaxyGenerator.instance.GalaxyMap == null)
+        {
+            console.logError("Galaxy not initialized.");
+            return null;
+        }
+        List<List<StarSystem>> map = GalaxyGenerator.instance.GalaxyMap.m_GalacticMap;
+
+        float shortestDistance = float.MaxValue;
+        StarSystem nearest = null;
+        for (int i = 0; i < map.Count; ++i)
+        {
+            for (int j = 0; j < map[i].Count; ++j)
+            {
+                float distance = Vector3.Distance(position, map[i][j].m_Position);
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    nearest = map[i][j];
+                }
+            }
+        }
+
+        return nearest;
+    }
     #endregion
 }
 
