@@ -36,7 +36,7 @@ public class BezierCurve : MonoBehaviour {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-
+    protected int m_NumberOfBezierInPath = 1;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -62,6 +62,11 @@ public class BezierCurve : MonoBehaviour {
     {
         get { return _HandleSize; }
     }
+
+    public int NumberOfBezier
+    {
+        get { return m_NumberOfBezierInPath;  }
+    }
     #region Unity API
     protected void Update()
     {
@@ -75,6 +80,29 @@ public class BezierCurve : MonoBehaviour {
     #endregion
 
     #region Public API
+    /// <summary>
+    /// Add an extra curve.
+    /// </summary>
+    public void Extend()
+    {
+        _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
+        _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
+        _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
+        ++m_NumberOfBezierInPath;
+    }
+    /// <summary>
+    /// Remove a curve
+    /// </summary>
+    public void Shorten()
+    {
+        if (m_NumberOfBezierInPath > 1)
+        {
+            _Points.RemoveAt(_Points.Count- 1);
+            _Points.RemoveAt(_Points.Count - 1);
+            _Points.RemoveAt(_Points.Count - 1);
+            --m_NumberOfBezierInPath;
+        }
+    }
     #endregion
 
     #region Protect
@@ -103,28 +131,54 @@ public class BezierCurve : MonoBehaviour {
 [CustomEditor(typeof(BezierCurve))]
 public class EditorBezierDrawer : Editor
 {
+    
     protected void OnSceneGUI()
     {
         BezierCurve curve = target as BezierCurve;
-       
-        Handles.DrawBezier(curve.Points[0], curve.Points[3], curve.Points[1], curve.Points[2], curve.CurveColor, null, curve.Width);
+        List<Vector3> newPositions = new List<Vector3>(curve.Points);
+
+        int curveFrom = 0;
+        int curveTo = 1;
+
+        for (int i = 0; i < curve.NumberOfBezier; ++i)
+        {
+            Handles.DrawBezier(curve.Points[0 + (i * 3)], curve.Points[3 + (i * 3)], curve.Points[1 + (i * 3)], curve.Points[2 + (i * 3)], curve.CurveColor, null, curve.Width);
+            Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
+            curveFrom += 2;
+            curveTo += 2;
+            Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
+            ++curveFrom;
+            ++curveTo;
+        }
 
         EditorGUI.BeginChangeCheck();
-        Vector3 newTargetPosition1 = Handles.FreeMoveHandle(curve.Points[0], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-        Vector3 newTargetPosition2 = Handles.FreeMoveHandle(curve.Points[1], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-        Vector3 newTargetPosition3 = Handles.FreeMoveHandle(curve.Points[2], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-        Vector3 newTargetPosition4 = Handles.FreeMoveHandle(curve.Points[3], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
 
-        Handles.DrawLine(curve.Points[0], curve.Points[1]);
-        Handles.DrawLine(curve.Points[2], curve.Points[3]);
-
+        for (int i = 0; i < curve.Points.Count; ++i)
+        {
+            newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+        }
         if (EditorGUI.EndChangeCheck())
         {
-            Undo.RecordObject(target, "Change Bezier curve.");
-            curve.Points[0] = newTargetPosition1;
-            curve.Points[1] = newTargetPosition2;
-            curve.Points[2] = newTargetPosition3;
-            curve.Points[3] = newTargetPosition4;
+            Undo.RecordObject(target, "Change Bezier curve.");           
+            for (int i = 0; i < curve.Points.Count; ++i)
+            {
+                curve.Points[i] = newPositions[i];
+            }
+        }
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        BezierCurve curve = target as BezierCurve;
+        if (GUILayout.Button("Extend"))
+        {
+            curve.Extend();
+        }
+        if (GUILayout.Button("Shorten"))
+        {
+            curve.Shorten();
         }
     }
 }
