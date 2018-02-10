@@ -85,7 +85,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2346</Number>
@@ -132,7 +132,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -149,7 +149,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3225</Number>
@@ -196,7 +196,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -213,7 +213,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3300</Number>
@@ -260,7 +260,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -341,7 +341,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>408</Number>
@@ -388,7 +388,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>110155</Index>
@@ -657,7 +657,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4000</Number>
@@ -704,7 +704,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>140134</Index>
@@ -781,7 +781,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2432</Number>
@@ -828,7 +828,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -845,7 +845,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4052</Number>
@@ -892,7 +892,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>150132</Index>
@@ -1095,7 +1095,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3983</Number>
@@ -1142,7 +1142,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>160165</Index>
@@ -1157,7 +1157,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3949</Number>
@@ -1204,7 +1204,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1221,7 +1221,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3185</Number>
@@ -1268,7 +1268,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>170121</Index>
@@ -1283,7 +1283,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3017</Number>
@@ -1330,7 +1330,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1347,7 +1347,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3071</Number>
@@ -1394,7 +1394,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1411,7 +1411,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>410</Number>
@@ -1458,7 +1458,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -1476,7 +1476,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>78</Number>
@@ -1523,7 +1523,7 @@
             <ShipClass>Battlecruiser</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>210093</Index>
@@ -1538,7 +1538,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2299</Number>
@@ -1585,7 +1585,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1666,7 +1666,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3186</Number>
@@ -1713,7 +1713,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1730,7 +1730,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3127</Number>
@@ -1777,7 +1777,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -1984,7 +1984,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3150</Number>
@@ -2031,7 +2031,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -2112,7 +2112,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1610</Number>
@@ -2159,7 +2159,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -2177,7 +2177,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3898</Number>
@@ -2224,7 +2224,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>310063</Index>
@@ -2431,7 +2431,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>812</Number>
@@ -2478,7 +2478,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>340131</Index>
@@ -2493,7 +2493,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3986</Number>
@@ -2540,7 +2540,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -2743,7 +2743,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3883</Number>
@@ -2790,7 +2790,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -2807,7 +2807,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3136</Number>
@@ -2854,7 +2854,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>360169</Index>
@@ -2916,7 +2916,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>360188</Index>
@@ -2931,7 +2931,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3964</Number>
@@ -2978,7 +2978,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>360193</Index>
@@ -2993,7 +2993,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1645</Number>
@@ -3040,7 +3040,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -3058,7 +3058,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3148</Number>
@@ -3105,7 +3105,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -3122,7 +3122,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3285</Number>
@@ -3246,7 +3246,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3197</Number>
@@ -3293,7 +3293,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -3310,7 +3310,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3202</Number>
@@ -3496,7 +3496,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3960</Number>
@@ -3543,7 +3543,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>400157</Index>
@@ -3622,7 +3622,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3122</Number>
@@ -3669,7 +3669,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -3686,7 +3686,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>730</Number>
@@ -3733,7 +3733,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -3750,7 +3750,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3863</Number>
@@ -3797,7 +3797,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>430049</Index>
@@ -3812,7 +3812,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3198</Number>
@@ -3859,7 +3859,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>430057</Index>
@@ -3874,7 +3874,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3214</Number>
@@ -3921,7 +3921,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>430183</Index>
@@ -3936,7 +3936,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3107</Number>
@@ -3983,7 +3983,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -4000,7 +4000,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3982</Number>
@@ -4047,7 +4047,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -4064,7 +4064,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3106</Number>
@@ -4111,7 +4111,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>450182</Index>
@@ -4173,7 +4173,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -4192,7 +4192,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4043</Number>
@@ -4239,7 +4239,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>480196</Index>
@@ -4254,7 +4254,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3189</Number>
@@ -4301,7 +4301,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -4318,7 +4318,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3263</Number>
@@ -4365,7 +4365,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>490125</Index>
@@ -4442,7 +4442,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>803</Number>
@@ -4489,7 +4489,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -4506,7 +4506,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2427</Number>
@@ -4568,7 +4568,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1548</Number>
@@ -4630,7 +4630,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3959</Number>
@@ -4677,7 +4677,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>500120</Index>
@@ -4818,7 +4818,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3146</Number>
@@ -4865,7 +4865,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -4882,7 +4882,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3244</Number>
@@ -4929,7 +4929,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>520034</Index>
@@ -4944,7 +4944,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2373</Number>
@@ -4991,7 +4991,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>520132</Index>
@@ -5070,7 +5070,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3933</Number>
@@ -5134,7 +5134,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3110</Number>
@@ -5181,7 +5181,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -5198,7 +5198,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3184</Number>
@@ -5245,7 +5245,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>550060</Index>
@@ -5322,7 +5322,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3987</Number>
@@ -5369,7 +5369,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -5386,7 +5386,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3197</Number>
@@ -5639,7 +5639,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3901</Number>
@@ -5686,7 +5686,7 @@
             <ShipClass>Battlecruiser</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>590084</Index>
@@ -5763,7 +5763,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>768</Number>
@@ -5810,7 +5810,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>590167</Index>
@@ -5825,7 +5825,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3956</Number>
@@ -5872,7 +5872,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>590184</Index>
@@ -5887,7 +5887,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2430</Number>
@@ -5934,7 +5934,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -5951,7 +5951,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3138</Number>
@@ -5998,7 +5998,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -6015,7 +6015,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3055</Number>
@@ -6062,7 +6062,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>610139</Index>
@@ -6077,7 +6077,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3943</Number>
@@ -6139,7 +6139,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3978</Number>
@@ -6186,7 +6186,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -6312,7 +6312,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>620192</Index>
@@ -6391,7 +6391,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2443</Number>
@@ -6438,7 +6438,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -6456,7 +6456,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3165</Number>
@@ -6580,7 +6580,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2473</Number>
@@ -6627,7 +6627,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -6644,7 +6644,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>815</Number>
@@ -6691,7 +6691,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>660017</Index>
@@ -6706,7 +6706,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1640</Number>
@@ -6753,7 +6753,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>660048</Index>
@@ -6768,7 +6768,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>450</Number>
@@ -6815,7 +6815,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>660182</Index>
@@ -6830,7 +6830,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2455</Number>
@@ -6877,7 +6877,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -6894,7 +6894,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4043</Number>
@@ -7003,7 +7003,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -7020,7 +7020,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3073</Number>
@@ -7067,7 +7067,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>680100</Index>
@@ -7082,7 +7082,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4036</Number>
@@ -7129,7 +7129,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>680158</Index>
@@ -7144,7 +7144,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3927</Number>
@@ -7191,7 +7191,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -7208,7 +7208,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1549</Number>
@@ -7255,7 +7255,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>690016</Index>
@@ -7270,7 +7270,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3840</Number>
@@ -7317,7 +7317,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>690151</Index>
@@ -7332,7 +7332,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1578</Number>
@@ -7379,7 +7379,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -7460,7 +7460,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3251</Number>
@@ -7507,7 +7507,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>710049</Index>
@@ -7584,7 +7584,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2352</Number>
@@ -7631,7 +7631,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -7648,7 +7648,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2404</Number>
@@ -7695,7 +7695,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>720062</Index>
@@ -7710,7 +7710,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3090</Number>
@@ -7836,7 +7836,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3178</Number>
@@ -7883,7 +7883,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -7900,7 +7900,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1561</Number>
@@ -8011,7 +8011,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -8090,7 +8090,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3172</Number>
@@ -8137,7 +8137,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -8201,7 +8201,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -8218,7 +8218,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4095</Number>
@@ -8265,7 +8265,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>780065</Index>
@@ -8342,7 +8342,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3216</Number>
@@ -8389,7 +8389,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>780164</Index>
@@ -8404,7 +8404,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2361</Number>
@@ -8451,7 +8451,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -8594,7 +8594,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4050</Number>
@@ -8641,7 +8641,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -8660,7 +8660,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3165</Number>
@@ -8707,7 +8707,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -8724,7 +8724,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>4052</Number>
@@ -8771,7 +8771,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>840076</Index>
@@ -8786,7 +8786,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3161</Number>
@@ -8833,7 +8833,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>840083</Index>
@@ -8912,7 +8912,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1532</Number>
@@ -8959,7 +8959,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>850122</Index>
@@ -8974,7 +8974,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3930</Number>
@@ -9021,7 +9021,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>850145</Index>
@@ -9100,7 +9100,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1575</Number>
@@ -9147,7 +9147,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>860118</Index>
@@ -9224,7 +9224,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3238</Number>
@@ -9286,7 +9286,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3222</Number>
@@ -9333,7 +9333,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -9350,7 +9350,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3205</Number>
@@ -9397,7 +9397,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>870073</Index>
@@ -9412,7 +9412,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3345</Number>
@@ -9459,7 +9459,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>870103</Index>
@@ -9474,7 +9474,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3164</Number>
@@ -9521,7 +9521,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>870116</Index>
@@ -9536,7 +9536,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3354</Number>
@@ -9583,7 +9583,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
       <StarSystem>
         <Index>870133</Index>
@@ -9598,7 +9598,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Red</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3867</Number>
@@ -9645,7 +9645,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Red</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -9662,7 +9662,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>1626</Number>
@@ -9709,7 +9709,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -9726,7 +9726,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2356</Number>
@@ -9773,7 +9773,7 @@
             <ShipClass>Battleship</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -9790,7 +9790,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3280</Number>
@@ -9837,7 +9837,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -9854,7 +9854,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3959</Number>
@@ -9901,7 +9901,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -9919,7 +9919,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Neutral</Faction>
+          <Faction>Blue</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3079</Number>
@@ -9966,7 +9966,7 @@
             <ShipClass>LightCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Neutral</ControllingFaction>
+        <ControllingFaction>Blue</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
@@ -10045,7 +10045,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Red</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>2299</Number>
@@ -10092,7 +10092,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Red</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem />
@@ -10110,7 +10110,7 @@
           <z>-2</z>
         </Position>
         <LocalForces>
-          <Faction>Blue</Faction>
+          <Faction>Neutral</Faction>
           <ArmyGroupType>MainCorp</ArmyGroupType>
           <ArmyUnits>
             <Number>3270</Number>
@@ -10157,7 +10157,7 @@
             <ShipClass>HeavyCarrier</ShipClass>
           </ArmyUnits>
         </LocalForces>
-        <ControllingFaction>Blue</ControllingFaction>
+        <ControllingFaction>Neutral</ControllingFaction>
       </StarSystem>
     </ArrayOfStarSystem>
     <ArrayOfStarSystem>
