@@ -36,7 +36,10 @@ public class BezierCurve : MonoBehaviour {
     private List<Vector3> m_Path = new List<Vector3>();
     [SerializeField]
     [InEditorReadOnly]
-    private float m_Length = -1f;
+    private float m_TotalLength = -1f;
+    [SerializeField]
+    [InEditorReadOnly]
+    private List<float> m_Lengths = new List<float>();
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -80,11 +83,11 @@ public class BezierCurve : MonoBehaviour {
     {
         get
         {
-            if (m_Length == -1f)
+            if (m_TotalLength == -1f)
             {
                 console.logWarning("Bezier length not calculated. Use PreCalculatePoints to calculate.");
             }
-            return m_Length;
+            return m_TotalLength;
         }
     }
     #region Unity API
@@ -96,7 +99,11 @@ public class BezierCurve : MonoBehaviour {
     /// </summary>
     public void Extend()
     {
-        _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
+        _Points.Add( /*Rotate the first point so its handle is 180 degree from the opposite one.*/
+            new Vector3(_Points[_Points.Count - 2].x, 
+                        _Points[_Points.Count - 2].y, 
+                        _Points[_Points.Count - 2].z)
+                        .RotatePoint(_Points[_Points.Count - 1], Mathf.PI/*180Degrees*/));
         _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
         _Points.Add(new Vector3(_Points[_Points.Count - 1].x + 1f, _Points[_Points.Count - 1].y + 1f, _Points[_Points.Count - 1].z));
         ++m_NumberOfBezierInPath;
@@ -122,7 +129,9 @@ public class BezierCurve : MonoBehaviour {
     {
         m_Path.Clear();
         m_Path.Capacity = m_NumberOfBezierInPath * POINTS_PER_BEZIER;
-        m_Length = 0f;
+        m_Lengths.Clear();
+        m_Lengths.Capacity = m_NumberOfBezierInPath;
+        m_TotalLength = 0f;
         for (int i = 0; i < m_NumberOfBezierInPath; ++i)
         {
             for (int j = 0; j <= POINTS_PER_BEZIER; ++j)
@@ -130,7 +139,9 @@ public class BezierCurve : MonoBehaviour {
                 m_Path.Add(GetPointOnCurve(((float)j / (float)POINTS_PER_BEZIER), i));
             }
             //Calculate the length of each bezier.
-            m_Length += CalculateBezierLength(i);
+            float length = CalculateBezierLength(i);
+            m_Lengths.Add(length);
+            m_TotalLength += length;
         }        
     }
     #endregion
@@ -147,7 +158,7 @@ public class BezierCurve : MonoBehaviour {
         float u2 = u * u;
         float u3 = u2 * u;
         float t3 = t2 * t;
-        Debug.Log(t + " " +  bezier);
+
         Vector3 point = (u3) * _Points[0 + (bezier * 3)] +
                         (3f * u2 * t) * _Points[1 + (bezier * 3)] +
                         (3f * u * t2) * _Points[2 + (bezier * 3)] +
@@ -162,7 +173,6 @@ public class BezierCurve : MonoBehaviour {
         {
             length += Vector3.Distance(m_Path[i + (bezier * POINTS_PER_BEZIER)], m_Path[i + 1 + (bezier * POINTS_PER_BEZIER)]);
         }
-        Debug.Log(bezier + " " + length);
         return length;
     }
     #endregion
@@ -213,22 +223,34 @@ public class EditorBezierDrawer : Editor
             }
             else//tangents
             {
-                /*if (i % 3 == 1 && i > 1)//after the control point
+                if (i % 3 == 1 && i > 1)//after the control point
                 {
                     newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                    tangentDirection = (newPositions[i] - newPositions[i - 1]).normalized;
-                    
-                    newPositions[i - 2] -= tangentDirection * (newPositions[i] - curve.Points[i]).magnitude;
+                    //Starting angle
+                    tangentDirection = curve.Points[i]/*target*/ - curve.Points[i - 1]/*origin*/;
+                    float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+                    //End angle
+                    tangentDirection = newPositions[i]/*target*/ - curve.Points[i-1]/*origin*/;
+                    float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f,0f);
+
+                    newPositions[i - 2] = newPositions[i - 2].RotatePoint(curve.Points[i-1], (newAngle - initialAngle));
                 }
                 else if (i % 3 == 2 && i + 2 < newPositions.Count)//before the control point
                 {
                     newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                    //Starting angle
+                    tangentDirection = curve.Points[i]/*target*/ - curve.Points[i + 1]/*origin*/;
+                    float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+                    //End angle
+                    tangentDirection = newPositions[i]/*target*/ - curve.Points[i + 1]/*origin*/;
+                    float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+
+                    newPositions[i + 2] = newPositions[i + 2].RotatePoint(curve.Points[i + 1], (newAngle - initialAngle));
                 }
                 else
                 {
                     newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                }*/
-                newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                }               
             }            
         }
         if (EditorGUI.EndChangeCheck())
@@ -239,6 +261,8 @@ public class EditorBezierDrawer : Editor
                 curve.Points[i] = newPositions[i];
             }
         }
+
+        
     }
 
     public override void OnInspectorGUI()
@@ -254,5 +278,9 @@ public class EditorBezierDrawer : Editor
         {
             curve.Shorten();
         }
-    }
+        if (GUILayout.Button("Pre Calculate"))
+        {
+            curve.PreCalculatePoints();
+        }
+    }    
 }
