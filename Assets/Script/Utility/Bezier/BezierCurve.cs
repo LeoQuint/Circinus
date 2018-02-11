@@ -51,7 +51,7 @@ public class BezierCurve : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private bool _PreviewOn = false;
     ///proterties
     public List<Vector3> Points
     {
@@ -88,6 +88,24 @@ public class BezierCurve : MonoBehaviour {
                 console.logWarning("Bezier length not calculated. Use PreCalculatePoints to calculate.");
             }
             return m_TotalLength;
+        }
+    }
+
+    public bool ForceSmoothPath
+    {
+        get { return _ForceSmoothPath; }
+    }
+
+    public bool PreviewOn
+    {
+        get { return _PreviewOn; }
+        set
+        {
+            if (_PreviewOn != value)
+            {
+                SceneView.RepaintAll();
+            }
+            _PreviewOn = value;
         }
     }
     #region Unity API
@@ -183,93 +201,119 @@ public class EditorBezierDrawer : Editor
 {
     private Vector3 controlPointDelta = Vector3.zero;
     private Vector3 tangentDirection = Vector3.zero;
+    private Color defaultColor = Color.grey;
+    private Color previewColor = new Color(0.2f,0.2f,0.2f);
+
+    protected void OnEnable()
+    {
+        defaultColor = GUI.color;
+    }
 
     protected void OnSceneGUI()
     {
         BezierCurve curve = target as BezierCurve;
         List<Vector3> newPositions = new List<Vector3>(curve.Points);
-
+        
         int curveFrom = 0;
         int curveTo = 1;
 
         for (int i = 0; i < curve.NumberOfBezier; ++i)
         {
             Handles.DrawBezier(curve.Points[0 + (i * 3)], curve.Points[3 + (i * 3)], curve.Points[1 + (i * 3)], curve.Points[2 + (i * 3)], curve.CurveColor, null, curve.Width);
-            Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
-            curveFrom += 2;
-            curveTo += 2;
-            Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
-            ++curveFrom;
-            ++curveTo;
-        }
-
-        EditorGUI.BeginChangeCheck();
-
-        for (int i = 0; i < curve.Points.Count; ++i)
-        {
-            if (i % 3 == 0)//Control points
+            if (!curve.PreviewOn)
             {
-                newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                controlPointDelta = newPositions[i] - curve.Points[i];
-                if (i > 0)
-                {
-                    newPositions[i - 1] += controlPointDelta;
-                }
-                if (newPositions.Count > i + 2)
-                {
-                    newPositions[i + 1] += controlPointDelta;
-                    curve.Points[i + 1] = newPositions[i + 1];
-                }
-            }
-            else//tangents
-            {
-                if (i % 3 == 1 && i > 1)//after the control point
-                {
-                    newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                    //Starting angle
-                    tangentDirection = curve.Points[i]/*target*/ - curve.Points[i - 1]/*origin*/;
-                    float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
-                    //End angle
-                    tangentDirection = newPositions[i]/*target*/ - curve.Points[i-1]/*origin*/;
-                    float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f,0f);
-
-                    newPositions[i - 2] = newPositions[i - 2].RotatePoint(curve.Points[i-1], (newAngle - initialAngle));
-                }
-                else if (i % 3 == 2 && i + 2 < newPositions.Count)//before the control point
-                {
-                    newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                    //Starting angle
-                    tangentDirection = curve.Points[i]/*target*/ - curve.Points[i + 1]/*origin*/;
-                    float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
-                    //End angle
-                    tangentDirection = newPositions[i]/*target*/ - curve.Points[i + 1]/*origin*/;
-                    float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
-
-                    newPositions[i + 2] = newPositions[i + 2].RotatePoint(curve.Points[i + 1], (newAngle - initialAngle));
-                }
-                else
-                {
-                    newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
-                }               
+                Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
+                curveFrom += 2;
+                curveTo += 2;
+                Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
+                ++curveFrom;
+                ++curveTo;
             }            
         }
-        if (EditorGUI.EndChangeCheck())
+        //No editing in preview mode
+        if (!curve.PreviewOn)
         {
-            Undo.RecordObject(target, "Change Bezier curve.");           
+            EditorGUI.BeginChangeCheck();
+
             for (int i = 0; i < curve.Points.Count; ++i)
             {
-                curve.Points[i] = newPositions[i];
+                if (i % 3 == 0)//Control points
+                {
+                    newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                    controlPointDelta = newPositions[i] - curve.Points[i];
+                    if (i > 0)
+                    {
+                        newPositions[i - 1] += controlPointDelta;
+                    }
+                    if (newPositions.Count > i + 2)
+                    {
+                        newPositions[i + 1] += controlPointDelta;
+                        curve.Points[i + 1] = newPositions[i + 1];
+                    }
+                }
+                else//tangents
+                {
+                    if (curve.ForceSmoothPath)
+                    {
+                        if (i % 3 == 1 && i > 1)//after the control point
+                        {
+                            newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                            //Starting angle
+                            tangentDirection = curve.Points[i]/*target*/ - curve.Points[i - 1]/*origin*/;
+                            float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+                            //End angle
+                            tangentDirection = newPositions[i]/*target*/ - curve.Points[i - 1]/*origin*/;
+                            float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+
+                            newPositions[i - 2] = newPositions[i - 2].RotatePoint(curve.Points[i - 1], (newAngle - initialAngle));
+                        }
+                        else if (i % 3 == 2 && i + 2 < newPositions.Count)//before the control point
+                        {
+                            newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                            //Starting angle
+                            tangentDirection = curve.Points[i]/*target*/ - curve.Points[i + 1]/*origin*/;
+                            float initialAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+                            //End angle
+                            tangentDirection = newPositions[i]/*target*/ - curve.Points[i + 1]/*origin*/;
+                            float newAngle = Mathf.Atan2(tangentDirection.y, tangentDirection.x) - Mathf.Atan2(1f, 0f);
+
+                            newPositions[i + 2] = newPositions[i + 2].RotatePoint(curve.Points[i + 1], (newAngle - initialAngle));
+                        }
+                        else
+                        {
+                            newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                        }
+                    }
+                    else
+                    {
+                        newPositions[i] = Handles.FreeMoveHandle(curve.Points[i], Quaternion.identity, curve.HandleSize, Vector3.zero, Handles.RectangleHandleCap);
+                    }
+                }
+            }
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Change Bezier curve.");
+                for (int i = 0; i < curve.Points.Count; ++i)
+                {
+                    curve.Points[i] = newPositions[i];
+                }
             }
         }
-
-        
     }
 
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+        
 
         BezierCurve curve = target as BezierCurve;
+
+        if (curve.PreviewOn)
+        {
+            GUI.color = previewColor;
+        }
+        DrawDefaultInspector();
+
+
         if (GUILayout.Button("Extend"))
         {
             curve.Extend();
@@ -281,6 +325,19 @@ public class EditorBezierDrawer : Editor
         if (GUILayout.Button("Pre Calculate"))
         {
             curve.PreCalculatePoints();
+        }
+
+        if (curve.PreviewOn)
+        {
+            GUI.color = Color.red;
+        }
+        if (GUILayout.Button(curve.PreviewOn ? "Preview Off" : "Preview On"))
+        {
+            curve.PreviewOn = !curve.PreviewOn;
+        }
+        if (curve.PreviewOn)
+        {
+            GUI.color = defaultColor;
         }
     }    
 }
