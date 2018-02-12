@@ -2,6 +2,7 @@
 //	Create by Leonard Marineau-Quintal  //
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
+#define DEBUG_TEST
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -174,9 +175,13 @@ public class BezierCurve : MonoBehaviour {
         m_TotalLength = 0f;
         for (int i = 0; i < m_NumberOfBezierInPath; ++i)
         {
-            for (int j = 0; j <= POINTS_PER_BEZIER; ++j)
+            for (int j = 0; j < POINTS_PER_BEZIER; ++j)
             {
                 m_Path.Add(GetPointOnCurve(((float)j / (float)POINTS_PER_BEZIER), i));
+                if (i + 1 == m_NumberOfBezierInPath && j + 1 == POINTS_PER_BEZIER)//Add an extra pts to cap the curve.
+                {
+                    m_Path.Add(GetPointOnCurve(((float)(j+1) / (float)POINTS_PER_BEZIER), i));
+                }                
             }
             //Calculate the length of each bezier.
             float length = CalculateBezierLength(i);
@@ -184,8 +189,32 @@ public class BezierCurve : MonoBehaviour {
             m_TotalLength += length;
         }        
     }
-
+    /// <summary>
+    /// Get the nearest point on path
+    /// </summary>
+    /// <param name="ratio"></param>
+    /// <returns></returns>
     public Vector3 GetPointOnPath(float ratio)
+    {
+        float targetDistance = m_TotalLength * ratio;
+        float currentDistance = 0f;
+        for (int i = 0; i < m_NumberOfBezierInPath; ++i)
+        {
+            if (currentDistance + m_Lengths[i] >= targetDistance)
+            {
+                return m_Path[(POINTS_PER_BEZIER * i) + (int)( (targetDistance - currentDistance)/m_Lengths[i] * (float)POINTS_PER_BEZIER ) ];                
+            }
+            currentDistance += m_Lengths[i];
+        }
+
+        return m_Path[m_Path.Count-1];
+    }
+    /// <summary>
+    /// Calculate the exact point on path
+    /// </summary>
+    /// <param name="ratio"></param>
+    /// <returns></returns>
+    public Vector3 GetPointOnPathStrict(float ratio)
     {
         Vector3 point = Vector3.zero;
         float targetDistance = m_TotalLength * ratio;
@@ -195,7 +224,7 @@ public class BezierCurve : MonoBehaviour {
             if (currentDistance + m_Lengths[i] >= targetDistance)
             {
                 float distanceOnCurve = targetDistance - currentDistance;
-                return GetPointOnCurve(distanceOnCurve/m_Lengths[i], i);
+                return GetPointOnCurve(distanceOnCurve / m_Lengths[i], i);
             }
             currentDistance += m_Lengths[i];
         }
@@ -227,7 +256,7 @@ public class BezierCurve : MonoBehaviour {
     private float CalculateBezierLength(int bezier = 0)
     {
         float length = 0f;
-        for (int i = 0; i < POINTS_PER_BEZIER; ++i)
+        for (int i = 0; i < POINTS_PER_BEZIER-1; ++i)
         {
             length += Vector3.Distance(m_Path[i + (bezier * POINTS_PER_BEZIER)], m_Path[i + 1 + (bezier * POINTS_PER_BEZIER)]);
         }
