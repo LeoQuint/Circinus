@@ -43,6 +43,10 @@ public class BezierCurve : MonoBehaviour {
     [SerializeField]
     [InEditorReadOnly]
     private List<float> m_Lengths = new List<float>();
+#if DEBUG_TEST
+    [SerializeField][Range(0f,1f)]
+    float debugTest = 0f;
+#endif
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -112,6 +116,21 @@ public class BezierCurve : MonoBehaviour {
         }
     }
     #region Unity API
+#if DEBUG_TEST
+    private void OnDrawGizmosSelected()
+    {
+        if(m_TotalLength != -1)
+        {
+            // Display the explosion radius when selected
+            Gizmos.color = new Color(0, 1, 0, 0.75F);
+            Gizmos.DrawSphere(GetPointOnPath(debugTest), 1f);
+        }
+        else
+        {
+            console.logWarning("Bezier length not calculated. Use PreCalculatePoints to calculate.");
+        }
+    }
+#endif
     #endregion
 
     #region Public API
@@ -165,23 +184,41 @@ public class BezierCurve : MonoBehaviour {
             m_TotalLength += length;
         }        
     }
-    #endregion
 
-    #region Protect
-
-    #endregion
-
-    #region Private
-    private Vector3 GetPointOnCurve(float t, int bezier = 0)
+    public Vector3 GetPointOnPath(float ratio)
     {
-        float u = 1f - t;
-        float t2 = t * t;
+        Vector3 point = Vector3.zero;
+        float targetDistance = m_TotalLength * ratio;
+        float currentDistance = 0f;
+        for (int i = 0; i < m_NumberOfBezierInPath; ++i)
+        {
+            if (currentDistance + m_Lengths[i] >= targetDistance)
+            {
+                float distanceOnCurve = targetDistance - currentDistance;
+                return GetPointOnCurve(distanceOnCurve/m_Lengths[i], i);
+            }
+            currentDistance += m_Lengths[i];
+        }
+
+        return point;
+    }
+#endregion
+
+#region Protect
+
+#endregion
+
+#region Private
+    private Vector3 GetPointOnCurve(float ratio, int bezier = 0)
+    {
+        float u = 1f - ratio;
+        float t2 = ratio * ratio;
         float u2 = u * u;
         float u3 = u2 * u;
-        float t3 = t2 * t;
+        float t3 = t2 * ratio;
 
         Vector3 point = (u3) * _Points[0 + (bezier * 3)] +
-                        (3f * u2 * t) * _Points[1 + (bezier * 3)] +
+                        (3f * u2 * ratio) * _Points[1 + (bezier * 3)] +
                         (3f * u * t2) * _Points[2 + (bezier * 3)] +
                         (t3) * _Points[3 + (bezier * 3)];
         return point;
@@ -196,7 +233,7 @@ public class BezierCurve : MonoBehaviour {
         }
         return length;
     }
-    #endregion
+#endregion
 }
 
 [CustomEditor(typeof(BezierCurve))]
