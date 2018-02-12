@@ -36,6 +36,9 @@ public class BezierCurve : MonoBehaviour {
     private List<Vector3> m_Path = new List<Vector3>();
     [SerializeField]
     [InEditorReadOnly]
+    protected int m_NumberOfBezierInPath = 1;
+    [SerializeField]
+    [InEditorReadOnly]
     private float m_TotalLength = -1f;
     [SerializeField]
     [InEditorReadOnly]
@@ -47,7 +50,7 @@ public class BezierCurve : MonoBehaviour {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    protected int m_NumberOfBezierInPath = 1;
+    
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -331,7 +334,7 @@ public class EditorBezierDrawer : Editor
         {
             GUI.color = Color.red;
         }
-        if (GUILayout.Button(curve.PreviewOn ? "Preview Off" : "Preview On"))
+        if (GUILayout.Button(curve.PreviewOn ? "Preview Mode" : "Edit Mode"))
         {
             curve.PreviewOn = !curve.PreviewOn;
         }
