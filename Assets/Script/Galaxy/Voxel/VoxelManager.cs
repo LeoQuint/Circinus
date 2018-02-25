@@ -10,12 +10,16 @@ public class VoxelManager : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
-    ////////////////////////////////
+    ////////////////////////////////    
 
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-
+    public static float _sDivision_X = 1f;
+    public static float _sDivision_Z = 1f;
+    public static float _sMultiply_Y = 1f;
+    public static float _sCutoff = 1f;
+    public static float _sMultiply = 1f;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -23,7 +27,11 @@ public class VoxelManager : MonoBehaviour {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-
+    public float _Division_X = 1f;
+    public float _Division_Z = 1f;
+    public float _Multiply_Y = 1f;
+    public float _Cutoff = 1f;
+    public float _Multiply = 1f;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -38,12 +46,18 @@ public class VoxelManager : MonoBehaviour {
     protected void Start()
     {       
         MainLoopable.Initialize();
+        Block.Initialize();
         m_MainLoopable = MainLoopable.Instance;
         m_MainLoopable.Start();
     }
 
     protected void Update()
     {
+       /* _sDivision_X    = _Division_X;
+        _sDivision_Z    = _Division_Z;
+        _sMultiply_Y    = _Multiply_Y;
+        _sMultiply      = _Multiply;
+        _sCutoff        = _Cutoff; */
         m_MainLoopable.Update();
     }
 

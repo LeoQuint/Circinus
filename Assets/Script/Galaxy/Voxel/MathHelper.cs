@@ -46,7 +46,7 @@ public class MathHelper {
             return new MeshData();
         }
         //bottom
-        if (y - 1 <= 0 || blocks[x, y-1, z].IsTransparent)
+        if (y - 1 < 0 || blocks[x, y-1, z].IsTransparent)
         {
             d.Merge(new MeshData(
                 new List<Vector3>()
@@ -118,7 +118,7 @@ public class MathHelper {
                 ));
         }
         //front
-        if (x - 1 <= 0 || blocks[x - 1, y, z].IsTransparent)
+        if (x - 1 < 0 || blocks[x - 1, y, z].IsTransparent)
         {
             d.Merge(new MeshData(
                 new List<Vector3>()
@@ -166,7 +166,7 @@ public class MathHelper {
                 ));
         }
         //left side
-        if (z - 1 <= 0 || blocks[x, y, z - 1].IsTransparent)
+        if (z - 1 < 0 || blocks[x, y, z - 1].IsTransparent)
         {
             d.Merge(new MeshData(
                 new List<Vector3>()

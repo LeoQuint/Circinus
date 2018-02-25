@@ -42,7 +42,7 @@ public class World : ILoopable
 
     private bool m_RanOnce = false;
 
-    private Chunk m_FirstChunk;
+    private Chunk[,] m_Chunks = new Chunk[10,10];
 
     #region Unity API
     public void OnApplicationQuit()
@@ -68,12 +68,24 @@ public class World : ILoopable
                     {
                         if (!m_RanOnce)
                         {
-                            m_FirstChunk = new Chunk(0, 0);
-                            ((ITickable)m_FirstChunk).Start();
+                            for (int x = 0; x < 10; ++x)
+                            {
+                                for (int z = 0; z < 10; ++z)
+                                {
+                                    m_Chunks[x,z] = new Chunk(x, z);
+                                    m_Chunks[x,z].Start();
+                                }
+                            }                            
 
                             m_RanOnce = true;
                         }
-                         ((ITickable)m_FirstChunk).Update();
+                        for (int i = 0; i < m_Chunks.GetLength(0); ++i)
+                        {
+                            for (int j = 0; j < m_Chunks.GetLength(1); ++j)
+                            {
+                                m_Chunks[i, j].Update();
+                            }
+                        }                        
                     }
                     catch (System.Exception e)
                     {
@@ -88,10 +100,18 @@ public class World : ILoopable
 
     public void Update()
     {
-        if (m_FirstChunk != null)
+        
+        for (int i = 0; i < m_Chunks.GetLength(0); ++i)
         {
-            ((ITickable)m_FirstChunk).OnUnityUpdate();
+            for (int j = 0; j < m_Chunks.GetLength(1); ++j)
+            {
+                if (m_Chunks[i, j] != null)
+                {
+                    m_Chunks[i, j].OnUnityUpdate();
+                }
+            }
         }
+        
     }
     #endregion
 

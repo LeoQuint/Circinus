@@ -9,10 +9,28 @@ using UnityEngine;
 
 public class Block : ITickable
 {
+    //const
+    private const string MATERIAL_FOLDER_PATH = "Voxel/BlockMaterials/";
+
+   
+
+    public static Block Dirt = new Block(false, BlockType.Dirt);
+    public static Block Air = new Block(true, BlockType.Air);
+
+    public static Dictionary<BlockType, Material> MATERIALS;
+    public static bool IsInitialized = false;
+
+    public Material m_SharedMaterial;
     private bool m_IsTransparent;
 
-    public static Block Dirt = new Block(false);
-    public static Block Air = new Block(true);
+    //enums
+    public enum BlockType
+    {
+        Air,
+        Dirt,
+        Grass,
+        COUNT
+    }
 
     //properties
     public bool IsTransparent
@@ -21,13 +39,25 @@ public class Block : ITickable
     }
 
     //constructor
-    public Block(bool isTransparent)
+    public Block(bool isTransparent, BlockType type)
     {
+        if (!IsInitialized)
+        {
+            Initialize();
+        }
         m_IsTransparent = isTransparent;
+        if (type != BlockType.Air && !m_IsTransparent)
+        {
+            m_SharedMaterial = MATERIALS[type];
+        }        
     }
 
     #region Public API
-
+    public static void Initialize()
+    {
+        LoadMaterials();
+        IsInitialized = true;
+    }
 
     public void Start()
     {
@@ -54,5 +84,17 @@ public class Block : ITickable
         return MathHelper.DrawCube(chunk, blocks, this, x ,y ,z);
     }
 
+    #endregion
+
+    #region private 
+    public static void LoadMaterials()
+    {
+        MATERIALS = new Dictionary<BlockType, Material>();
+        MATERIALS.Clear();
+        for (BlockType i = BlockType.Dirt; i != BlockType.COUNT; ++i)
+        {
+            MATERIALS.Add(i, Resources.Load<Material>(MATERIAL_FOLDER_PATH + i.ToString()));
+        }        
+    }
     #endregion
 }

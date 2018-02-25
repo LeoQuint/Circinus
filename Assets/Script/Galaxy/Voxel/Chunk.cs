@@ -28,23 +28,28 @@ public class Chunk : ITickable{
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
+    protected GameObject m_Holder;
+    protected MeshFilter m_MeshFilter;
+    protected MeshRenderer m_MeshRenderer;
+    protected MeshCollider m_MeshCollider;
 
+    protected Block[,,] Blocks;
+
+    protected bool m_HasGenerated = false;
+    protected bool m_HasDrawned = false;
+    protected bool m_HasRendered = false;
+    protected bool m_DrawnLock = false;
+
+    protected MeshData data;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 
     private int PosX;
     private int PosZ;
-    
-    private Block[,,] Blocks;
 
-    private bool m_HasGenerated = false;
-    private bool m_HasDrawned = false;
-    private bool m_HasRendered = false;
-    private bool m_DrawnLock = false;
-
-    private MeshData data;
-
+   
+    //constructor
     public Chunk(int posX, int posZ)
     {
         PosX = posX;
@@ -55,7 +60,7 @@ public class Chunk : ITickable{
     #endregion
 
     #region Public API
-    public void Start()
+    public virtual void Start()
     {
         
         Blocks = new Block[Width, Height, Width];
@@ -65,14 +70,22 @@ public class Chunk : ITickable{
             {
                 for (int z = 0; z < Width; ++z)
                 {
-                    Blocks[x, y, z] = Block.Dirt;
+                    float perlin = GetHeight(x,y,z);
+                    if (perlin > VoxelManager._sCutoff)
+                    {
+                        Blocks[x, y, z] = Block.Air;
+                    }
+                    else
+                    {                        
+                        Blocks[x, y, z] = Block.Dirt;
+                    }                    
                 }
             }
         }
         m_HasGenerated = true;
     }
 
-    public void Tick()
+    public virtual void Tick()
     {
         
     }
@@ -98,22 +111,35 @@ public class Chunk : ITickable{
         m_HasDrawned = true;
     }
 
-    public void OnUnityUpdate()
+    public virtual void OnUnityUpdate()
     {
         if (m_HasGenerated && !m_HasRendered && m_HasDrawned)
         {
             m_HasRendered = true;
 
             Mesh mesh = data.ToMesh();
-            GameObject go = new GameObject();
-            Transform t = go.transform;
-            MeshFilter mf = t.gameObject.AddComponent<MeshFilter>();
-            MeshRenderer mr = t.gameObject.AddComponent<MeshRenderer>();
-            MeshCollider mc = t.gameObject.AddComponent<MeshCollider>();
-
-            mf.sharedMesh = mesh;
-            mc.sharedMesh = mesh;
+            if (m_Holder == null)
+            {
+                m_Holder = new GameObject();
+                m_MeshFilter = m_Holder.gameObject.AddComponent<MeshFilter>();
+                m_MeshRenderer= m_Holder.gameObject.AddComponent<MeshRenderer>();
+                m_MeshCollider = m_Holder.gameObject.AddComponent<MeshCollider>();
+                m_Holder.transform.position = new Vector3(PosX * Width, 0f, PosZ * Width);
+            }
+            m_MeshFilter.sharedMesh = mesh;
+            m_MeshCollider.sharedMesh = mesh;
         }
+    }
+
+    public float GetHeight(float px, float py, float pz)
+    {
+        px += (PosX * Width);
+        pz += (PosZ * Width);
+
+        float p1 = Mathf.PerlinNoise(px / VoxelManager._sDivision_X, pz / VoxelManager._sDivision_Z) * VoxelManager._sMultiply;
+        p1 *= (VoxelManager._sMultiply_Y * py);
+
+        return p1;
     }
     #endregion
 
