@@ -63,7 +63,10 @@ public class MainLoopable : ILoopable
 
     public void OnApplicationQuit()
     {
-        //throw new NotImplementedException();
+        for (int i = 0; i < m_RegisteredLoopes.Count; ++i)
+        {
+            m_RegisteredLoopes[i].OnApplicationQuit();
+        }
     }
     #endregion
 
@@ -72,6 +75,7 @@ public class MainLoopable : ILoopable
     {
         instance = new MainLoopable();
         Logger.Initialize();
+        World.Initialize();
     }
 
     public void RegisterLoop(ILoopable loop)

@@ -35,7 +35,7 @@ public class Logger : ILoopable
 
     public void log(System.Exception e)
     {
-        MainLogText.Add(e.StackTrace);
+        MainLogText.Add(e.StackTrace.ToString());
     }
     #endregion
 

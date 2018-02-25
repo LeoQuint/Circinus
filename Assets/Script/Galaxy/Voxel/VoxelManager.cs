@@ -49,7 +49,7 @@ public class VoxelManager : MonoBehaviour {
 
     protected void OnApplicationQuit()
     {
-
+        m_MainLoopable.OnApplicationQuit();
     }
     #endregion
 
