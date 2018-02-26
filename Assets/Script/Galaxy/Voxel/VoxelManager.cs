@@ -20,6 +20,9 @@ public class VoxelManager : MonoBehaviour {
     public static float _sMultiply_Y = 1f;
     public static float _sCutoff = 1f;
     public static float _sMultiply = 1f;
+
+    public static float _SeedX = 1f;
+    public static float _SeedZ = 1f;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -44,7 +47,9 @@ public class VoxelManager : MonoBehaviour {
 
     #region Unity API
     protected void Start()
-    {       
+    {
+        _SeedX = Random.Range(0.1f, 1f);
+        _SeedZ = Random.Range(0.1f, 1f);
         MainLoopable.Initialize();
         Block.Initialize();
         m_MainLoopable = MainLoopable.Instance;
@@ -53,11 +58,11 @@ public class VoxelManager : MonoBehaviour {
 
     protected void Update()
     {
-       /* _sDivision_X    = _Division_X;
+        _sDivision_X    = _Division_X;
         _sDivision_Z    = _Division_Z;
         _sMultiply_Y    = _Multiply_Y;
         _sMultiply      = _Multiply;
-        _sCutoff        = _Cutoff; */
+        _sCutoff        = _Cutoff; 
         m_MainLoopable.Update();
     }
 

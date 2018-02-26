@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0f85a09b627f24a969e1a81d8c0af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Division_X: 1
-  _Division_Z: 1
-  _Multiply_Y: 1
-  _Cutoff: 1
+  _Division_X: 50
+  _Division_Z: 50
+  _Multiply_Y: 0.6
+  _Cutoff: 3.2
   _Multiply: 1
 --- !u!4 &157657218
 Transform:

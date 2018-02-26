@@ -10,9 +10,7 @@ using UnityEngine;
 public class Block : ITickable
 {
     //const
-    private const string MATERIAL_FOLDER_PATH = "Voxel/BlockMaterials/";
-
-   
+    private const string MATERIAL_FOLDER_PATH = "Voxel/BlockMaterials/";   
 
     public static Block Dirt = new Block(false, BlockType.Dirt);
     public static Block Air = new Block(true, BlockType.Air);
@@ -20,7 +18,7 @@ public class Block : ITickable
     public static Dictionary<BlockType, Material> MATERIALS;
     public static bool IsInitialized = false;
 
-    public Material m_SharedMaterial;
+    public BlockType m_BlockType;
     private bool m_IsTransparent;
 
     //enums
@@ -33,6 +31,11 @@ public class Block : ITickable
     }
 
     //properties
+    public BlockType Type
+    {
+        get { return m_BlockType;  }
+    }
+
     public bool IsTransparent
     {
         get { return m_IsTransparent;  }
@@ -41,15 +44,8 @@ public class Block : ITickable
     //constructor
     public Block(bool isTransparent, BlockType type)
     {
-        if (!IsInitialized)
-        {
-            Initialize();
-        }
         m_IsTransparent = isTransparent;
-        if (type != BlockType.Air && !m_IsTransparent)
-        {
-            m_SharedMaterial = MATERIALS[type];
-        }        
+        m_BlockType = type; 
     }
 
     #region Public API
