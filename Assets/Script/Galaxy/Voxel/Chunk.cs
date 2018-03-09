@@ -62,13 +62,12 @@ public class Chunk : ITickable{
     #region Public API
     public virtual void Start()
     {
-        
         Blocks = new Block[Width, Height, Width];
         for (int x = 0; x < Width; ++x)
         {
-            for (int y = 0; y < Height; ++y)
+            for (int z = 0; z < Width; ++z)
             {
-                for (int z = 0; z < Width; ++z)
+                for (int y = 0; y < Height; ++y)
                 {
                     float perlin = GetHeight(x,y,z);
                     if (perlin > VoxelManager._sCutoff)

@@ -179,6 +179,7 @@ public class Star : MonoBehaviour
         MeshRenderer mr = g.AddComponent<MeshRenderer>();
         MeshFilter mf = g.AddComponent<MeshFilter>();
         mf.mesh = WarSimulator.instance.GetComponent<MeshGenerator>().GenerateMesh(Vector3.zero, points);
+        
         Color color = Color.white;
         switch (ControllingFaction)
         {

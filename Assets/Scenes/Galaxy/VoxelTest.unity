@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Division_X: 50
   _Division_Z: 50
-  _Multiply_Y: 0.6
-  _Cutoff: 3.2
+  _Multiply_Y: 2
+  _Cutoff: 1.8
   _Multiply: 1
 --- !u!4 &157657218
 Transform:

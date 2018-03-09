@@ -117,6 +117,7 @@ public class MeshGenerator : MonoBehaviour
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
         return mesh;
     }
 

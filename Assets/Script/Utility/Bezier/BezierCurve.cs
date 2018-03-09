@@ -85,6 +85,7 @@ public class BezierCurve : MonoBehaviour {
     public int NumberOfBezier
     {
         get { return m_NumberOfBezierInPath;  }
+        set { m_NumberOfBezierInPath = value; }
     }
 
     public float Length
@@ -132,6 +133,7 @@ public class BezierCurve : MonoBehaviour {
         }
     }
 #endif
+    
     #endregion
 
     #region Public API
@@ -150,6 +152,35 @@ public class BezierCurve : MonoBehaviour {
         ++m_NumberOfBezierInPath;
         SceneView.RepaintAll();
     }
+
+    public void InsertControlPoint(Vector3 screenPoint)
+    {
+        PreCalculatePoints();
+        screenPoint.z = 0;
+        Vector4 results = GetNearestPoint(screenPoint);        
+        Vector3 newControlPoint = new Vector3(results.x, results.y, results.z);
+        float ratio = GetRatio(newControlPoint);
+        Points.Insert((int)results.w, newControlPoint);//control point
+        if (ratio < 0.975f)
+        {
+            Vector3 point2 = GetPointOnPathStrict(ratio + 0.02f);
+            Vector3 tangent1 = newControlPoint - point2;
+            tangent1 = new Vector3(tangent1.y, -tangent1.x, tangent1.z);
+            Points.Insert((int)results.w, newControlPoint + (tangent1.normalized * HandleSize * 5f));
+            Points.Insert((int)results.w + 2, newControlPoint + (-tangent1.normalized * HandleSize * 5f));
+        }
+        else
+        {
+            Vector3 point2 = GetPointOnPathStrict(ratio - 0.02f);
+            Vector3 tangent1 = newControlPoint - point2;
+            tangent1 = new Vector3(tangent1.y, -tangent1.x, tangent1.z);
+            Points.Insert((int)results.w, newControlPoint +( tangent1.normalized * HandleSize * 5f));
+            Points.Insert((int)results.w + 2, newControlPoint +( - tangent1.normalized * HandleSize * 5f));
+        }
+        NumberOfBezier++;
+        PreCalculatePoints();
+        SceneView.RepaintAll();
+    }
     /// <summary>
     /// Remove a curve
     /// </summary>
@@ -157,7 +188,7 @@ public class BezierCurve : MonoBehaviour {
     {
         if (m_NumberOfBezierInPath > 1)
         {
-            _Points.RemoveAt(_Points.Count- 1);
+            _Points.RemoveAt(_Points.Count - 1);
             _Points.RemoveAt(_Points.Count - 1);
             _Points.RemoveAt(_Points.Count - 1);
             --m_NumberOfBezierInPath;
@@ -188,6 +219,77 @@ public class BezierCurve : MonoBehaviour {
             m_Lengths.Add(length);
             m_TotalLength += length;
         }        
+    }
+    /// <summary>
+    /// Vector4 (w) is used to add the point index where to insert new controls.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public Vector4 GetNearestPoint(Vector3 position)
+    {
+        float nearest = float.MaxValue;
+        int index = -1;
+        int pointIndex = 0;
+        for (int i = 0; i < m_NumberOfBezierInPath; ++i)
+        {
+            for (int j = 0; j < POINTS_PER_BEZIER; ++j)
+            {
+                float distance = Vector3.Distance(position, m_Path[(i * POINTS_PER_BEZIER) + j]);
+                if (distance < nearest)
+                {
+                    nearest = distance;
+                    index =( i * POINTS_PER_BEZIER) +j;
+                    pointIndex = i * 3;
+                }
+            }            
+        }
+        if (index != -1)
+        {
+            return new Vector4( m_Path[index].x, m_Path[index].y, m_Path[index].z, pointIndex + 2);
+        }
+        return Vector4.one;
+
+    }
+
+    public float GetRatio(Vector3 position)
+    {
+        float nearest = float.MaxValue;
+        float ratio = -1;
+        for (int i = 0; i < m_NumberOfBezierInPath; ++i)
+        {
+            for (int j = 0; j < POINTS_PER_BEZIER; ++j)
+            {
+                float distance = Vector3.Distance(position, m_Path[(i * POINTS_PER_BEZIER) + j]);
+                if (distance < nearest)
+                {
+                    nearest = distance;
+                    ratio = ((float)((i * POINTS_PER_BEZIER) + j)/(float)(m_NumberOfBezierInPath * POINTS_PER_BEZIER));
+                }
+            }
+        }
+        if (ratio != -1)
+        {
+            return ratio;
+        }
+        return 0f;
+    }
+
+    public Vector3 GetNormalOnPath(float ratio)
+    {
+        Vector3 point1 = GetPointOnPath(ratio);
+        Vector3 point2 = Vector3.zero;
+        if (ratio < 0.975f)
+        {
+            point2 = GetPointOnPath(ratio + 0.025f);
+        }
+        else
+        {
+            point2 = GetPointOnPath(ratio - 0.025f);
+        }
+
+        Vector3 direction = point1 - point2;
+
+        return new Vector3(direction.y, -direction.x, direction.z);
     }
     /// <summary>
     /// Get the nearest point on path
@@ -272,17 +374,26 @@ public class EditorBezierDrawer : Editor
     private Vector3 tangentDirection = Vector3.zero;
     private Color defaultColor = Color.grey;
     private Color previewColor = new Color(0.2f,0.2f,0.2f);
-
+    private BezierCurve curve;
+    private Event previousEvent = null;
+     
     protected void OnEnable()
     {
         defaultColor = GUI.color;
     }
 
+
     protected void OnSceneGUI()
     {
-        BezierCurve curve = target as BezierCurve;
+        curve = target as BezierCurve;
         List<Vector3> newPositions = new List<Vector3>(curve.Points);
-        
+        Event e = Event.current;
+        if (e.control && e.clickCount >= 2 && previousEvent != e)
+        {
+            previousEvent = e;
+            curve.InsertControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
+            return;
+        }
         int curveFrom = 0;
         int curveTo = 1;
 
@@ -408,5 +519,5 @@ public class EditorBezierDrawer : Editor
         {
             GUI.color = defaultColor;
         }
-    }    
+    }
 }

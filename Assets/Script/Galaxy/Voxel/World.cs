@@ -43,8 +43,7 @@ public class World : ILoopable
     private bool m_RanOnce = false;
 
 
-    private int m_WorldWidth = 10;
-    private int m_WorldHeight =10;
+    private int m_WorldWidth = 5;
     private Chunk[,] m_Chunks;
 
     #region Unity API
@@ -62,7 +61,7 @@ public class World : ILoopable
     public void Start()
     {
         m_IsRunning = true;
-        m_Chunks = new Chunk[m_WorldWidth, m_WorldHeight];
+        m_Chunks = new Chunk[m_WorldWidth, m_WorldWidth];
         m_WorldThread = new Thread(
             () => {
                 Logger.Log("Init world thread.");
@@ -74,7 +73,7 @@ public class World : ILoopable
                         {
                             for (int x = 0; x < m_WorldWidth; ++x)
                             {
-                                for (int z = 0; z < m_WorldHeight; ++z)
+                                for (int z = 0; z < m_WorldWidth; ++z)
                                 {
                                     m_Chunks[x,z] = new Chunk(x, z);
                                     m_Chunks[x,z].Start();
@@ -89,7 +88,7 @@ public class World : ILoopable
                             {
                                 m_Chunks[i, j].Update();
                             }
-                        }                        
+                        }                
                     }
                     catch (System.Exception e)
                     {

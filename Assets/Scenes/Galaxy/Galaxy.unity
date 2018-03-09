@@ -686,6 +686,60 @@ MonoBehaviour:
   _Seed: 
   _UseRandomSeed: 1
   m_NumberOfStars: 7
+--- !u!1 &2068358330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2068358332}
+  - component: {fileID: 2068358331}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2068358331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068358330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2dc2413203d0344ae0a9c7904c9be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CurveColor: {r: 1, g: 0, b: 0, a: 1}
+  _Points:
+  - {x: -12.020653, y: -4.7972336, z: 0}
+  - {x: -14.336558, y: 4.3635783, z: 0}
+  - {x: 5.9075155, y: 8.609405, z: 0}
+  - {x: 1.7719672, y: -4.631811, z: 0}
+  _Width: 5
+  _HandleSize: 0.5
+  _ForceSmoothPath: 1
+  m_Path: []
+  m_NumberOfBezierInPath: 1
+  m_TotalLength: -1
+  m_Lengths: []
+  debugTest: 0
+--- !u!4 &2068358332
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068358330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.483049, y: 13.867275, z: 4.1265054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115396190
 GameObject:
   m_ObjectHideFlags: 0
