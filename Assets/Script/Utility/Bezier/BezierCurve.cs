@@ -153,33 +153,65 @@ public class BezierCurve : MonoBehaviour {
         SceneView.RepaintAll();
     }
 
-    public void InsertControlPoint(Vector3 screenPoint)
+    public List<Vector3> InsertControlPoint(Vector3 screenPoint)
     {
         PreCalculatePoints();
         screenPoint.z = 0;
+        List<Vector3> path = new List<Vector3>(_Points);
         Vector4 results = GetNearestPoint(screenPoint);        
         Vector3 newControlPoint = new Vector3(results.x, results.y, results.z);
         float ratio = GetRatio(newControlPoint);
-        Points.Insert((int)results.w, newControlPoint);//control point
+        path.Insert((int)results.w, newControlPoint);//control point
         if (ratio < 0.975f)
         {
             Vector3 point2 = GetPointOnPathStrict(ratio + 0.02f);
             Vector3 tangent1 = newControlPoint - point2;
             tangent1 = new Vector3(tangent1.y, -tangent1.x, tangent1.z);
-            Points.Insert((int)results.w, newControlPoint + (tangent1.normalized * HandleSize * 5f));
-            Points.Insert((int)results.w + 2, newControlPoint + (-tangent1.normalized * HandleSize * 5f));
+            path.Insert((int)results.w, newControlPoint + (tangent1.normalized * HandleSize * 5f));
+            path.Insert((int)results.w + 2, newControlPoint + (-tangent1.normalized * HandleSize * 5f));
         }
         else
         {
             Vector3 point2 = GetPointOnPathStrict(ratio - 0.02f);
             Vector3 tangent1 = newControlPoint - point2;
             tangent1 = new Vector3(tangent1.y, -tangent1.x, tangent1.z);
-            Points.Insert((int)results.w, newControlPoint +( tangent1.normalized * HandleSize * 5f));
-            Points.Insert((int)results.w + 2, newControlPoint +( - tangent1.normalized * HandleSize * 5f));
+            path.Insert((int)results.w, newControlPoint +( tangent1.normalized * HandleSize * 5f));
+            path.Insert((int)results.w + 2, newControlPoint +( - tangent1.normalized * HandleSize * 5f));
         }
-        NumberOfBezier++;
+        return path;
+    }
+
+    public List<Vector3> RemoveControlPoint(Vector3 screenPoint)
+    {
         PreCalculatePoints();
-        SceneView.RepaintAll();
+        screenPoint.z = 0;
+        List<Vector3> path = new List<Vector3>(_Points);
+        int nearestControlPoint = GetNearestControlPoint(screenPoint);
+        if (nearestControlPoint == -1 || path.Count <= 4)
+        {
+            return path;
+        }
+
+        if (nearestControlPoint == 0)
+        {
+            path.RemoveAt(0);
+            path.RemoveAt(0);
+            path.RemoveAt(0);
+        }
+        else if (nearestControlPoint + 1 == path.Count)
+        {
+            path.RemoveAt(path.Count - 1);
+            path.RemoveAt(path.Count - 1);
+            path.RemoveAt(path.Count - 1);
+        }
+        else
+        {
+            path.RemoveAt(nearestControlPoint - 1);
+            path.RemoveAt(nearestControlPoint - 1);
+            path.RemoveAt(nearestControlPoint - 1);
+        }
+
+        return path;
     }
     /// <summary>
     /// Remove a curve
@@ -249,6 +281,25 @@ public class BezierCurve : MonoBehaviour {
         }
         return Vector4.one;
 
+    }
+
+    public int GetNearestControlPoint(Vector3 position)
+    {
+        float nearest = float.MaxValue;
+        int index = -1;
+        for (int i = 0; i < _Points.Count; ++i)
+        {
+            if (i % 3 == 0)//control point
+            {
+                float distance = Vector3.Distance(position, _Points[i]);
+                if (distance < nearest)
+                {
+                    nearest = distance;
+                    index = i;
+                }
+            }
+        }
+       return index;
     }
 
     public float GetRatio(Vector3 position)
@@ -375,7 +426,7 @@ public class EditorBezierDrawer : Editor
     private Color defaultColor = Color.grey;
     private Color previewColor = new Color(0.2f,0.2f,0.2f);
     private BezierCurve curve;
-    private Event previousEvent = null;
+    private bool doubleClickReset = true;
      
     protected void OnEnable()
     {
@@ -388,12 +439,41 @@ public class EditorBezierDrawer : Editor
         curve = target as BezierCurve;
         List<Vector3> newPositions = new List<Vector3>(curve.Points);
         Event e = Event.current;
-        if (e.control && e.clickCount >= 2 && previousEvent != e)
+        if (e.clickCount < 2)
         {
-            previousEvent = e;
-            curve.InsertControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
+            doubleClickReset = true;
+        }
+        if (e.control && e.shift && e.clickCount >= 2 && doubleClickReset && curve.Points.Count > 4)
+        {
+            doubleClickReset = false;
+            //delete nearest bezier
+            EditorGUI.BeginChangeCheck();
+            //save the new bezier inserted to undo.       
+            List<Vector3> newPath = curve.RemoveControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
+            EditorGUI.EndChangeCheck();
+
+            Undo.RecordObject(target, "Removed Bezier Curve");
+            curve.Points = newPath;
+            curve.NumberOfBezier--;
+            SceneView.RepaintAll();
             return;
         }
+        else if (e.control && e.clickCount >= 2 && doubleClickReset)
+        {
+            doubleClickReset = false;
+
+            EditorGUI.BeginChangeCheck();
+            //save the new bezier inserted to undo.       
+            List<Vector3> newPath = curve.InsertControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);           
+            EditorGUI.EndChangeCheck();
+
+            Undo.RecordObject(target, "Added Bezier Curve");
+            curve.Points = newPath;
+            curve.NumberOfBezier++;
+            SceneView.RepaintAll();
+            return;
+        }
+        
         int curveFrom = 0;
         int curveTo = 1;
 
