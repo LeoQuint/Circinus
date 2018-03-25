@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Diagnostics;
 
 [ExecuteInEditMode]
 public class BezierCurve : MonoBehaviour {
@@ -33,6 +34,8 @@ public class BezierCurve : MonoBehaviour {
     [SerializeField]
     private bool _ForceSmoothPath = true;
     [SerializeField]
+    private bool _UseLocalMatrix = true;
+    [SerializeField]
     [InEditorReadOnly]
     private List<Vector3> m_Path = new List<Vector3>();
     [SerializeField]
@@ -45,22 +48,28 @@ public class BezierCurve : MonoBehaviour {
     [InEditorReadOnly]
     private List<float> m_Lengths = new List<float>();
 #if DEBUG_TEST
-    [SerializeField][Range(0f,1f)]
-    float debugTest = 0f;
+    Stopwatch m_StopWatch;
 #endif
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-
+    [HideInInspector]
+    public bool IsLockedDisplay = false;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    
+
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
     private bool _PreviewOn = false;
     ///proterties
+    ///
+    public bool UseLocalMatrix
+    {
+        get { return _UseLocalMatrix; }
+    }
+
     public List<Vector3> Points
     {
         get { return _Points;  }
@@ -119,22 +128,41 @@ public class BezierCurve : MonoBehaviour {
     }
     #region Unity API
 #if DEBUG_TEST
-    private void OnDrawGizmosSelected()
+    private void Update()
     {
-        if(m_TotalLength != -1)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            // Display the explosion radius when selected
-            Gizmos.color = new Color(0, 1, 0, 0.75F);
-            Gizmos.DrawSphere(GetPointOnPath(debugTest), 1f);
-        }
-        else
-        {
-            console.logWarning("Bezier length not calculated. Use PreCalculatePoints to calculate.");
+            List<float> testList = new List<float>();
+            for (int i = 0; i < 1000f; ++i)
+            {
+                testList.Add(Random.Range(0f,1f));
+            }
+            m_StopWatch = new Stopwatch();
+            m_StopWatch.Start();
+            for (int t = 0; t < 1000; ++t)
+            {            
+                for (int i = 0; i < testList.Count; ++i)
+                {
+                    GetPointOnPath(testList[i]);
+                }
+            }
+            console.logStatus(m_StopWatch.Elapsed);
+            m_StopWatch.Stop();
+            m_StopWatch.Reset();
+            m_StopWatch.Start();
+            for (int t = 0; t < 1000; ++t)
+            {
+                for (int i = 0; i < testList.Count; ++i)
+                {
+                    GetPointOnPathStrict(testList[i]);
+                }
+            }
+            console.logStatus(m_StopWatch.Elapsed);
+            m_StopWatch.Stop();
         }
     }
 #endif
-    
-    #endregion
+#endregion
 
     #region Public API
     /// <summary>
@@ -266,7 +294,12 @@ public class BezierCurve : MonoBehaviour {
         {
             for (int j = 0; j < POINTS_PER_BEZIER; ++j)
             {
-                float distance = Vector3.Distance(position, m_Path[(i * POINTS_PER_BEZIER) + j]);
+                Vector3 point = m_Path[(i * POINTS_PER_BEZIER) + j];
+                if (_UseLocalMatrix)
+                {
+                    point = transform.TransformPoint(point); ;
+                }
+                float distance = Vector3.Distance(position, point);
                 if (distance < nearest)
                 {
                     nearest = distance;
@@ -290,7 +323,7 @@ public class BezierCurve : MonoBehaviour {
         for (int i = 0; i < _Points.Count; ++i)
         {
             if (i % 3 == 0)//control point
-            {
+            {                
                 float distance = Vector3.Distance(position, _Points[i]);
                 if (distance < nearest)
                 {
@@ -355,12 +388,12 @@ public class BezierCurve : MonoBehaviour {
         {
             if (currentDistance + m_Lengths[i] >= targetDistance)
             {
-                return m_Path[(POINTS_PER_BEZIER * i) + (int)( (targetDistance - currentDistance)/m_Lengths[i] * (float)POINTS_PER_BEZIER ) ];                
+                return m_Path[(POINTS_PER_BEZIER * i) + (int)((targetDistance - currentDistance) / m_Lengths[i] * (float)POINTS_PER_BEZIER)];
             }
             currentDistance += m_Lengths[i];
         }
 
-        return m_Path[m_Path.Count-1];
+        return m_Path[m_Path.Count - 1];
     }
     /// <summary>
     /// Calculate the exact point on path
@@ -424,28 +457,79 @@ public class EditorBezierDrawer : Editor
     private Vector3 controlPointDelta = Vector3.zero;
     private Vector3 tangentDirection = Vector3.zero;
     private Color defaultColor = Color.grey;
-    private Color previewColor = new Color(0.2f,0.2f,0.2f);
+    private Color previewColor = new Color(0.2f, 0.2f, 0.2f);
+    public static List<BezierCurve> ActiveBezier;
     private BezierCurve curve;
     private bool doubleClickReset = true;
-     
+    private Color UNSELECTED_COLOR = Color.gray;
+    private bool m_IsSelected = true;
+
+    protected void Awake()
+    {
+        if (ActiveBezier == null)
+        {
+            ActiveBezier = new List<BezierCurve>();
+        }
+    }
+
     protected void OnEnable()
     {
         defaultColor = GUI.color;
     }
 
+    public void AddToAlwaysRender()
+    {
+        //SceneView.onSceneGUIDelegate += HandleOnSceneFunc;
+        if (SceneGUI.InEditorActiveBeziers != null && !SceneGUI.InEditorActiveBeziers.Contains(this))
+        {
+            curve.IsLockedDisplay = true;
+            SceneGUI.InEditorActiveBeziers.Add(this);
+        }
+    }
 
-    protected void OnSceneGUI()
+
+    public void RemoveFromAlwaysRender()
+    {
+        //SceneView.onSceneGUIDelegate += HandleOnSceneFunc;
+
+        if (SceneGUI.InEditorActiveBeziers != null)
+        {
+            curve.IsLockedDisplay = false;
+            for (int i = 0; i < SceneGUI.InEditorActiveBeziers.Count; ++i)
+            {
+                if (SceneGUI.InEditorActiveBeziers[i].curve == curve)
+                {
+                    SceneGUI.InEditorActiveBeziers.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void OnSceneGUI()
     {
         curve = target as BezierCurve;
+        m_IsSelected = Selection.activeGameObject == curve.gameObject;
+
+        if (curve.UseLocalMatrix)
+        {
+            Handles.matrix = curve.transform.localToWorldMatrix;
+        }
+
+        if (ActiveBezier != null && !ActiveBezier.Contains(this.curve))
+        {
+            ActiveBezier.Add(curve);
+        }
         List<Vector3> newPositions = new List<Vector3>(curve.Points);
         Event e = Event.current;
         if (e.clickCount < 2)
         {
             doubleClickReset = true;
         }
-        if (e.control && e.shift && e.clickCount >= 2 && doubleClickReset && curve.Points.Count > 4)
+        if (m_IsSelected && (e.command || e.control) && e.shift && e.clickCount >= 2 && doubleClickReset && curve.Points.Count > 4)
         {
             doubleClickReset = false;
+            e.clickCount = 0;
             //delete nearest bezier
             EditorGUI.BeginChangeCheck();
             //save the new bezier inserted to undo.       
@@ -458,13 +542,13 @@ public class EditorBezierDrawer : Editor
             SceneView.RepaintAll();
             return;
         }
-        else if (e.control && e.clickCount >= 2 && doubleClickReset)
+        else if (m_IsSelected && (e.command || e.control) && e.clickCount >= 2 && doubleClickReset)
         {
             doubleClickReset = false;
-
+            e.clickCount = 0;
             EditorGUI.BeginChangeCheck();
             //save the new bezier inserted to undo.       
-            List<Vector3> newPath = curve.InsertControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);           
+            List<Vector3> newPath = curve.InsertControlPoint(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
             EditorGUI.EndChangeCheck();
 
             Undo.RecordObject(target, "Added Bezier Curve");
@@ -473,13 +557,12 @@ public class EditorBezierDrawer : Editor
             SceneView.RepaintAll();
             return;
         }
-        
         int curveFrom = 0;
         int curveTo = 1;
 
         for (int i = 0; i < curve.NumberOfBezier; ++i)
         {
-            Handles.DrawBezier(curve.Points[0 + (i * 3)], curve.Points[3 + (i * 3)], curve.Points[1 + (i * 3)], curve.Points[2 + (i * 3)], curve.CurveColor, null, curve.Width);
+            Handles.DrawBezier(curve.Points[0 + (i * 3)], curve.Points[3 + (i * 3)], curve.Points[1 + (i * 3)], curve.Points[2 + (i * 3)], m_IsSelected ? curve.CurveColor : UNSELECTED_COLOR, null, curve.Width);
             if (!curve.PreviewOn)
             {
                 Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
@@ -488,7 +571,7 @@ public class EditorBezierDrawer : Editor
                 Handles.DrawLine(curve.Points[curveFrom], curve.Points[curveTo]);
                 ++curveFrom;
                 ++curveTo;
-            }            
+            }
         }
         //No editing in preview mode
         if (!curve.PreviewOn)
@@ -563,7 +646,7 @@ public class EditorBezierDrawer : Editor
 
     public override void OnInspectorGUI()
     {
-        
+
 
         BezierCurve curve = target as BezierCurve;
 
@@ -595,9 +678,57 @@ public class EditorBezierDrawer : Editor
         {
             curve.PreviewOn = !curve.PreviewOn;
         }
+
+        if (curve.IsLockedDisplay)
+        {
+            GUI.color = Color.red;
+            if (GUILayout.Button("Unlock Display"))
+            {
+                RemoveFromAlwaysRender();
+            }
+        }
+        else
+        {
+            if (GUILayout.Button("Lock Display"))
+            {
+                AddToAlwaysRender();
+            }
+        }
+
         if (curve.PreviewOn)
         {
             GUI.color = defaultColor;
+        }
+    }
+}
+
+public class SceneGUI : EditorWindow
+{
+    public static List<EditorBezierDrawer> InEditorActiveBeziers = new List<EditorBezierDrawer>();
+    public static bool ShowLockedBezier = true;
+
+    [MenuItem("Bezier/Toggle Always ON %g")]
+    public static void ToggleBezier()
+    {
+        if (ShowLockedBezier)
+        {
+            ShowLockedBezier = false;
+            SceneView.onSceneGUIDelegate -= OnScene;
+        }
+        else
+        {
+            SceneView.onSceneGUIDelegate += OnScene;
+            ShowLockedBezier = true;
+        }
+        
+    }
+
+    private static void OnScene(SceneView sceneview)
+    {
+
+        for (int i = 0; i < InEditorActiveBeziers.Count; ++i)
+        {
+            InEditorActiveBeziers[i].OnSceneGUI();
         }
     }
 }
