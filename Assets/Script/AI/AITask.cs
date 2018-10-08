@@ -16,18 +16,18 @@ public class AITask {
         /// "target:, object
         /// "callback", string (requires target)
         /// </summary>
-        Wait,
-        GoTo,
+        Wait = 1,
+        GoTo = 2,
 
-        Pilot,
+        Pilot = 10,
 
-        FireFight,
-        Repair,
+        FireFight = 20,
+        Repair = 30,
         
-        Shield,
-        Weapons,
+        Shield = 100,
+        Weapons = 150,
 
-        Fight
+        Fight = 200
     }
 
     ////////////////////////////////
@@ -35,7 +35,7 @@ public class AITask {
     ////////////////////////////////
 
     public TaskType m_Type;    
-    public Hashtable m_Task;
+    public Dictionary<string,object> m_Task;
     //Callbacks
     public Action<Hashtable> m_OnTaskDone;
     ////////////////////////////////
@@ -60,7 +60,7 @@ public class AITask {
         m_Id = UniqueIdManager.instance.GetID();
     }
 
-    public AITask (TaskType type, Hashtable task)
+    public AITask (TaskType type, Dictionary<string, object> task)
     {
         m_Id = UniqueIdManager.instance.GetID();
         m_Type = type;

@@ -8,7 +8,7 @@ using UnityEngine;
 using System;
 using System.Reflection;
 
-public class CharacterAI : MonoBehaviour {
+public class CharacterAI : Character {
 
     ////////////////////////////////
     ///			Constants		 ///
