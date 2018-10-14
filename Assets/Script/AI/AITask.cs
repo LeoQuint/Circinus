@@ -16,6 +16,7 @@ public class AITask {
         /// "target:, object
         /// "callback", string (requires target)
         /// </summary>
+        None = 0,
         Wait = 1,
         GoTo = 2,
 
@@ -35,7 +36,7 @@ public class AITask {
     ////////////////////////////////
 
     public TaskType m_Type;    
-    public Dictionary<string,object> m_Task;
+    public Dictionary<string,object> m_Parameters;
     //Callbacks
     public Action<Hashtable> m_OnTaskDone;
     ////////////////////////////////
@@ -47,7 +48,7 @@ public class AITask {
     ////////////////////////////////
 
     #region Properties
-    public long Id
+    public long ID
     {
         get { return m_Id; }
     }
@@ -57,14 +58,14 @@ public class AITask {
     //constructors
     public AITask()
     {
-        m_Id = UniqueIdManager.instance.GetID();
+        m_Id = UniqueIdManager.Instance.GetID();
     }
 
     public AITask (TaskType type, Dictionary<string, object> task)
     {
-        m_Id = UniqueIdManager.instance.GetID();
+        m_Id = UniqueIdManager.Instance.GetID();
         m_Type = type;
-        m_Task = task;      
+        m_Parameters = task;
     }
     #endregion
 }

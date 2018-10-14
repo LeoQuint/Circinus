@@ -55,6 +55,10 @@ public class Navigator2D : MonoBehaviour {
     #endregion
 
     #region Public API
+    public void SetDestination(Transform destination)
+    {
+        m_NavMeshAgent.SetDestination(destination.position);
+    }
     #endregion
 
     #region Protect

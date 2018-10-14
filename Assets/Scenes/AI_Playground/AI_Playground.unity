@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HealthComponent: {fileID: 0}
 --- !u!1 &322323976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HealthComponent: {fileID: 0}
 --- !u!1 &1001322360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1869,7 @@ GameObject:
   - component: {fileID: 1319948378}
   - component: {fileID: 1319948382}
   - component: {fileID: 1319948377}
+  - component: {fileID: 1319948383}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1979,6 +1982,17 @@ MonoBehaviour:
   - {fileID: 998262996}
   - {fileID: 1982120567}
   - {fileID: 225891436}
+--- !u!114 &1319948383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319948376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ccacd636585f040a5babcb1a54c473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1407654380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2162,49 @@ RectTransform:
   m_AnchoredPosition: {x: -850, y: 474}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1643383018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1643383020}
+  - component: {fileID: 1643383019}
+  m_Layer: 0
+  m_Name: Ship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1643383019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1643383018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b0e32a7d1fe8e41aad3821a7bb7320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShipComponents:
+  - {fileID: 1783694427}
+--- !u!4 &1643383020
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1643383018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6815596, y: 9.743652, z: 12.178944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1783694429}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1779773248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,6 +2332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5e66b951ddb414f8cee8e4d4e17639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CurrentHealth: 0
+  m_MaxHealth: 0
+  m_IsInvulnerable: 0
 --- !u!4 &1783694429
 Transform:
   m_ObjectHideFlags: 0
@@ -2282,12 +2342,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1783694426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0.5, z: 24.4}
+  m_LocalPosition: {x: 3.3184404, y: -9.243652, z: 12.221056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 366710685}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1643383020}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788349832
 GameObject:
@@ -2471,6 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HealthComponent: {fileID: 0}
 --- !u!1 &1911508168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,6 +2710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a20211a0afdce438e2171873d9ee6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HealthComponent: {fileID: 0}
 --- !u!1 &2061010912
 GameObject:
   m_ObjectHideFlags: 0

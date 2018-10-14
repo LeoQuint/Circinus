@@ -29,13 +29,19 @@ public class HealthComponent : MonoBehaviour {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
+    [InEditorReadOnly][SerializeField]
     protected float m_CurrentHealth;
+    [InEditorReadOnly][SerializeField]
     protected float m_MaxHealth;
-
+    [InEditorReadOnly][SerializeField]
     protected bool m_IsInvulnerable = false;
 	////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
+    public float CurrentHealth
+    {
+        get { return m_CurrentHealth;  }
+    }
 
     public float CurrentRatio
     {

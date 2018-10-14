@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PilotingStation : ShipSystem {
+public class PilotingStation : ShipComponent {
 
 	////////////////////////////////
     ///			Constants		 ///

@@ -5,9 +5,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class UniqueIdManager : MonoBehaviour {
+public class ConfigLoader : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -16,7 +15,7 @@ public class UniqueIdManager : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    private static UniqueIdManager instance;
+    private static ConfigLoader instance;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -32,43 +31,46 @@ public class UniqueIdManager : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private long m_LastID;
+    private AIConfig m_AIConfig;
+    public AIConfig AIConfig
+    {
+        get { return m_AIConfig;  }
+    } 
 
-    public static UniqueIdManager Instance
+    public static ConfigLoader Instance
     {
         get
         {
             if (instance == null)
             {
-                GameObject holder = new GameObject("UniqueIDManager");
-                UniqueIdManager uim = holder.AddComponent<UniqueIdManager>();
-                instance = uim;
+                GameObject holder = new GameObject("ConfigLoader");
+                ConfigLoader atm = holder.AddComponent<ConfigLoader>();
+                instance = atm;
             }
             return instance;
         }
     }
-
     #region Unity API
     protected void Awake()
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
             instance = this;
-            m_LastID = DateTime.Now.Ticks;
             DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
 
     #region Public API
-    public long GetID()
+    [ContextMenu("Load")]
+    public void Load()
     {
-        ++m_LastID;
-        return m_LastID;
+       m_AIConfig = Serializer_Deserializer<AIConfig>.Load(m_AIConfig.SavedPath, m_AIConfig.Filename);
+        console.logStatus(m_AIConfig.TaskPriorities.Count);
     }
     #endregion
 
@@ -76,5 +78,16 @@ public class UniqueIdManager : MonoBehaviour {
     #endregion
 
     #region Private
+    [ContextMenu("Create Configs")]
+    private void CreateConfigs()
+    {
+        AIConfig aic = new AIConfig();
+        aic.TaskPriorities = new List<List<AITask.TaskType>>();
+        for (int i = 0; i < AIConfig.NUMBER_OF_PRIORITY_LEVELS; ++i)
+        {
+            aic.TaskPriorities.Add(new List<AITask.TaskType>() { AITask.TaskType.None });
+        }
+        Serializer_Deserializer<AIConfig>.Save(aic, aic.SavedPath, aic.Filename);
+    }
     #endregion
 }

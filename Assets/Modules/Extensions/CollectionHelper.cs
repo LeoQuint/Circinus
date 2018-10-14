@@ -58,7 +58,7 @@ namespace CoreUtility
                 }
             }
             Debug.LogError("Error in randomer.");
-            return m_List[m_List.Count].item;
+            return m_List[0].item;
         }
 
         public void Add(T item, float percentage)

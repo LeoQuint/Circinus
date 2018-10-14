@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using War;
 using CoreUtility;
-using ArmyConfigSavedPath = Serializer_Deserializer<ArmyConfig>.SavedPath;
-using ArmyGoupSavedPath = Serializer_Deserializer<ArmyGroup>.SavedPath;
 
 /// <summary>
 /// Class used to modify/save/load army generation configurations from file.
@@ -18,8 +16,7 @@ public class ArmyConfigInterface : MonoBehaviour {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    ArmyConfigSavedPath ARMY_CONFIG_SAVED_PATH = ArmyConfigSavedPath.Configuration;
-    ArmyGoupSavedPath ARMY_GROUP_SAVED_PATH = ArmyGoupSavedPath.GameData;
+
     private const string FILENAME = "ArmyConfiguration";
     ////////////////////////////////
     ///			Statics			 ///
@@ -77,9 +74,8 @@ public class ArmyConfigInterface : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Y))
         {
             ArmyGroup testGroup = GenerateArmyGroup(EFaction.Blue, EArmyGroupType.MainCorp, 100000);
-            Serializer_Deserializer<ArmyGroup> sd = new Serializer_Deserializer<ArmyGroup>(testGroup, ARMY_GROUP_SAVED_PATH, "TestGroup", 
+            Serializer_Deserializer<ArmyGroup>.Save(testGroup, SavedPath.GameData, "TestGroup",
                 new System.Type[] { typeof(ArmyUnit) });
-            sd.Save();
         }
     }
     #endregion
@@ -94,8 +90,7 @@ public class ArmyConfigInterface : MonoBehaviour {
     {
         Debug.Log("Loading Army Configuration.");
         //ArmyConfigs
-        Serializer_Deserializer<ArmyConfig> sd = new Serializer_Deserializer<ArmyConfig>(m_Configs, ARMY_CONFIG_SAVED_PATH, FILENAME, m_Types);
-        m_Configs = sd.Load();
+        m_Configs = Serializer_Deserializer<ArmyConfig>.Load(SavedPath.Configuration, FILENAME, m_Types);
         if (m_Configs == null)
         {
             m_Configs = new ArmyConfig();
@@ -105,8 +100,7 @@ public class ArmyConfigInterface : MonoBehaviour {
     public void Save()
     {
         //ArmyConfigs
-        Serializer_Deserializer<ArmyConfig> sd = new Serializer_Deserializer<ArmyConfig>(m_Configs, ARMY_CONFIG_SAVED_PATH, FILENAME, m_Types);
-        sd.Save();
+        Serializer_Deserializer<ArmyConfig>.Save(m_Configs, SavedPath.Configuration, FILENAME, m_Types);
     }
 
     public ArmyGroup GenerateArmyGroup(EFaction faction, EArmyGroupType type, int strengh)

@@ -138,15 +138,13 @@ public class GalaxyGenerator : MonoBehaviour {
     public void SaveGalaxy()
     {
         console.logStatus("Save Galaxy");
-        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData , FILENAME, m_SystemTypes);
-        sd.Save();
+        Serializer_Deserializer<Galaxy>.Save(m_Galaxy, SavedPath.GameData, FILENAME, m_SystemTypes);
     }
 
     public void LoadGalaxy()
     {
         console.logStatus("Loading Galaxy");
-        Serializer_Deserializer<Galaxy> sd = new Serializer_Deserializer<Galaxy>(m_Galaxy, Serializer_Deserializer<Galaxy>.SavedPath.GameData, FILENAME, m_SystemTypes);
-        m_Galaxy = sd.Load();
+        m_Galaxy = Serializer_Deserializer<Galaxy>.Load(SavedPath.GameData, FILENAME, m_SystemTypes);
         
         foreach (GameObject g in mapList)
         {

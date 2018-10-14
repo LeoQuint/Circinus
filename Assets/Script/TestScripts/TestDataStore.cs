@@ -49,14 +49,12 @@ public class TestDataStore : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("File saved");
-            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, Serializer_Deserializer<TestData>.SavedPath.GameData,  m_FileName);
-            sd.Save();
+            Serializer_Deserializer<TestData>.Save(testData, SavedPath.GameData, m_FileName);
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("File Loaded");
-            Serializer_Deserializer<TestData> sd = new Serializer_Deserializer<TestData>(testData, Serializer_Deserializer<TestData>.SavedPath.GameData, m_FileName);
-            testData = sd.Load();
+            testData = Serializer_Deserializer<TestData>.Load(SavedPath.GameData, m_FileName);
         }
     }
     #endregion

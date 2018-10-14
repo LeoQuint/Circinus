@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TaskType = AITask.TaskType;
+
 public class AITaskManager : Subject {
 
     ////////////////////////////////
@@ -16,7 +18,7 @@ public class AITaskManager : Subject {
     ///			Statics			 ///
     ////////////////////////////////
 
-    public static AITaskManager instance;
+    private static AITaskManager instance;
 
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
@@ -30,12 +32,25 @@ public class AITaskManager : Subject {
     ///			Protected		 ///
     ////////////////////////////////
 
-    protected Dictionary<AITask.TaskType, List<AITask>> m_PendingTasks = new Dictionary<AITask.TaskType, List<AITask>>();
-
+    protected Dictionary<TaskType, List<AITask>> m_PendingTasks = new Dictionary<TaskType, List<AITask>>();
+    protected HashSet<int> m_CompletedTasks = new HashSet<int>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 
+    public static AITaskManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                GameObject holder = new GameObject("AITaskManager");
+                AITaskManager atm = holder.AddComponent<AITaskManager>();
+                instance = atm;
+            }
+            return instance;
+        }
+    }
 
     #region Unity API
     protected void Awake()
@@ -67,18 +82,62 @@ public class AITaskManager : Subject {
     #region Public API
     public void AddTask(AITask task)
     {
-        //TODO: Validate task
-
-        //TODO: notify observer of a new task.
-        Notify(task.m_Type);
-
+        console.logInfo("Creating task " + task.m_Type);
+        if(!m_PendingTasks.ContainsKey(task.m_Type))
+        {
+            m_PendingTasks.Add(task.m_Type, new List<AITask>());
+        }
         m_PendingTasks[task.m_Type].Add(task);
+
+        Notify(this, task.m_Type);
     }
 
-    public void RemoveTask(int taskID/*TODO: Task id system*/)
+    public AITask GetTask(TaskType type, int id)
+    {       
+        if (m_PendingTasks.ContainsKey(type) && m_PendingTasks[type].Count > 0)
+        {
+            AITask task = null;
+            foreach (AITask t in m_PendingTasks[type])
+            {
+                if (t.ID == id)
+                {
+                    task = t;
+                }
+            }
+
+            if (task != null)
+            {
+                m_PendingTasks[type].Remove(task);
+            }
+
+            console.logInfo("Getting task " + task.m_Type + " #" + task.ID);
+            return task;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public AITask GetTask(TaskType type)
     {
+        if (m_PendingTasks.ContainsKey(type) && m_PendingTasks[type].Count > 0)
+        {
+            AITask task = m_PendingTasks[type][0];
+            m_PendingTasks[type].Remove(task);
+            return task;
+        }
+        else
+        {
+            return null;
+        }
+    }    
 
-    }
+    public void OnTaskDone(TaskType type, int id)
+    {
+        m_CompletedTasks.Add(id);
+        RemoveTask(type, id);
+    }    
 
     public AITask CheckForTask(/*TODO: Get list of priorities*/)
     {
@@ -95,19 +154,32 @@ public class AITaskManager : Subject {
     #endregion
 
     #region Protect
+    protected void RemoveTask(TaskType type, int id)
+    {
+        if (m_PendingTasks.ContainsKey(type) && m_PendingTasks[type].Count > 0)
+        {
+            AITask task = null;
+            foreach (AITask t in m_PendingTasks[type])
+            {
+                if (t.ID == id)
+                {
+                    task = t;
+                }
+            }
 
-
-
+            if (task != null)
+            {
+                console.logInfo("Removing task " + task.m_Type + " #" + task.ID);
+                m_PendingTasks[type].Remove(task);
+            }
+        }
+    }
     #endregion
 
     #region Private
-
     private AITask GetHighestPriorityTask(/*TODO: Get list of priorities*/)
     {
         return new AITask();
     }
-
-
-
     #endregion
 }

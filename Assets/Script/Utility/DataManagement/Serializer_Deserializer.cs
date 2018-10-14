@@ -9,11 +9,7 @@ using System.IO;
 
 public class Serializer_Deserializer<T> {
 
-    public enum SavedPath
-    {
-        GameData,
-        Configuration
-    }
+   
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
@@ -43,77 +39,34 @@ public class Serializer_Deserializer<T> {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private string m_Filename = "save.xml";
-    private T m_DataStore;
-    private System.Type[] m_Types = null;
-    private SavedPath m_Path;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    public Serializer_Deserializer(T data, SavedPath path = SavedPath.GameData, string filename = "", System.Type[] types = null)
-    {
-        m_Path = path;
-        if (!string.IsNullOrEmpty(filename))
-        {
-            m_Filename = filename;
-        }
-        else
-        {
-            Debug.LogWarning("Filename missing, default '" + m_Filename + EXTENTION + "' will be used.");
-        }
-        m_Types = types;
-        m_DataStore = data;
-    }
-
     #region Unity API
     #endregion
 
     #region Public API
-    public void Save()
+    public static void Save(T data,SavedPath path, string filename, System.Type[] Types = null)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
-        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Create);
-        serializer.Serialize(fs, m_DataStore);
+        string formatedPath = string.Format("{0}{1}{2}", SAVED_PATH[path], filename, EXTENTION);
+        XmlSerializer serializer = new XmlSerializer(typeof(T), Types);
+        FileStream fs = new FileStream(formatedPath, FileMode.Create);
+        serializer.Serialize(fs, data);
         fs.Close();
     }
 
-    public T Load()
+    public static T Load(SavedPath path, string filename, System.Type[] Types = null)
     {
-        if (!File.Exists(SAVED_PATH[m_Path] + m_Filename + EXTENTION))
+        string formatedPath = string.Format("{0}{1}{2}", SAVED_PATH[path] , filename , EXTENTION);
+        if (!File.Exists(formatedPath))
         {
-            Debug.LogError("FILE " + SAVED_PATH[m_Path] + m_Filename + EXTENTION + " NOT FOUND!");
+            Debug.LogError(formatedPath + " NOT FOUND!");
             return default(T);
         }
-        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
+        XmlSerializer serializer = new XmlSerializer(typeof(T), Types);
         // To read the file, create a FileStream.
-        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Open);
-        // Call the Deserialize method and cast to the object type.
-        T loadedDataStore = (T)serializer.Deserialize(fs);
-
-        fs.Close();
-        return loadedDataStore;
-    }
-
-    public T Load(SavedPath path, string filename)
-    {
-        m_Path = path;
-        if (!string.IsNullOrEmpty(filename))
-        {
-            m_Filename = filename;
-        }
-        else
-        {
-            Debug.LogWarning("Filename missing, default '" + m_Filename + EXTENTION + "' will be used.");
-        }
-        if (!File.Exists(SAVED_PATH[m_Path] + m_Filename + EXTENTION))
-        {
-            Debug.LogError("FILE " + SAVED_PATH[m_Path] + m_Filename + EXTENTION + " NOT FOUND!");
-            return default(T);
-        }
-        XmlSerializer serializer = new XmlSerializer(typeof(T), m_Types);
-        // To read the file, create a FileStream.
-        FileStream fs = new FileStream(SAVED_PATH[m_Path] + m_Filename + EXTENTION, FileMode.Open);
+        FileStream fs = new FileStream(formatedPath, FileMode.Open);
         // Call the Deserialize method and cast to the object type.
         T loadedDataStore = (T)serializer.Deserialize(fs);
 
@@ -127,4 +80,10 @@ public class Serializer_Deserializer<T> {
 
     #region Private
     #endregion
+}
+
+public enum SavedPath
+{
+    GameData,
+    Configuration
 }

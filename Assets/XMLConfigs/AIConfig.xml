@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<AIConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TaskPriorities>
+    <ArrayOfTaskType>
+      <TaskType>Repair</TaskType>
+    </ArrayOfTaskType>
+    <ArrayOfTaskType>
+      <TaskType>FireFight</TaskType>
+    </ArrayOfTaskType>
+    <ArrayOfTaskType>
+      <TaskType>Shield</TaskType>
+    </ArrayOfTaskType>
+    <ArrayOfTaskType>
+      <TaskType>Weapons</TaskType>
+    </ArrayOfTaskType>
+    <ArrayOfTaskType>
+      <TaskType>Fight</TaskType>
+    </ArrayOfTaskType>
+  </TaskPriorities>
+</AIConfig>

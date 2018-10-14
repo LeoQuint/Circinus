@@ -6,10 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable {
+public class Config {
+    
+    public virtual string Filename
+    {
+        get { return "config"; }
+    }
 
-    bool CanRepair();
-    void Damage(float amount);
-    void Repair(float amount);
-    Transform Transform();
+    public virtual SavedPath SavedPath
+    {
+        get{return SavedPath.Configuration; }
+    }
 }

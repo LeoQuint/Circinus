@@ -6,8 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Triangle = MeshGenerator.Triangle;
-
 public class Star : MonoBehaviour
 {
 

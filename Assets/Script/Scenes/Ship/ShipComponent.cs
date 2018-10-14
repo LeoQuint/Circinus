@@ -2,11 +2,14 @@
 //	Create by Leonard Marineau-Quintal  //
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipComponent : MonoBehaviour {
+[RequireComponent(typeof(HealthComponent))]
+public class ShipComponent : MonoBehaviour, IDamageable
+{
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -28,18 +31,21 @@ public class ShipComponent : MonoBehaviour {
     ///			Protected		 ///
     ////////////////////////////////
     protected long m_Id;
+    protected Ship m_Ship;
+
+    [SerializeField]
+    protected HealthComponent m_HealthComponent;
+    protected Character m_MainCharacterSlot;
+    protected AITask m_RepairTask = null;
+   
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private int m_Health;
-    private int m_MaxHealth;
-    
-    private bool m_TaskSentRepair;
 
     #region Properties
-    public int Health
+    public float Health
     {
-        get { return m_Health; }
+        get { return m_HealthComponent.CurrentHealth; }
     }
 
     public long Id
@@ -49,18 +55,13 @@ public class ShipComponent : MonoBehaviour {
     #endregion
 
     #region Unity API
-
-    private void Update()
+    protected virtual void Awake()
     {
-        ///TODO: Remove Debug
-        ///
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (m_HealthComponent == null)
         {
-            ReceiveDamage(10);
+            m_HealthComponent = GetComponent<HealthComponent>();
         }
     }
-
-
     #endregion
 
     #region Public API
@@ -71,74 +72,99 @@ public class ShipComponent : MonoBehaviour {
             Debug.LogError("Error trying to Initialize this component more than once.");
             return;
         }
-        m_Id = UniqueIdManager.instance.GetID();
+        m_Id = UniqueIdManager.Instance.GetID();
 
         LoadData();
 
-        //Last step is to register the component with it's ship.
-        ship.RegisterComponent(this);
+        m_HealthComponent.OnHit -= OnHit;
+        m_HealthComponent.OnHit += OnHit;
+        m_HealthComponent.OnHealthDepleted -= OnComponentDestroyed;
+        m_HealthComponent.OnHealthDepleted += OnComponentDestroyed;
     }
-    /// <summary>
-    /// Generic repair method.
-    /// </summary>
-    /// <param name="amount">Amount of health the component will gain.</param>
-    /// <returns>Return's true if the component is fully repaired.</returns>
-    public bool Repair(int amount)
+
+    public virtual void Interact(Character character)
     {
-        m_Health += amount;
-        if (m_Health >= m_MaxHealth)
-        {
-            m_Health = m_MaxHealth;
-            return true;
-        }
-        return false;
+        m_MainCharacterSlot = character;
     }
-    /// <summary>
-    /// Generic method to damage a component.
-    /// </summary>
-    /// <param name="amount">Amount of health the component will lose.</param>
-    /// <returns>Return's true when health reaches 0.</returns>
-    public bool ReceiveDamage(int amount)
+
+    public virtual void Disengage(Character character)
     {
-        m_Health -= amount;
-        if (m_Health <= 0)
-        {
-            m_Health = 0;
-            return true;
-        }
-        else if (!m_TaskSentRepair && m_Health < m_MaxHealth)
-        {
-            CreateRepairTask();
-        }
-        return false;
+        m_MainCharacterSlot = null;
     }
     #endregion
 
     #region Protect
+    protected virtual void IssueTask()
+    {
+
+    }
+
+    protected virtual void OnHit(float amount)
+    {
+        if (CanRepair() && m_RepairTask == null)
+        {
+            CreateRepairTask();
+        }
+    }
+
     protected void CreateRepairTask()
     {
-        AITask repairTask = new AITask();
-        repairTask.m_Type = AITask.TaskType.Repair;
-        Hashtable parameters = new Hashtable();
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("target", this);
-        parameters.Add("callback", "OnComponentDestroy");
-        m_TaskSentRepair = true;
-        AITaskManager.instance.AddTask(repairTask);
+        AITask repairTask = new AITask(AITask.TaskType.Repair, parameters);
+
+        AITaskManager.Instance.AddTask(repairTask);
+    }
+
+    protected virtual void OnComponentDestroyed()
+    {
+        //stub
     }
     #endregion
 
     #region Private
     private void LoadData()
     {
-        //TODO: load data from config files and assign values.
-        m_Health = 100;
-        m_MaxHealth = 100;
-        m_TaskSentRepair = false;
+        //TODO get Data from Config/load
+        m_HealthComponent.Init(100f);
+    }
+    #endregion
+
+    #region IDamageable
+    public bool CanRepair()
+    {
+        return m_HealthComponent.CurrentRatio < 1f;
     }
 
-    private void OnComponentDestroy()
+    public void Damage(float amount)
     {
-        //TODO: cancel task
+        m_HealthComponent.Hit(amount);
     }
+
+    public void Repair(float amount)
+    {
+        m_HealthComponent.Heal(amount);
+    }
+
+    public Transform Transform()
+    {
+        return transform;
+    }
+    #endregion
+
+    #region DEBUG
+#if UNITY_EDITOR
+    [ContextMenu("Simulate Damage")]
+    private void SimulateDamage()
+    {
+        Damage(10f);
+    }
+
+    [ContextMenu("Simulate Repair")]
+    private void SimulateRepair()
+    {
+        Repair(10f);
+    }
+#endif
     #endregion
 }

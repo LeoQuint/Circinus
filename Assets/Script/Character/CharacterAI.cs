@@ -8,7 +8,9 @@ using UnityEngine;
 using System;
 using System.Reflection;
 
-public class CharacterAI : Character {
+using TaskType = AITask.TaskType;
+
+public class CharacterAI : Character, Observer {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -21,7 +23,8 @@ public class CharacterAI : Character {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    [SerializeField]
+    protected Navigator2D m_Navigator;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -30,44 +33,65 @@ public class CharacterAI : Character {
     ///			Protected		 ///
     ////////////////////////////////
     protected AITask m_CurrentTask;
-    protected AITask m_GoToTask;
-
-    protected object m_Target;
+    //Internal list of priority so this character.
+    protected Dictionary<int, List<TaskType>> m_TaskPriorityList = new Dictionary<int, List<TaskType>>();
+    
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private Action m_TaskCallback;
-
 
     #region Unity API
+    private void Start()
+    {
+        //Temp location for Init
+        Init();
+    }
     #endregion
 
     #region Public API
+    public void Init()
+    {
+        AITaskManager.Instance.Register(this);
+    }
+
+    public void OnNotify(params object[] notice)
+    {
+        if (notice[0] is AITaskManager)
+        {
+            TaskType task = (TaskType)notice[1];
+            //check if task overule current task
+            //TODO : above
+
+            AITask newTask = AITaskManager.Instance.GetTask(task);
+            OnTaskReceived(newTask);
+        }
+    }
+
     public void GetTask()
     {
-        m_CurrentTask = AITaskManager.instance.CheckForTask();
+        m_CurrentTask = AITaskManager.Instance.CheckForTask();
 
         if (m_CurrentTask != null)
         {
             SetDestination();
             switch (m_CurrentTask.m_Type)
             {
-                case AITask.TaskType.Wait:
+                case TaskType.Wait:
                     break;
-                case AITask.TaskType.GoTo:
+                case TaskType.GoTo:
                     break;
-                case AITask.TaskType.Pilot:
+                case TaskType.Pilot:
                     break;
-                case AITask.TaskType.FireFight:
+                case TaskType.FireFight:
                     break;
-                case AITask.TaskType.Repair:
+                case TaskType.Repair:
                     SetRepairTask();
                     break;
-                case AITask.TaskType.Shield:
+                case TaskType.Shield:
                     break;
-                case AITask.TaskType.Weapons:
+                case TaskType.Weapons:
                     break;
-                case AITask.TaskType.Fight:
+                case TaskType.Fight:
                     break;
                 default:
                     break;
@@ -77,6 +101,23 @@ public class CharacterAI : Character {
     #endregion
 
     #region Protect
+    protected void LoadData()
+    {
+        //if save load save
+
+        //else
+
+    }
+
+    protected void OnTaskReceived(AITask task)
+    {
+        m_CurrentTask = task;
+        console.log("New task received: " + task.m_Type);
+
+        IDamageable toRepair = task.m_Parameters["target"] as IDamageable;
+
+        m_Navigator.SetDestination(toRepair.Transform());
+    }
     #endregion
 
     #region Private
@@ -87,14 +128,12 @@ public class CharacterAI : Character {
 
     private void SetRepairTask()
     {
-        m_Target = m_CurrentTask.m_Task["target"];
-       // m_TaskCallback += m_Target.GetType().GetMethod(m_CurrentTask.m_Task["callback"] as string)
-     
+        
     }
 
     private void OnTaskCompleted()
     {
 
-    }
+    }   
     #endregion
 }
