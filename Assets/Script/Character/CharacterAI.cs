@@ -35,16 +35,28 @@ public class CharacterAI : Character, Observer {
     protected AITask m_CurrentTask;
     //Internal list of priority so this character.
     protected Dictionary<int, List<TaskType>> m_TaskPriorityList = new Dictionary<int, List<TaskType>>();
-    
+
+    protected Action<float> TaskUpdate;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
+
+    //cached targets
+    private IDamageable m_RepairTarget = null;
 
     #region Unity API
     private void Start()
     {
         //Temp location for Init
         Init();
+    }
+
+    protected void Update()
+    {
+        if (TaskUpdate != null)
+        {
+            TaskUpdate(Time.deltaTime);
+        }
     }
     #endregion
 
@@ -61,43 +73,13 @@ public class CharacterAI : Character, Observer {
             TaskType task = (TaskType)notice[1];
             //check if task overule current task
             //TODO : above
-
-            AITask newTask = AITaskManager.Instance.GetTask(task);
-            OnTaskReceived(newTask);
-        }
-    }
-
-    public void GetTask()
-    {
-        m_CurrentTask = AITaskManager.Instance.CheckForTask();
-
-        if (m_CurrentTask != null)
-        {
-            SetDestination();
-            switch (m_CurrentTask.m_Type)
+            if (m_CurrentTask == null)
             {
-                case TaskType.Wait:
-                    break;
-                case TaskType.GoTo:
-                    break;
-                case TaskType.Pilot:
-                    break;
-                case TaskType.FireFight:
-                    break;
-                case TaskType.Repair:
-                    SetRepairTask();
-                    break;
-                case TaskType.Shield:
-                    break;
-                case TaskType.Weapons:
-                    break;
-                case TaskType.Fight:
-                    break;
-                default:
-                    break;
+                AITask newTask = AITaskManager.Instance.GetTask(task);
+                OnTaskReceived(newTask);
             }
         }
-    }
+    }   
     #endregion
 
     #region Protect
@@ -113,10 +95,40 @@ public class CharacterAI : Character, Observer {
     {
         m_CurrentTask = task;
         console.log("New task received: " + task.m_Type);
-
         IDamageable toRepair = task.m_Parameters["target"] as IDamageable;
 
-        m_Navigator.SetDestination(toRepair.Transform());
+        m_Navigator.SetDestination(toRepair.Transform(), OnDestinationReached);
+    }
+
+    protected void OnDestinationReached()
+    {
+        StartTask();
+    }
+
+    protected void StartTask()
+    {
+        switch (m_CurrentTask.m_Type)
+        {
+            case TaskType.Wait:
+                break;
+            case TaskType.GoTo:
+                break;
+            case TaskType.Pilot:
+                break;
+            case TaskType.FireFight:
+                break;
+            case TaskType.Repair:
+                StartRepairTask();
+                break;
+            case TaskType.Shield:
+                break;
+            case TaskType.Weapons:
+                break;
+            case TaskType.Fight:
+                break;
+            default:
+                break;
+        }
     }
     #endregion
 
@@ -126,14 +138,31 @@ public class CharacterAI : Character, Observer {
 
     }
 
-    private void SetRepairTask()
+    private void StartRepairTask()
     {
-        
+        console.logStatus("Repair starts");
+        TaskUpdate += UpdateRepairTask;
+        m_RepairTarget = m_CurrentTask.m_Parameters["target"] as IDamageable;       
+    }
+
+    private void UpdateRepairTask(float deltaTime)
+    {
+        if (m_RepairTarget != null && m_RepairTarget.CanRepair())
+        {
+            m_RepairTarget.Repair(deltaTime * m_RepairPerSeconds);
+        }
+        else
+        {
+            OnTaskCompleted();
+        }
     }
 
     private void OnTaskCompleted()
     {
-
+        console.logStatus("OnTaskCompleted");
+        AITaskManager.Instance.OnTaskDone(m_CurrentTask);
+        m_CurrentTask = null;
+        TaskUpdate = null;
     }   
     #endregion
 }

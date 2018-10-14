@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Navigator2D : MonoBehaviour {
@@ -30,11 +31,12 @@ public class Navigator2D : MonoBehaviour {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-
+    protected Action m_OnDestinationReached;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
     private NavMeshAgent m_NavMeshAgent;
+    private bool m_HasDestination = false;
 
     #region Unity API
     private void Awake()
@@ -48,15 +50,36 @@ public class Navigator2D : MonoBehaviour {
         {
             Debug.Log("Debug Navigation test." + m_NavMeshAgent.isOnNavMesh);
 
-            m_NavMeshAgent.SetDestination(m_Destinations[Random.Range(0,m_Destinations.Count)].position); 
+            m_NavMeshAgent.SetDestination(m_Destinations[UnityEngine.Random.Range(0,m_Destinations.Count)].position); 
             
+        }
+
+        if (m_HasDestination)
+        {
+            if (!m_NavMeshAgent.hasPath && m_NavMeshAgent.remainingDistance <= Mathf.Epsilon)
+            {
+                console.logStatus("On Destination Reached");
+                m_HasDestination = false;
+                if (m_OnDestinationReached != null)
+                {
+                    m_OnDestinationReached();
+                    m_OnDestinationReached = null;
+                }
+            }
+
         }
     }
     #endregion
 
     #region Public API
-    public void SetDestination(Transform destination)
+    public void SetDestination(Transform destination, Action onDestinationReached = null)
     {
+        console.logStatus("Set Destination");
+        m_HasDestination = true;
+        if (onDestinationReached != null)
+        {
+            m_OnDestinationReached += onDestinationReached;
+        }
         m_NavMeshAgent.SetDestination(destination.position);
     }
     #endregion

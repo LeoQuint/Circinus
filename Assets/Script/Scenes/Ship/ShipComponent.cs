@@ -101,9 +101,15 @@ public class ShipComponent : MonoBehaviour, IDamageable
 
     protected virtual void OnHit(float amount)
     {
+        //create task
         if (CanRepair() && m_RepairTask == null)
         {
             CreateRepairTask();
+        }
+        //once repair
+        if (!CanRepair() && m_RepairTask != null)
+        {
+            m_RepairTask = null;
         }
     }
 
@@ -111,9 +117,9 @@ public class ShipComponent : MonoBehaviour, IDamageable
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("target", this);
-        AITask repairTask = new AITask(AITask.TaskType.Repair, parameters);
+        m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
 
-        AITaskManager.Instance.AddTask(repairTask);
+        AITaskManager.Instance.AddTask(m_RepairTask);
     }
 
     protected virtual void OnComponentDestroyed()

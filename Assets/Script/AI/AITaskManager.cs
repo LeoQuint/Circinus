@@ -33,7 +33,7 @@ public class AITaskManager : Subject {
     ////////////////////////////////
 
     protected Dictionary<TaskType, List<AITask>> m_PendingTasks = new Dictionary<TaskType, List<AITask>>();
-    protected HashSet<int> m_CompletedTasks = new HashSet<int>();
+    protected HashSet<long> m_CompletedTasks = new HashSet<long>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -133,10 +133,10 @@ public class AITaskManager : Subject {
         }
     }    
 
-    public void OnTaskDone(TaskType type, int id)
+    public void OnTaskDone(AITask task)
     {
-        m_CompletedTasks.Add(id);
-        RemoveTask(type, id);
+        m_CompletedTasks.Add(task.ID);
+        RemoveTask(task.m_Type, task.ID);
     }    
 
     public AITask CheckForTask(/*TODO: Get list of priorities*/)
@@ -154,7 +154,7 @@ public class AITaskManager : Subject {
     #endregion
 
     #region Protect
-    protected void RemoveTask(TaskType type, int id)
+    protected void RemoveTask(TaskType type, long id)
     {
         if (m_PendingTasks.ContainsKey(type) && m_PendingTasks[type].Count > 0)
         {
