@@ -12,6 +12,14 @@ using TaskType = AITask.TaskType;
 
 public class CharacterAI : Character, Observer {
 
+    ///enum
+    ///
+    public enum AIState
+    {
+        Idle,
+        Tasking
+    }
+
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
@@ -40,7 +48,7 @@ public class CharacterAI : Character, Observer {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private AIState m_State = AIState.Tasking;
     //cached targets
     private IDamageable m_RepairTarget = null;
 
@@ -64,6 +72,8 @@ public class CharacterAI : Character, Observer {
     public void Init()
     {
         AITaskManager.Instance.Register(this);
+        m_State = AIState.Idle;
+        m_Navigator.Wander();
     }
 
     public void OnNotify(params object[] notice)
@@ -93,6 +103,7 @@ public class CharacterAI : Character, Observer {
 
     protected void OnTaskReceived(AITask task)
     {
+        m_State = AIState.Tasking;
         m_CurrentTask = task;
         console.log("New task received: " + task.m_Type);
         IDamageable toRepair = task.m_Parameters["target"] as IDamageable;
@@ -163,6 +174,8 @@ public class CharacterAI : Character, Observer {
         AITaskManager.Instance.OnTaskDone(m_CurrentTask);
         m_CurrentTask = null;
         TaskUpdate = null;
+        m_State = AIState.Idle;
+        m_Navigator.Wander();
     }   
     #endregion
 }

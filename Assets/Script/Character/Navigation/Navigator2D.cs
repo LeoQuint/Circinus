@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using Timer = CoreUtility.Timer;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Navigator2D : MonoBehaviour {
@@ -32,26 +33,31 @@ public class Navigator2D : MonoBehaviour {
     ///			Protected		 ///
     ////////////////////////////////
     protected Action m_OnDestinationReached;
+
+    protected float m_WanderSpeed = 5f;
+    protected float m_RunSpeed;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
     private NavMeshAgent m_NavMeshAgent;
     private bool m_HasDestination = false;
+    private Timer m_WanderTimer;
+
 
     #region Unity API
     private void Awake()
     {
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
+        m_RunSpeed = m_NavMeshAgent.speed;
+        m_WanderTimer = new Timer();
+        m_WanderTimer.Init(2f);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (m_WanderTimer != null)
         {
-            Debug.Log("Debug Navigation test." + m_NavMeshAgent.isOnNavMesh);
-
-            m_NavMeshAgent.SetDestination(m_Destinations[UnityEngine.Random.Range(0,m_Destinations.Count)].position); 
-            
+            m_WanderTimer.Update();
         }
 
         if (m_HasDestination)
@@ -66,7 +72,6 @@ public class Navigator2D : MonoBehaviour {
                     m_OnDestinationReached = null;
                 }
             }
-
         }
     }
     #endregion
@@ -75,6 +80,10 @@ public class Navigator2D : MonoBehaviour {
     public void SetDestination(Transform destination, Action onDestinationReached = null)
     {
         console.logStatus("Set Destination");
+        m_NavMeshAgent.speed = m_RunSpeed;
+        m_WanderTimer.Stop();
+        m_WanderTimer.OnDone = null;
+
         m_HasDestination = true;
         if (onDestinationReached != null)
         {
@@ -82,11 +91,39 @@ public class Navigator2D : MonoBehaviour {
         }
         m_NavMeshAgent.SetDestination(destination.position);
     }
+
+    public void Wander()
+    {
+        m_NavMeshAgent.speed = m_WanderSpeed;
+
+        m_NavMeshAgent.SetDestination(RandomNavmeshLocation(10f));
+        m_WanderTimer.Start();
+        m_WanderTimer.OnDone -= GetNewWanderDestination;
+        m_WanderTimer.OnDone += GetNewWanderDestination;
+    }
     #endregion
 
     #region Protect
     #endregion
 
     #region Private
+    private void GetNewWanderDestination()
+    {
+        m_NavMeshAgent.SetDestination(RandomNavmeshLocation(3f));
+        m_WanderTimer.Start();
+    }
+
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
     #endregion
 }
