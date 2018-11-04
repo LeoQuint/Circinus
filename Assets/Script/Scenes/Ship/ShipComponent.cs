@@ -82,6 +82,11 @@ public class ShipComponent : MonoBehaviour, IDamageable
         m_HealthComponent.OnHealthDepleted += OnComponentDestroyed;
     }
 
+    public virtual void OnShipUpdate(float deltaTime)
+    {
+
+    }
+
     public virtual void Interact(Character character)
     {
         m_MainCharacterSlot = character;

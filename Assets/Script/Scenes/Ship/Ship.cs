@@ -31,11 +31,20 @@ public class Ship : Subject {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private float m_DeltaTime;
     #region Unity API
     protected virtual void Awake()
     {
         Initialize();//Temp location to Init
+    }
+
+    protected virtual void Update()
+    {
+        m_DeltaTime = Time.deltaTime;
+        for (int i = 0; i < m_ShipComponents.Count; ++i)
+        {
+            m_ShipComponents[i].OnShipUpdate(m_DeltaTime);
+        }
     }
     #endregion
 
