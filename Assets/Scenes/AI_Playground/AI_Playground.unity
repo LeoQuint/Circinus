@@ -3842,6 +3842,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 247155235}
   m_Mesh: {fileID: 4300000, guid: 7ed7804698d136f41af808075536d7d9, type: 3}
+--- !u!114 &248546541 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400002, guid: 398da42bc4f6f6e44852a9f96c6c4e41,
+    type: 2}
+  m_PrefabInternal: {fileID: 2037006924}
+  m_Script: {fileID: 11500000, guid: e9aa840a3854ebd47b920d1a5c7d693f, type: 3}
+--- !u!114 &248546542 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400000, guid: 398da42bc4f6f6e44852a9f96c6c4e41,
+    type: 2}
+  m_PrefabInternal: {fileID: 2037006924}
+  m_Script: {fileID: 11500000, guid: a85c5e349cb17df4b85883ea088c2f95, type: 3}
+--- !u!95 &248546543 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: 398da42bc4f6f6e44852a9f96c6c4e41,
+    type: 2}
+  m_PrefabInternal: {fileID: 2037006924}
 --- !u!1 &250292429
 GameObject:
   m_ObjectHideFlags: 0
@@ -9161,7 +9178,7 @@ Rigidbody:
   m_GameObject: {fileID: 686418266}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -9180,8 +9197,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Rigidbody: {fileID: 686418269}
-  m_MovementSpeed: 10
+  m_MovementSpeed: 25
   m_RotationSpeed: 120
+  m_JumpForce: 2
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Animator: {fileID: 248546543}
+  m_Actions: {fileID: 248546542}
+  m_PlayerController: {fileID: 248546541}
 --- !u!1 &687565372
 GameObject:
   m_ObjectHideFlags: 0
@@ -17715,6 +17739,13 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 0}
   m_MovementSpeed: 10
   m_RotationSpeed: 10
+  m_JumpForce: 10
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Animator: {fileID: 0}
+  m_Actions: {fileID: 0}
+  m_PlayerController: {fileID: 0}
   m_Navigator: {fileID: 1319948382}
 --- !u!1 &1320286317
 GameObject:

@@ -32,11 +32,11 @@ public class CharacterPlayer : Character {
 
         public float VerticalLookAxis
         {
-            get { return m_HorizontalLookAxis; }
+            get { return m_VerticalLookAxis; }
             set
             {
-                m_PreviousVerticalLookAxis = m_HorizontalLookAxis;
-                m_HorizontalLookAxis = value;
+                m_PreviousVerticalLookAxis = m_VerticalLookAxis;
+                m_VerticalLookAxis = value;
             }
         }
 
@@ -100,7 +100,7 @@ public class CharacterPlayer : Character {
         //Rotation
         m_Input.VerticalLookAxis = Input.GetAxis("MouseVertical");
         m_Input.HorizontalLookAxis = Input.GetAxis("MouseHorizontal");
-        base.Steer(m_Input.DeltaHorizontalLookAxis);
+        base.Steer(m_Input.HorizontalLookAxis);
         //jump
         m_Input.Jump = Input.GetButton("Jump");
         base.Jump(m_Input.Jump);

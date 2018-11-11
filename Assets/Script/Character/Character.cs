@@ -12,6 +12,7 @@ public class Character : MonoBehaviour {
     ///			Constants		 ///
     ////////////////////////////////
     private const float GROUNDED_THRESHOLD = 0.2f;
+    private const float RUN_VELOCITY_THRESHOLD = 3f;
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -24,6 +25,10 @@ public class Character : MonoBehaviour {
     [SerializeField] protected float m_RotationSpeed = 10f;
     [SerializeField] protected float m_JumpForce = 10f;
     [SerializeField] protected LayerMask m_GroundMask;
+
+    [SerializeField] protected Animator m_Animator;
+    [SerializeField] protected Actions m_Actions;
+    [SerializeField] protected PlayerController m_PlayerController;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -39,6 +44,7 @@ public class Character : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private Collider[] m_GroundCastResults;
+    private Vector3 m_DirectionalVector;
 
     #region Unity API
     private void Awake()
@@ -62,8 +68,21 @@ public class Character : MonoBehaviour {
     }
 
     protected virtual void AddImpulse(Vector3 impulseVelocity)
-    {
+    {       
         m_Rigidbody.AddForce(impulseVelocity * m_MovementSpeed * Time.deltaTime, ForceMode.Impulse);
+        m_DirectionalVector = (Vector3.forward * m_Rigidbody.velocity.x) + (Vector3.right * m_Rigidbody.velocity.z);
+        if (m_DirectionalVector.magnitude > RUN_VELOCITY_THRESHOLD)
+        {
+            m_Actions.Run();
+        }
+        else if (m_DirectionalVector.magnitude > Mathf.Epsilon)
+        {
+            m_Actions.Walk();
+        }
+        else
+        {
+            m_Actions.Stay();
+        }
     }
 
     protected virtual void Jump(bool isJumping)
@@ -73,6 +92,7 @@ public class Character : MonoBehaviour {
         if (isJumping && m_IsGrounded)
         {
             m_Rigidbody.AddForce(transform.up * m_JumpForce, ForceMode.Impulse);
+            m_Actions.Jump();
         }
     }
     #endregion
