@@ -93,17 +93,7 @@ public class CharacterPlayer : Character {
     #region Protect
     protected void InputUpdate()
     {
-        //Movement
-        m_Input.HorizontalAxis = Input.GetAxis("Horizontal");
-        m_Input.VerticalAxis = Input.GetAxis("Vertical");
-        base.AddImpulse(transform.TransformDirection(m_Input.Direction()));
-        //Rotation
-        m_Input.VerticalLookAxis = Input.GetAxis("MouseVertical");
-        m_Input.HorizontalLookAxis = Input.GetAxis("MouseHorizontal");
-        base.Steer(m_Input.HorizontalLookAxis);
-        //jump
-        m_Input.Jump = Input.GetButton("Jump");
-        base.Jump(m_Input.Jump);
+       
     }
     #endregion
 
