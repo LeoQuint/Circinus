@@ -43,6 +43,13 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     [SerializeField]
     protected sLayout[] m_Layout;
+    //test
+    public PathFinder finder;
+    [ContextMenu("Set Layout")]
+    private void TestLayout()
+    {
+        finder.SetLayout(m_Layout);
+    }
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -50,7 +57,7 @@ public class FloorLayout : MonoBehaviour {
     #region Unity API
     private void Awake()
     {
-        Init();
+        Init();       
     }
 
 #if UNITY_EDITOR
