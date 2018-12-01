@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ScreenInputController : MonoBehaviour {
 
@@ -51,7 +52,7 @@ public class ScreenInputController : MonoBehaviour {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-
+    public Action<Tile, Vector2> OnLocationSelected;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -60,11 +61,19 @@ public class ScreenInputController : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private ISelectable m_CurrentSelection;
+    private Vector2 m_InnerPosition;
+
+    private Tile m_CurrentLocation;
     private sInputs m_Inputs;
 
     public ISelectable CurrentSelection
     {
         get { return m_CurrentSelection; }
+    }
+
+    public Tile CurrentLocation
+    {
+        get { return m_CurrentLocation; }
     }
 
     #region Unity API
@@ -84,15 +93,15 @@ public class ScreenInputController : MonoBehaviour {
     {
         GetInput();
 
-        if (m_Inputs.OnMouseAltDown)
-        {
-            GetSelected();
-        }
-
         if (m_Inputs.OnMouseDown)
         {
-            GetSelected();
+            GetSelection();
         }
+
+        if (m_Inputs.OnMouseAltDown)
+        {
+            GetLocation();
+        }       
     }
     #endregion  
 
@@ -116,31 +125,9 @@ public class ScreenInputController : MonoBehaviour {
         m_Inputs.MouseAltDown = Input.GetMouseButton(1);
     }
 
-    private void GetSelected()
+    private void GetSelection()
     {
-        RaycastHit2D[] hits;
-        hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(m_Inputs.MouseScreenPosition), Vector2.zero);
-
-        List<ISelectable> selected = new List<ISelectable>();
-        ISelectable highestPriority = null;
-        int priority = 0;
-        for (int i = 0; i < hits.Length; i++)
-        {
-            ISelectable selectable = hits[i].collider.gameObject.GetComponent<ISelectable>();
-            if (selectable != null)
-            {
-                if (highestPriority == null)
-                {
-                    highestPriority = selectable;
-                    priority = highestPriority.SelectPriority;
-                }
-                else if (selectable.SelectPriority > highestPriority.SelectPriority)
-                {
-                    highestPriority = selectable;
-                    priority = highestPriority.SelectPriority;
-                }
-            }
-        }
+        ISelectable highestPriority = GetHighestPrioritySelectable();
 
         if (m_CurrentSelection != highestPriority)
         {
@@ -156,6 +143,50 @@ public class ScreenInputController : MonoBehaviour {
         }
 
         m_CurrentSelection = highestPriority;
+    }
+
+    private ISelectable GetHighestPrioritySelectable()
+    {
+        RaycastHit2D[] hits;
+        hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(m_Inputs.MouseScreenPosition), Vector2.zero);
+
+        List<ISelectable> selected = new List<ISelectable>();
+        ISelectable highestPriority = null;
+        int priority = 0;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            ISelectable selectable = hits[i].collider.gameObject.GetComponent<ISelectable>();
+            if (selectable != null)
+            {
+                if (highestPriority == null || selectable.SelectPriority > highestPriority.SelectPriority)
+                {
+                    highestPriority = selectable;
+                    priority = highestPriority.SelectPriority;
+                    m_InnerPosition = hits[i].collider.bounds.center.GetOffset(hits[i].point);
+                }
+            }
+        }
+
+        return highestPriority;
+    }
+
+    private void GetLocation()
+    {
+        ISelectable highestPriority = GetHighestPrioritySelectable();
+
+        if (highestPriority == null)
+        {
+            m_CurrentSelection = null;
+        }
+        else if (highestPriority.SelectableType == eSelectableType.TILE)
+        {
+            m_CurrentLocation = highestPriority as Tile;
+
+            if (OnLocationSelected != null)
+            {
+                OnLocationSelected(m_CurrentLocation, m_InnerPosition);
+            }
+        }
     }
     #endregion
 }

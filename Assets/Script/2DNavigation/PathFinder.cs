@@ -46,7 +46,7 @@ public class PathFinder : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-
+    public static PathFinder instance;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -68,11 +68,6 @@ public class PathFinder : MonoBehaviour {
 
     #region Unity API
 #if UNITY_EDITOR
-    [ContextMenu("Test")]
-    private void Test()
-    {
-        m_TestPath = A_Star(new Vector2Int(0, 0), new Vector2Int(9, 9));       
-    }
     private List<Vector2Int> m_TestPath;
     protected void OnDrawGizmos()
     {
@@ -90,9 +85,27 @@ public class PathFinder : MonoBehaviour {
         }
     }
 #endif
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            Init();
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     #endregion
 
     #region Public API
+    public void Init()
+    {
+
+    }
+
     public void SetLayout(FloorLayout.sLayout[] layout)
     {
         m_NodeLayout = new Node[layout.Length][];
@@ -108,8 +121,7 @@ public class PathFinder : MonoBehaviour {
 
     public List<Vector2Int> GetPath(Vector2Int start, Vector2Int finish)
     {
-        List<Vector2Int> path = new List<Vector2Int>();
-        return path;
+        return A_Star(start, finish);
     }
     #endregion
 

@@ -45,6 +45,12 @@ public class Tile : MonoBehaviour, ISelectable {
 
     //Sorted list by priority
     private List<TileModifier> m_Modifiers = new List<TileModifier>();
+    private Vector2Int m_Position;
+
+    public Vector2Int Position
+    {
+        get { return m_Position; }
+    }
 
     public bool CanControl
     {
@@ -77,8 +83,9 @@ public class Tile : MonoBehaviour, ISelectable {
     #endregion
 
     #region Public API
-    public void Init(TileType type, Material mat)
+    public void Init(int x, int y, TileType type, Material mat)
     {
+        m_Position = new Vector2Int(x,y);
         m_Type = type;
         m_IsWalkable = TileUtilities.IsWalkable(m_Type);
         Build(mat);

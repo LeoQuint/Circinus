@@ -26,4 +26,14 @@ public static class MathExtensions {
         Vector3 newPoint = new Vector3(xnew + rotateAround.x, ynew + rotateAround.y);
         return newPoint;
     }
+
+    public static Vector3 GetOffset(this Vector3 a, Vector2 b)
+    {
+        return new Vector3(b.x - a.x, b.y - a.y, a.z);
+    }
+
+    public static Vector2Int ToInt(this Vector2 vector)
+    {
+        return new Vector2Int((int)vector.x, (int)vector.y);
+    } 
 }

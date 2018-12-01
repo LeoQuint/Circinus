@@ -45,11 +45,6 @@ public class FloorLayout : MonoBehaviour {
     protected sLayout[] m_Layout;
     //test
     public PathFinder finder;
-    [ContextMenu("Set Layout")]
-    private void TestLayout()
-    {
-        finder.SetLayout(m_Layout);
-    }
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -57,7 +52,8 @@ public class FloorLayout : MonoBehaviour {
     #region Unity API
     private void Awake()
     {
-        Init();       
+        Init();
+        finder.SetLayout(m_Layout);
     }
 
 #if UNITY_EDITOR
@@ -119,16 +115,16 @@ public class FloorLayout : MonoBehaviour {
         if (m_Layout != null && m_Layout.Length > 0)
         {
             Vector3 position = transform.position;
-            for (int i = 0; i < m_Layout.Length; ++i)
+            for (int x = 0; x < m_Layout.Length; ++x)
             {
-                Vector3 iVector = (Vector3.right * i * SQUARE_SIZE);
-                for (int j = 0; j < m_Layout[i].Row.Length; ++j)
+                Vector3 iVector = (Vector3.right * x * SQUARE_SIZE);
+                for (int y = 0; y < m_Layout[x].Row.Length; ++y)
                 {
-                    GameObject go = new GameObject(string.Format("Tile{0}{1}", i, j));
+                    GameObject go = new GameObject(string.Format("Tile{0}{1}", x, y));
                     go.transform.parent = transform;
-                    go.transform.localPosition = position + iVector + (Vector3.up * j * SQUARE_SIZE);
+                    go.transform.localPosition = position + iVector + (Vector3.up * y * SQUARE_SIZE);
                     Tile tile = go.AddComponent<Tile>();
-                    tile.Init(m_Layout[i][j], GetTileMaterial(m_Layout[i][j]));
+                    tile.Init(x, y, m_Layout[x][y], GetTileMaterial(m_Layout[x][y]));
                 }
             }
         }
