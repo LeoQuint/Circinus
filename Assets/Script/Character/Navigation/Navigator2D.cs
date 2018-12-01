@@ -9,7 +9,6 @@ using UnityEngine.AI;
 using System;
 using Timer = CoreUtility.Timer;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class Navigator2D : MonoBehaviour {
 
     ////////////////////////////////
@@ -39,16 +38,14 @@ public class Navigator2D : MonoBehaviour {
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private NavMeshAgent m_NavMeshAgent;
+    private FloorLayout m_Layout;
     private bool m_HasDestination = false;
     private Timer m_WanderTimer;
 
 
     #region Unity API
     private void Awake()
-    {
-        m_NavMeshAgent = GetComponent<NavMeshAgent>();
-        m_RunSpeed = m_NavMeshAgent.speed;
+    {       
         m_WanderTimer = new Timer();
         m_WanderTimer.Init(2f);
     }
@@ -62,7 +59,7 @@ public class Navigator2D : MonoBehaviour {
 
         if (m_HasDestination)
         {
-            if (!m_NavMeshAgent.hasPath && m_NavMeshAgent.remainingDistance <= Mathf.Epsilon)
+            if (true)
             {
                 console.logStatus("On Destination Reached");
                 m_HasDestination = false;
@@ -80,7 +77,6 @@ public class Navigator2D : MonoBehaviour {
     public void SetDestination(Transform destination, Action onDestinationReached = null)
     {
         console.logStatus("Set Destination");
-        m_NavMeshAgent.speed = m_RunSpeed;
         m_WanderTimer.Stop();
         m_WanderTimer.OnDone = null;
 
@@ -89,14 +85,11 @@ public class Navigator2D : MonoBehaviour {
         {
             m_OnDestinationReached += onDestinationReached;
         }
-        m_NavMeshAgent.SetDestination(destination.position);
     }
 
     public void Wander()
     {
-        m_NavMeshAgent.speed = m_WanderSpeed;
-
-        m_NavMeshAgent.SetDestination(RandomNavmeshLocation(10f));
+        //SetDestination(RandomNavmeshLocation(10f));
         m_WanderTimer.Start();
         m_WanderTimer.OnDone -= GetNewWanderDestination;
         m_WanderTimer.OnDone += GetNewWanderDestination;
@@ -109,7 +102,7 @@ public class Navigator2D : MonoBehaviour {
     #region Private
     private void GetNewWanderDestination()
     {
-        m_NavMeshAgent.SetDestination(RandomNavmeshLocation(3f));
+        //m_NavMeshAgent.SetDestination(RandomNavmeshLocation(3f));
         m_WanderTimer.Start();
     }
 

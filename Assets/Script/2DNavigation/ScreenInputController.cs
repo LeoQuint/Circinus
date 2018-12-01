@@ -25,8 +25,8 @@ public class ScreenInputController : MonoBehaviour {
                 currentMousePosition = value;
             }
         }
-        public Vector3 MouseDelta;
 
+        public Vector3 MouseDelta;
         private Vector3 currentMousePosition;
 
         public bool OnMouseDown;
@@ -36,6 +36,10 @@ public class ScreenInputController : MonoBehaviour {
         public bool OnMouseAltDown;
         public bool MouseAltDown;
         public bool OnMouseAltUp;
+
+        public bool OnMouseMidDown;
+        public bool MouseMidDown;
+        public bool OnMouseMidUp;
     }
     ////////////////////////////////
     ///			Constants		 ///
@@ -65,6 +69,11 @@ public class ScreenInputController : MonoBehaviour {
 
     private Tile m_CurrentLocation;
     private sInputs m_Inputs;
+
+    public sInputs Inputs
+    {
+        get { return m_Inputs; }
+    }
 
     public ISelectable CurrentSelection
     {
@@ -123,6 +132,10 @@ public class ScreenInputController : MonoBehaviour {
         m_Inputs.OnMouseAltUp = Input.GetMouseButtonUp(1);
         m_Inputs.OnMouseAltDown = Input.GetMouseButtonDown(1);
         m_Inputs.MouseAltDown = Input.GetMouseButton(1);
+
+        m_Inputs.OnMouseMidUp = Input.GetMouseButtonUp(2);
+        m_Inputs.OnMouseMidDown = Input.GetMouseButtonDown(2);
+        m_Inputs.MouseMidDown = Input.GetMouseButton(2);
     }
 
     private void GetSelection()

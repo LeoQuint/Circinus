@@ -145,6 +145,5 @@ public class Character : MonoBehaviour, ISelectable {
     #endregion
 
     #region Private
-
     #endregion
 }
