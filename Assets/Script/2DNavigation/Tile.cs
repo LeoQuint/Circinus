@@ -2,11 +2,12 @@
 //	Create by Leonard Marineau-Quintal  //
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour {
+public class Tile : MonoBehaviour, ISelectable {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -35,6 +36,7 @@ public class Tile : MonoBehaviour {
     protected MeshFilter m_MeshFilter;
     protected Mesh m_Mesh;
     protected Material m_Material;
+    protected BoxCollider2D m_Collider;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -44,6 +46,16 @@ public class Tile : MonoBehaviour {
     //Sorted list by priority
     private List<TileModifier> m_Modifiers = new List<TileModifier>();
 
+    public bool CanControl
+    {
+        get { return false; }
+    }
+
+    public int SelectPriority
+    {
+        get { return 0; }
+    }
+
     public bool IsWalkable
     {
         get { return m_IsWalkable; }
@@ -52,6 +64,14 @@ public class Tile : MonoBehaviour {
     public int Cost
     {
         get { return m_Cost; }
+    }
+
+    public eSelectableType SelectableType
+    {
+        get
+        {
+            return eSelectableType.TILE;
+        }
     }
     #region Unity API
     #endregion
@@ -63,6 +83,16 @@ public class Tile : MonoBehaviour {
         m_IsWalkable = TileUtilities.IsWalkable(m_Type);
         Build(mat);
     }
+
+    public void Select()
+    {
+        Debug.Log("Selecting tile: " + gameObject.name);
+    }
+
+    public void Deselect()
+    {
+        Debug.Log("Deselecting tile: " + gameObject.name);
+    }
     #endregion
 
     #region Protect
@@ -72,6 +102,13 @@ public class Tile : MonoBehaviour {
         m_MeshFilter = gameObject.AddComponent<MeshFilter>();
         m_MeshFilter.mesh = CreateMesh();
         m_Renderer.sharedMaterial = mat;
+        AddCollider();
+    }
+
+    protected void AddCollider()
+    {
+        m_Collider = gameObject.AddComponent<BoxCollider2D>();
+        m_Collider.size = Vector2.one * CUBE_HALF_SIZE * 2f;
     }
     #endregion
 

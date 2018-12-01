@@ -2,11 +2,12 @@
 //	Create by Leonard Marineau-Quintal  //
 //		www.leoquintgames.com			//
 //////////////////////////////////////////
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, ISelectable {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -32,6 +33,31 @@ public class Character : MonoBehaviour {
     protected float m_RepairRange = 2f;
 
     protected bool m_IsSelected = false;
+
+    public bool CanControl
+    {
+        get
+        {
+            return true;
+        }
+    }
+
+    public int SelectPriority
+    {
+        get
+        {
+            return 10;
+        }
+    }
+
+    public eSelectableType SelectableType
+    {
+        get
+        {
+            return eSelectableType.CHARACTER;
+        }
+    }
+
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -44,13 +70,20 @@ public class Character : MonoBehaviour {
     #endregion
 
     #region Public API
+    public void Select()
+    {        
+    }
+
+    public void Deselect()
+    {
+    }
     #endregion
 
     #region Protect
     protected virtual void Init()
     {
        
-    }  
+    }   
     #endregion
 
     #region Private
