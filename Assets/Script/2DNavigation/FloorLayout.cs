@@ -23,7 +23,7 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const float SQUARE_SIZE = 1f;
+    public const float SQUARE_SIZE = 1f;
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////

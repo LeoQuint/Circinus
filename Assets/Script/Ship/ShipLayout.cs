@@ -6,7 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipCamera : MonoBehaviour {
+[CreateAssetMenu(fileName = "ShipLayout", menuName = "Ship/Layout", order = 2)]
+public class ShipLayout : ScriptableObject {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -27,41 +28,24 @@ public class ShipCamera : MonoBehaviour {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-
+    public int _Width;
+    public int _Height;
+    public FloorLayout.sLayout[] m_Layout;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    [SerializeField]
-    private float m_CameraLerpSpeed = 5f;
-    private float m_MinZPosition = -5f;
-    private float m_MaxZPosition = -40f;
-
-    private Vector3 m_StartDragPosition = Vector3.zero;
-    private ScreenInputController m_InputController;
 
     #region Unity API
-    private void Start()
-    {
-        m_InputController = ScreenInputController.instance;
-    }
-
-    private void Update()
-    {
-        GetInput();
-    }
     #endregion
 
     #region Public API
+    public FloorLayout.sLayout[] GetLayout()
+    {
+        return m_Layout;
+    }
     #endregion
 
     #region Protect
-    protected void GetInput()
-    {
-        if (m_InputController.Inputs.MouseMidDown)
-        {
-            transform.position += m_InputController.Inputs.MouseDelta * Time.deltaTime;
-        }      
-    }
     #endregion
 
     #region Private

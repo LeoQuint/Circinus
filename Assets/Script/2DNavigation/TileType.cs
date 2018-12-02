@@ -10,6 +10,9 @@ public enum TileType {
 
 	EMPTY = 0,
 
+    OUTER_WALL = 2,
+    INNER_WALL = 3,
+
     STEEL = 10
 
 }
