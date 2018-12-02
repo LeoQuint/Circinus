@@ -26,7 +26,7 @@ public class TileUtilities
 
     private static readonly List<TileType> UNWALKABLE_TILES = new List<TileType>()
     {
-        TileType.EMPTY
+        TileType.EMPTY, TileType.INNER_WALL, TileType.OUTER_WALL
     };
 
     public static bool IsWalkable(TileType type)

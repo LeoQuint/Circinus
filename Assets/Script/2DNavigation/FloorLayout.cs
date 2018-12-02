@@ -38,6 +38,9 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     public Material _TEMP_EMPTY;
     public Material _TEMP_STEEL;
+    public Material _TEMP_INNER_WALL;
+    public Material _TEMP_OUTER_WALL;
+
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -50,51 +53,13 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
 
     #region Unity API
-    private void Awake()
-    {
-        Init();
-        finder.SetLayout(m_Layout);
-    }
-
-#if UNITY_EDITOR
-    private bool m_IsClicking = false;
-    protected void OnDrawGizmos()
-    {
-        if (!Application.isPlaying)
-        {
-            if (m_Layout != null && m_Layout.Length > 0)
-            {
-                Vector3 position = transform.position;
-                for (int i = 0; i < m_Layout.Length; ++i)
-                {
-                    Vector3 iVector = (Vector3.right * i * SQUARE_SIZE);
-                    for (int j = 0; j < m_Layout[i].Row.Length; ++j)
-                    {
-                        Gizmos.color = GetGizmosColor(m_Layout[i][j]);
-                        Gizmos.DrawCube(position + iVector + (Vector3.up * j * SQUARE_SIZE), Vector3.one * SQUARE_SIZE);
-                    }
-                }
-            }
-
-            if (!m_IsClicking && Event.current.isMouse && Event.current.clickCount > 0)
-            {
-                m_IsClicking = true;
-                Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-                AssignTypeAt(ray.GetPoint(0f));
-            }
-            else
-            {
-                m_IsClicking = false;
-            }
-        }
-    }
-#endif
-
     #endregion
 
     #region Public API
-    public void Init()
+    public void Init(ShipLayout layout)
     {
+        m_Layout = layout.GetLayout();
+        finder.SetLayout(m_Layout);
         BuildLayout();
     }
 
@@ -132,22 +97,6 @@ public class FloorLayout : MonoBehaviour {
     #endregion
 
     #region Private
-
-#if UNITY_EDITOR
-    private Color GetGizmosColor(TileType type)
-    {
-        switch (type)
-        {
-            case TileType.EMPTY:
-                return new Color(1f,1f,1f,0.1f);
-
-            case TileType.STEEL:
-                return Color.grey;
-        }
-
-        return Color.magenta;
-    }
-
     private Material GetTileMaterial(TileType type)
     {
         switch (type)
@@ -155,62 +104,17 @@ public class FloorLayout : MonoBehaviour {
             case TileType.EMPTY:
                 return _TEMP_EMPTY;
 
+            case TileType.INNER_WALL:
+                return _TEMP_INNER_WALL;
+
+            case TileType.OUTER_WALL:
+                return _TEMP_OUTER_WALL;
+
             case TileType.STEEL:
                 return _TEMP_STEEL;
         }
 
         return _TEMP_EMPTY;
     }
-
-    [ContextMenu("RefreshArray")]
-    private void RefreshArray()
-    {
-        sLayout[] newLayout = new sLayout[_Width];
-        for (int i = 0; i < newLayout.Length; ++i)
-        {
-            newLayout[i].Row = new TileType[_Height];
-            if (m_Layout != null && m_Layout.Length > i)
-            {
-                for (int j = 0; j < newLayout[i].Row.Length; ++j)
-                {
-                    if (m_Layout[i].Row != null && m_Layout[i].Row.Length > j)
-                    {
-                        newLayout[i][j] = m_Layout[i].Row[j];
-                    }
-                    else
-                    {
-                        newLayout[i][j] = TileType.EMPTY;
-                    }
-                }
-            }
-        }
-        m_Layout = newLayout;
-    }
-
-    [ContextMenu("Set Array to Empty")]
-    private void Empty()
-    {
-        sLayout[] newLayout = new sLayout[_Width];
-        for (int i = 0; i < newLayout.Length; ++i)
-        {
-            newLayout[i].Row = new TileType[_Height];
-        }
-        m_Layout = newLayout;
-    }
-
-    private void AssignTypeAt(Vector3 worldPosition)
-    {
-        worldPosition -= transform.position;
-        int x = (int)(worldPosition.x + (SQUARE_SIZE / 2f) );
-        int y = (int)(worldPosition.y + (SQUARE_SIZE / 2f));
-
-        if (x >= 0 && y >= 0 && m_Layout.Length > x && m_Layout[x].Row.Length > y)
-        {
-            m_Layout[x][y] = TileType.STEEL;
-        }
-    }
-#endif
-
-
     #endregion
 }

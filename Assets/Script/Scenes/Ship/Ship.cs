@@ -27,7 +27,9 @@ public class Ship : Subject {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    [SerializeField]protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
+    [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
+    [SerializeField] protected ShipLayout m_Layout;
+    [SerializeField] protected FloorLayout m_Floors;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -51,6 +53,9 @@ public class Ship : Subject {
     #region Public API
     public void Initialize()
     {
+        LoadLayout();
+
+        //Init Components last
         for (int i = 0; i < m_ShipComponents.Count; ++i)
         {
             m_ShipComponents[i].Initialize(this);
@@ -65,6 +70,10 @@ public class Ship : Subject {
     #endregion
 
     #region Protect
+    protected void LoadLayout()
+    {
+        m_Floors.Init(m_Layout);
+    }
     #endregion
 
     #region Private

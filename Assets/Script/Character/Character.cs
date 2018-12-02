@@ -97,7 +97,7 @@ public class Character : MonoBehaviour, ISelectable {
     #region Protect
     protected virtual void Init()
     {
-        m_LayoutPosition = Vector2Int.zero;
+        m_LayoutPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
     }
 
     protected void Move()

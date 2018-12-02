@@ -11,8 +11,8 @@ public class PathFinder : MonoBehaviour {
     public class Node
     {
         public TileType Type;
-        public int gCost;
-        public int fCost;
+        public float gCost;
+        public float fCost;
         public Vector2Int LayoutCoordinates;
         public Node fromPrevious;
 
@@ -67,25 +67,6 @@ public class PathFinder : MonoBehaviour {
     private Vector2Int m_End;
 
     #region Unity API
-#if UNITY_EDITOR
-    private List<Vector2Int> m_TestPath;
-    protected void OnDrawGizmos()
-    {
-        if (!Application.isPlaying)
-        {
-            if (m_TestPath != null && m_TestPath.Count > 0)
-            {
-                Vector3 position = Vector3.zero;
-                for (int i = 0; i < m_TestPath.Count; ++i)
-                {                   
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(new Vector3( m_TestPath[i].x, m_TestPath[i].y, -0.5f), 0.5f);
-                }
-            }
-        }
-    }
-#endif
-
     private void Awake()
     {
         if (instance == null)
@@ -170,7 +151,7 @@ public class PathFinder : MonoBehaviour {
                     continue;
                 }
 
-                int currentGCost = currentNode.gCost + 1;
+                float currentGCost = IsDiagonal(neighbours[i], currentNode) ? currentNode.gCost + 1.44f : currentNode.gCost + 1f;
 
                 if (!openSet.Contains(neighbours[i]))
                 {
@@ -197,7 +178,8 @@ public class PathFinder : MonoBehaviour {
     //crows fly heuristic
     private void SetfCost(Node node)
     {
-        node.fCost = Mathf.Abs(node.LayoutCoordinates.x - m_End.x) + Mathf.Abs(node.LayoutCoordinates.y - m_End.y);
+        node.fCost = Mathf.Sqrt(  Mathf.Pow( Mathf.Abs(node.LayoutCoordinates.x - m_End.x), 2)
+                                + Mathf.Pow( Mathf.Abs(node.LayoutCoordinates.y - m_End.y), 2));
     }
 
     private List<Vector2Int> BuildPath(Node endNode)
@@ -218,14 +200,42 @@ public class PathFinder : MonoBehaviour {
     {
         List<Node> neighbours = new List<Node>();
         //up
-        if (node.y > 0 && m_NodeLayout[node.x][node.y - 1].IsWalkable)
+        if (node.y > 0)
         {
-            neighbours.Add(m_NodeLayout[node.x][node.y - 1]);
+            //Center
+            if (m_NodeLayout[node.x][node.y - 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x][node.y - 1]);
+            }
+            //Left
+            if (node.x > 0 && m_NodeLayout[node.x-1][node.y - 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x - 1][node.y - 1]);
+            }
+            //Right
+            if (node.x < m_NodeLayout.Length - 1 && m_NodeLayout[node.x + 1][node.y - 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x + 1][node.y - 1]);
+            }
         }
         //down
-        if (node.y < m_NodeLayout[node.x].Length - 1 && m_NodeLayout[node.x][node.y + 1].IsWalkable)
+        if (node.y < m_NodeLayout[node.x].Length - 1)
         {
-            neighbours.Add(m_NodeLayout[node.x][node.y + 1]);
+            //center
+            if (m_NodeLayout[node.x][node.y + 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x][node.y + 1]);
+            }
+            //Left
+            if (node.x > 0 && m_NodeLayout[node.x + 1][node.y - 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x + 1][node.y - 1]);
+            }
+            //Right
+            if (node.x < m_NodeLayout.Length - 1 && m_NodeLayout[node.x + 1][node.y + 1].IsWalkable)
+            {
+                neighbours.Add(m_NodeLayout[node.x + 1][node.y + 1]);
+            }
         }
         //right
         if (node.x < m_NodeLayout.Length - 1 && m_NodeLayout[node.x + 1][node.y].IsWalkable)
@@ -239,6 +249,12 @@ public class PathFinder : MonoBehaviour {
         }
 
         return neighbours;
+    }
+
+    private bool IsDiagonal(Node a, Node b)
+    {
+        return Mathf.Abs(a.LayoutCoordinates.x - b.LayoutCoordinates.x) 
+             + Mathf.Abs(a.LayoutCoordinates.y - b.LayoutCoordinates.y) > 1;
     }
     #endregion
 }
