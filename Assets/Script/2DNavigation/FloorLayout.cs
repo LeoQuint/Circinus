@@ -9,17 +9,6 @@ using UnityEditor;
 
 public class FloorLayout : MonoBehaviour {
 
-    [System.Serializable]
-    public struct sLayout
-    {
-        public TileType[] Row;       
-
-        public TileType this[int i]
-        {
-            get { return Row[i]; }
-            set { Row[i] = value; }
-        }
-    }
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
@@ -43,9 +32,8 @@ public class FloorLayout : MonoBehaviour {
 
     ////////////////////////////////
     ///			Protected		 ///
-    ////////////////////////////////
-    [SerializeField]
-    protected sLayout[] m_Layout;
+    ////////////////////////////////    
+    protected sTileInfo[][] m_Layout;
     //test
     public PathFinder finder;
     ////////////////////////////////
@@ -61,17 +49,7 @@ public class FloorLayout : MonoBehaviour {
         m_Layout = layout.GetLayout();
         finder.SetLayout(m_Layout);
         BuildLayout();
-    }
-
-    public TileType[][] GetLayout()
-    {
-        TileType[][] layout = new TileType[m_Layout.Length][];
-        for (int i =0; i < m_Layout.Length; ++i)
-        {
-            layout[i] = m_Layout[i].Row;
-        }
-        return layout;
-    }
+    }   
     #endregion
 
     #region Protect
@@ -83,13 +61,13 @@ public class FloorLayout : MonoBehaviour {
             for (int x = 0; x < m_Layout.Length; ++x)
             {
                 Vector3 iVector = (Vector3.right * x * SQUARE_SIZE);
-                for (int y = 0; y < m_Layout[x].Row.Length; ++y)
+                for (int y = 0; y < m_Layout[x].Length; ++y)
                 {
                     GameObject go = new GameObject(string.Format("Tile{0}{1}", x, y));
                     go.transform.parent = transform;
                     go.transform.localPosition = position + iVector + (Vector3.up * y * SQUARE_SIZE);
                     Tile tile = go.AddComponent<Tile>();
-                    tile.Init(x, y, m_Layout[x][y], GetTileMaterial(m_Layout[x][y]));
+                    tile.Init(m_Layout[x][y], GetTileMaterial(m_Layout[x][y].Type));
                 }
             }
         }

@@ -6,41 +6,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct TileModifier {
+public enum eShipComponent
+{
+    EMPTY = 0,
+    //100-199
+    PILOTING_STATION_DEFAULT = 100,
+    //200-299
+    ENGINE_DEFAULT = 200,
+    //300-399
+    WEAPON_STATION = 300
+}
 
-    ////////////////////////////////
-    ///			Constants		 ///
-    ////////////////////////////////
+public enum eTileModifier
+{
+    NONE = 0,
 
-    ////////////////////////////////
-    ///			Statics			 ///
-    ////////////////////////////////
+    DAMAGED = 100,
 
-    ////////////////////////////////
-    ///	  Serialized In Editor	 ///
-    ////////////////////////////////
+    BROKEN = 200
+}
 
-    ////////////////////////////////
-    ///			Public			 ///
-    ////////////////////////////////
-    public int CostModifier;
-	////////////////////////////////
-    ///			Protected		 ///
-    ////////////////////////////////
+[System.Serializable]
+public struct sTileInfo
+{
+    public TileType Type;
+    public Vector2Int Position;
+    public eShipComponent Component;
+    public List<eTileModifier> Modifiers;
 
-	////////////////////////////////
-    ///			Private			 ///
-    ////////////////////////////////
-
-    #region Unity API
-    #endregion
-
-    #region Public API
-    #endregion
-
-    #region Protect
-    #endregion
-
-    #region Private
-    #endregion
+    public sTileInfo(TileType type, int x, int y, eShipComponent component, List<eTileModifier> modifier)
+    {
+        Type = type;
+        Position = new Vector2Int(x,y);
+        Component = component;
+        Modifiers = new List<eTileModifier>(modifier);
+    }
 }

@@ -6,7 +6,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using sLayout = FloorLayout.sLayout;
 
 [CustomEditor(typeof(ShipLayout))]
 public class ShipLayoutDrawer : Editor {
@@ -82,9 +81,6 @@ public class ShipLayoutDrawer : Editor {
         DrawLayout(shipLayout);
 
         EditorGUILayout.EndVertical();
-
-
-        //DrawDefaultInspector();
     }
     #endregion
 
@@ -110,7 +106,7 @@ public class ShipLayoutDrawer : Editor {
                     Rect rect = new Rect( positions);
                     rect.x += offset.x;
                     rect.y += offset.y;
-                    EditorGUI.DrawRect(rect , GetGizmosColor(shipLayout.m_Layout[i][j]));
+                    EditorGUI.DrawRect(rect , GetGizmosColor(shipLayout.m_Layout[i].Row[j].Type));
                 }
             }
         }
@@ -163,6 +159,7 @@ public class ShipLayoutDrawer : Editor {
 
             shipLayout._LeftOffsetDrawerSaved += offset.x;
             shipLayout._TopOffsetDrawerSaved += offset.y;
+            Repaint();
         }
     }
 
@@ -179,6 +176,9 @@ public class ShipLayoutDrawer : Editor {
             case TileType.INNER_WALL:
                 return new Color(0f, 1f, 0f, 0.5f);
 
+            case TileType.DOOR:
+                return new Color(1f, 1f, 0f, 0.5f);
+
             case TileType.STEEL:
                 return Color.grey;
         }
@@ -188,13 +188,13 @@ public class ShipLayoutDrawer : Editor {
     
     private void RefreshArray(ShipLayout layout)
     {
-        sLayout[] newLayout = new sLayout[layout._Width];
+        sTileInfo[][] newLayout = new sTileInfo[layout._Width][];
         for (int i = 0; i < newLayout.Length; ++i)
         {
-            newLayout[i].Row = new TileType[layout._Height];
+            newLayout[i] = new sTileInfo[layout._Height];
             if (layout.m_Layout != null && layout.m_Layout.Length > i)
             {
-                for (int j = 0; j < newLayout[i].Row.Length; ++j)
+                for (int j = 0; j < newLayout[i].Length; ++j)
                 {
                     if (layout.m_Layout[i].Row != null && layout.m_Layout[i].Row.Length > j)
                     {
@@ -202,25 +202,23 @@ public class ShipLayoutDrawer : Editor {
                     }
                     else
                     {
-                        newLayout[i][j] = TileType.EMPTY;
+                        newLayout[i][j] = new sTileInfo();
                     }
                 }
             }
         }
-        layout.m_Layout = newLayout;
-
+        layout.SetLayout(newLayout);
         SaveChanges(layout);
     }
     
     private void Empty(ShipLayout layout)
     {
-        sLayout[] newLayout = new sLayout[layout._Width];
+        sTileInfo[][] newLayout = new sTileInfo[layout._Width][];
         for (int i = 0; i < newLayout.Length; ++i)
         {
-            newLayout[i].Row = new TileType[layout._Height];
+            newLayout[i] = new sTileInfo[layout._Height];
         }
-        layout.m_Layout = newLayout;
-
+        layout.SetLayout(newLayout);
         SaveChanges(layout);
     }
 
@@ -231,8 +229,12 @@ public class ShipLayoutDrawer : Editor {
 
         if (x >= 0 && y >= 0 && layout.m_Layout.Length > x && layout.m_Layout[x].Row.Length > y)
         {
-            layout.m_Layout[x][y] = erase? TileType.EMPTY : m_CurrentBrush;
+            sTileInfo tileInfo = layout[x, y];
+            tileInfo.Type = erase ? TileType.EMPTY : m_CurrentBrush;
+            layout[x, y] = tileInfo;
         }
+       
+        Repaint();
     }
 
     private void SaveChanges(ShipLayout layout)

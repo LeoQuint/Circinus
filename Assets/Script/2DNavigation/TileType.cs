@@ -13,6 +13,9 @@ public enum TileType {
     OUTER_WALL = 2,
     INNER_WALL = 3,
 
+    DOOR = 7,
+
+
     STEEL = 10
 
 }
@@ -21,7 +24,7 @@ public class TileUtilities
 {
     private static readonly List<TileType> WALKABLE_TILES = new List<TileType>()
     {
-        TileType.STEEL
+        TileType.STEEL, TileType.DOOR
     };
 
     private static readonly List<TileType> UNWALKABLE_TILES = new List<TileType>()

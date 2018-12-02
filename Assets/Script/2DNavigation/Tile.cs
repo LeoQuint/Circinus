@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour, ISelectable {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    protected TileType m_Type;
+    protected sTileInfo m_Info;
     protected MeshRenderer m_Renderer;
     protected MeshFilter m_MeshFilter;
     protected Mesh m_Mesh;
@@ -41,15 +41,10 @@ public class Tile : MonoBehaviour, ISelectable {
     ///			Private			 ///
     ////////////////////////////////
     private bool m_IsWalkable = true;
-    private int m_Cost = 100;
-
-    //Sorted list by priority
-    private List<TileModifier> m_Modifiers = new List<TileModifier>();
-    private Vector2Int m_Position;
 
     public Vector2Int Position
     {
-        get { return m_Position; }
+        get { return m_Info.Position; }
     }
 
     public bool CanControl
@@ -67,11 +62,6 @@ public class Tile : MonoBehaviour, ISelectable {
         get { return m_IsWalkable; }
     }
 
-    public int Cost
-    {
-        get { return m_Cost; }
-    }
-
     public eSelectableType SelectableType
     {
         get
@@ -83,11 +73,10 @@ public class Tile : MonoBehaviour, ISelectable {
     #endregion
 
     #region Public API
-    public void Init(int x, int y, TileType type, Material mat)
+    public void Init(sTileInfo info, Material mat)
     {
-        m_Position = new Vector2Int(x,y);
-        m_Type = type;
-        m_IsWalkable = TileUtilities.IsWalkable(m_Type);
+        m_Info = info;
+        m_IsWalkable = TileUtilities.IsWalkable(m_Info.Type);
         Build(mat);
     }
 

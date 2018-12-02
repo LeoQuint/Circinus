@@ -87,15 +87,15 @@ public class PathFinder : MonoBehaviour {
 
     }
 
-    public void SetLayout(FloorLayout.sLayout[] layout)
+    public void SetLayout(sTileInfo[][] layout)
     {
         m_NodeLayout = new Node[layout.Length][];
         for (int x =0; x < layout.Length; ++x)
         {
-            m_NodeLayout[x] = new Node[layout[x].Row.Length];
-            for (int y = 0; y < layout[x].Row.Length; ++y)
+            m_NodeLayout[x] = new Node[layout[x].Length];
+            for (int y = 0; y < layout[x].Length; ++y)
             {
-                m_NodeLayout[x][y] = new Node(layout[x][y], x,y);
+                m_NodeLayout[x][y] = new Node(layout[x][y].Type, x,y);
             }
         }        
     }
