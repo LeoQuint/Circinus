@@ -338,8 +338,8 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 0, y: 0}
-      Component: 0
-      Modifiers: 
+      Component: 300
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 0, y: 0}
       Component: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 0, y: 0}
-      Component: 0
+      Component: 200
       Modifiers: 
     - Type: 10
       Position: {x: 0, y: 0}
@@ -1539,6 +1539,6 @@ MonoBehaviour:
       Position: {x: 0, y: 0}
       Component: 0
       Modifiers: 
-  _SizeDrawerSaved: 25
+  _SizeDrawerSaved: 22
   _LeftOffsetDrawerSaved: 24
-  _TopOffsetDrawerSaved: 262
+  _TopOffsetDrawerSaved: 265

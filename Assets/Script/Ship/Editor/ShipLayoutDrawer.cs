@@ -21,6 +21,8 @@ public class ShipLayoutDrawer : Editor {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
+    private const string TEXTURE_FOLDER_PATH = "Assets/Resources/Editor/ShipLayout/";    
+
     private const float TILE_SIZE = 25f;
     ////////////////////////////////
     ///			Statics			 ///
@@ -46,14 +48,13 @@ public class ShipLayoutDrawer : Editor {
     private bool m_ClickHeld = false;
     private bool m_RightClickHeld = false;
     private bool m_MiddleClickHeld = false;
+    private bool m_IsMouseScrolling = false;
 
     private eBrushType m_CurrentBrush = eBrushType.GROUND;
 
     private TileType m_GroundBrush = TileType.EMPTY;
     private eShipComponent m_ComponentBrush = eShipComponent.EMPTY;
     private eTileModifier m_ModifierBrush = eTileModifier.NONE;
-
-    private float m_TileSize = TILE_SIZE;
 
     #region Unity API
     public override void OnInspectorGUI()
@@ -83,11 +84,13 @@ public class ShipLayoutDrawer : Editor {
                     Empty(shipLayout);
                 }
             EditorGUILayout.EndHorizontal();
+
         DrawEditoringTools(shipLayout);
-
         DrawLayout(shipLayout);
-
+       
         EditorGUILayout.EndVertical();
+
+        GetMouseInput(shipLayout);
     }
     #endregion
 
@@ -107,9 +110,7 @@ public class ShipLayoutDrawer : Editor {
             EditorGUILayout.BeginVertical("box");
                 shipLayout._LeftOffsetDrawerSaved = EditorGUILayout.Slider("Left", shipLayout._LeftOffsetDrawerSaved, -1000f, 1000f);
                 shipLayout._TopOffsetDrawerSaved = EditorGUILayout.Slider("Top", shipLayout._TopOffsetDrawerSaved, -1000f, 1000f);
-                m_TileSize = EditorGUILayout.Slider("Size", m_TileSize, 1f, 200f);                
-
-           
+                shipLayout._SizeDrawerSaved = EditorGUILayout.Slider("Size", shipLayout._SizeDrawerSaved, 1f, 500f);           
             EditorGUILayout.EndVertical();
 
             List<string> nameList = new List<string>();
@@ -146,22 +147,63 @@ public class ShipLayoutDrawer : Editor {
     {
         if (shipLayout.m_Layout != null && shipLayout.m_Layout.Length > 0)
         {
-            Rect positions = new Rect(shipLayout._LeftOffsetDrawerSaved, shipLayout._TopOffsetDrawerSaved, m_TileSize, m_TileSize);
+            Rect positions = new Rect(shipLayout._LeftOffsetDrawerSaved, shipLayout._TopOffsetDrawerSaved,
+                shipLayout._SizeDrawerSaved, shipLayout._SizeDrawerSaved);
             
             for (int i = 0; i < shipLayout.m_Layout.Length; ++i)
             {
-                Vector3 iVector = (Vector3.right * i * m_TileSize);
+                Vector3 iVector = (Vector3.right * i * shipLayout._SizeDrawerSaved);
                 for (int j = 0; j < shipLayout.m_Layout[i].Row.Length; ++j)
                 {
-                    Vector3 offset = iVector + (Vector3.up * j * m_TileSize);
+                    Vector3 offset = iVector + (Vector3.up * j * shipLayout._SizeDrawerSaved);
                     Rect rect = new Rect( positions);
                     rect.x += offset.x;
                     rect.y += offset.y;
-                    EditorGUI.DrawRect(rect , GetGizmosColor(shipLayout.m_Layout[i].Row[j].Type));
+
+                    DrawGround(rect, shipLayout.m_Layout[i].Row[j].Type);
+                    DrawComponents(rect, shipLayout.m_Layout[i].Row[j]);
+                    DrawModifier(rect, shipLayout.m_Layout[i].Row[j]);
                 }
             }
         }
+    }
 
+    private void DrawGround(Rect rect, TileType type)
+    {
+        EditorGUI.DrawRect(rect, GetGizmosColor(type));
+    }
+
+    private void DrawComponents(Rect rect, sTileInfo info)
+    {
+        if (info.Component != eShipComponent.EMPTY)
+        {
+            rect.size /= 4f;
+            Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(TEXTURE_FOLDER_PATH + info.Component.ToString() + ".png", typeof(Texture2D));
+            EditorGUI.DrawPreviewTexture(rect, t);
+        }
+    }
+
+    private void DrawModifier(Rect rect, sTileInfo info)
+    {
+        if(info.Modifiers != null)
+        {
+            rect.x += rect.size.x - (rect.size.x / 4f);
+            rect.size /= 4f;
+            
+            for (int i = 0; i < info.Modifiers.Count; ++i)
+            {
+                rect.y += (rect.size.x * i);
+                if (info.Modifiers[i] != eTileModifier.NONE)
+                {
+                    Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath(TEXTURE_FOLDER_PATH + info.Modifiers[i].ToString() + ".png", typeof(Texture2D));
+                    EditorGUI.DrawPreviewTexture(rect, t);
+                }
+            }
+        }
+    }
+
+    private void GetMouseInput(ShipLayout shipLayout)
+    {
         if (Event.current.type == EventType.MouseDown)
         {
             if (Event.current.button == 0)
@@ -184,7 +226,7 @@ public class ShipLayoutDrawer : Editor {
             m_MiddleClickHeld = false;
         }
         //Drawing
-        if ( (!m_IsClicking && Event.current.isMouse && Event.current.clickCount > 0 && Event.current.button == 0 ) || m_ClickHeld)
+        if ((!m_IsClicking && Event.current.isMouse && Event.current.clickCount > 0 && Event.current.button == 0) || m_ClickHeld)
         {
             m_IsClicking = true;
             AssignTypeAt(Event.current.mousePosition, shipLayout);
@@ -205,11 +247,19 @@ public class ShipLayoutDrawer : Editor {
         }
         //Moving
         if (m_MiddleClickHeld)
-        {           
-            Vector2 offset = Event.current.delta;          
+        {
+            Vector2 offset = Event.current.delta;
 
             shipLayout._LeftOffsetDrawerSaved += offset.x;
             shipLayout._TopOffsetDrawerSaved += offset.y;
+
+            Repaint();
+        }
+
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            shipLayout._SizeDrawerSaved += Event.current.delta.y;
+            Event.current.Use();
             Repaint();
         }
     }
@@ -275,8 +325,8 @@ public class ShipLayoutDrawer : Editor {
 
     private void AssignTypeAt(Vector3 worldPosition, ShipLayout layout, bool erase = false)
     {
-        int x = (int)((worldPosition.x - layout._LeftOffsetDrawerSaved) /m_TileSize);
-        int y = (int)((worldPosition.y - layout._TopOffsetDrawerSaved)/m_TileSize);
+        int x = (int)((worldPosition.x - layout._LeftOffsetDrawerSaved) / layout._SizeDrawerSaved);
+        int y = (int)((worldPosition.y - layout._TopOffsetDrawerSaved)/ layout._SizeDrawerSaved);
 
         if (x >= 0 && y >= 0 && layout.m_Layout.Length > x && layout.m_Layout[x].Row.Length > y)
         {
