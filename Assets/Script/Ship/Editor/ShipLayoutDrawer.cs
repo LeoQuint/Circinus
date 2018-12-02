@@ -6,9 +6,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(ShipLayout))]
 public class ShipLayoutDrawer : Editor {
+
+    public enum eBrushType
+    {
+        GROUND,
+        COMPONENT,
+        MODIFIER
+    }
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -39,7 +47,12 @@ public class ShipLayoutDrawer : Editor {
     private bool m_RightClickHeld = false;
     private bool m_MiddleClickHeld = false;
 
-    private TileType m_CurrentBrush = TileType.STEEL;
+    private eBrushType m_CurrentBrush = eBrushType.GROUND;
+
+    private TileType m_GroundBrush = TileType.EMPTY;
+    private eShipComponent m_ComponentBrush = eShipComponent.EMPTY;
+    private eTileModifier m_ModifierBrush = eTileModifier.NONE;
+
     private float m_TileSize = TILE_SIZE;
 
     #region Unity API
@@ -70,13 +83,7 @@ public class ShipLayoutDrawer : Editor {
                     Empty(shipLayout);
                 }
             EditorGUILayout.EndHorizontal();
-            //Sliders
-            EditorGUILayout.BeginVertical("box");
-            shipLayout._LeftOffsetDrawerSaved = EditorGUILayout.Slider("Left", shipLayout._LeftOffsetDrawerSaved, 0f, 1000f);
-            shipLayout._TopOffsetDrawerSaved = EditorGUILayout.Slider("Top", shipLayout._TopOffsetDrawerSaved, 0f, 1000f);
-            m_TileSize = EditorGUILayout.Slider("Size", m_TileSize, 1f, 200f);
-            m_CurrentBrush = (TileType)EditorGUILayout.EnumPopup("Tile Brush", m_CurrentBrush);
-            EditorGUILayout.EndVertical();
+        DrawEditoringTools(shipLayout);
 
         DrawLayout(shipLayout);
 
@@ -91,6 +98,50 @@ public class ShipLayoutDrawer : Editor {
     #endregion
 
     #region Private
+    int selGridInt = 0;
+
+    private void DrawEditoringTools(ShipLayout shipLayout)
+    {
+        //Sliders
+        EditorGUILayout.BeginVertical("window");
+            EditorGUILayout.BeginVertical("box");
+                shipLayout._LeftOffsetDrawerSaved = EditorGUILayout.Slider("Left", shipLayout._LeftOffsetDrawerSaved, -1000f, 1000f);
+                shipLayout._TopOffsetDrawerSaved = EditorGUILayout.Slider("Top", shipLayout._TopOffsetDrawerSaved, -1000f, 1000f);
+                m_TileSize = EditorGUILayout.Slider("Size", m_TileSize, 1f, 200f);                
+
+           
+            EditorGUILayout.EndVertical();
+
+            List<string> nameList = new List<string>();
+            foreach (eBrushType b in Enum.GetValues(typeof(eBrushType)))
+            {
+                nameList.Add(b.ToString());
+            }
+            string[] names = nameList.ToArray();
+            EditorGUILayout.BeginHorizontal("box");
+                selGridInt = GUILayout.SelectionGrid(selGridInt, names, 3);
+            EditorGUILayout.EndHorizontal();
+
+            m_CurrentBrush = (eBrushType)selGridInt;
+            EditorGUILayout.BeginHorizontal("box");
+                switch (m_CurrentBrush)
+                {
+                    case eBrushType.GROUND:
+                        m_GroundBrush = (TileType)EditorGUILayout.EnumPopup("Brush", m_GroundBrush);
+                        break;
+
+                    case eBrushType.MODIFIER:
+                        m_ModifierBrush = (eTileModifier)EditorGUILayout.EnumPopup("Brush", m_ModifierBrush);
+                        break;
+
+                    case eBrushType.COMPONENT:
+                        m_ComponentBrush = (eShipComponent)EditorGUILayout.EnumPopup("Brush", m_ComponentBrush);
+                        break;
+                }
+            EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndVertical();
+    }
+
     private void DrawLayout(ShipLayout shipLayout)
     {
         if (shipLayout.m_Layout != null && shipLayout.m_Layout.Length > 0)
@@ -230,7 +281,34 @@ public class ShipLayoutDrawer : Editor {
         if (x >= 0 && y >= 0 && layout.m_Layout.Length > x && layout.m_Layout[x].Row.Length > y)
         {
             sTileInfo tileInfo = layout[x, y];
-            tileInfo.Type = erase ? TileType.EMPTY : m_CurrentBrush;
+            switch (m_CurrentBrush)
+            {
+                case eBrushType.GROUND:
+                    tileInfo.Type = erase ? TileType.EMPTY : m_GroundBrush;
+                    break;
+
+                case eBrushType.MODIFIER:
+                    if (tileInfo.Modifiers == null)
+                    {
+                        tileInfo.Modifiers = new List<eTileModifier>();
+                    }
+
+                    if (erase && tileInfo.Modifiers.Contains(m_ModifierBrush))
+                    {
+                        tileInfo.Modifiers.Remove(m_ModifierBrush);
+                    }
+                    else if (!erase && !tileInfo.Modifiers.Contains(m_ModifierBrush))
+                    {
+                        tileInfo.Modifiers.Add(m_ModifierBrush);
+                    }
+                   
+                    break;
+
+                case eBrushType.COMPONENT:
+                    tileInfo.Component = erase ? eShipComponent.EMPTY : m_ComponentBrush;
+                    break;
+            }          
+           
             layout[x, y] = tileInfo;
         }
        
