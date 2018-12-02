@@ -31,6 +31,10 @@ public class ShipLayout : ScriptableObject {
     public int _Width;
     public int _Height;
     public FloorLayout.sLayout[] m_Layout;
+    //Editor saved data
+    public float _SizeDrawerSaved = 25f;
+    public float _LeftOffsetDrawerSaved = 20f;
+    public float _TopOffsetDrawerSaved = 200f;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////

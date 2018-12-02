@@ -14,8 +14,6 @@ public class ShipLayoutDrawer : Editor {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const float LAYOUT_TOP = 200f;
-    private const float LAYOUT_LEFT = 100f;
     private const float TILE_SIZE = 25f;
     ////////////////////////////////
     ///			Statics			 ///
@@ -40,10 +38,9 @@ public class ShipLayoutDrawer : Editor {
     private bool m_IsRightClicking = false;
     private bool m_ClickHeld = false;
     private bool m_RightClickHeld = false;
+    private bool m_MiddleClickHeld = false;
 
     private TileType m_CurrentBrush = TileType.STEEL;
-    private float m_LayoutTop = LAYOUT_TOP;
-    private float m_LayoutLeft = LAYOUT_LEFT;
     private float m_TileSize = TILE_SIZE;
 
     #region Unity API
@@ -76,8 +73,8 @@ public class ShipLayoutDrawer : Editor {
             EditorGUILayout.EndHorizontal();
             //Sliders
             EditorGUILayout.BeginVertical("box");
-            m_LayoutLeft = EditorGUILayout.Slider("Left", m_LayoutLeft, 0f, 1000f);
-            m_LayoutTop = EditorGUILayout.Slider("Top", m_LayoutTop, 0f, 1000f);
+            shipLayout._LeftOffsetDrawerSaved = EditorGUILayout.Slider("Left", shipLayout._LeftOffsetDrawerSaved, 0f, 1000f);
+            shipLayout._TopOffsetDrawerSaved = EditorGUILayout.Slider("Top", shipLayout._TopOffsetDrawerSaved, 0f, 1000f);
             m_TileSize = EditorGUILayout.Slider("Size", m_TileSize, 1f, 200f);
             m_CurrentBrush = (TileType)EditorGUILayout.EnumPopup("Tile Brush", m_CurrentBrush);
             EditorGUILayout.EndVertical();
@@ -102,7 +99,7 @@ public class ShipLayoutDrawer : Editor {
     {
         if (shipLayout.m_Layout != null && shipLayout.m_Layout.Length > 0)
         {
-            Rect positions = new Rect(m_LayoutLeft, m_LayoutTop, m_TileSize, m_TileSize);
+            Rect positions = new Rect(shipLayout._LeftOffsetDrawerSaved, shipLayout._TopOffsetDrawerSaved, m_TileSize, m_TileSize);
             
             for (int i = 0; i < shipLayout.m_Layout.Length; ++i)
             {
@@ -127,14 +124,19 @@ public class ShipLayoutDrawer : Editor {
             else if (Event.current.button == 1)
             {
                 m_RightClickHeld = true;
-            }                
+            }
+            else if (Event.current.button == 2)
+            {
+                m_MiddleClickHeld = true;
+            }
         }
         else if (Event.current.type == EventType.MouseUp)
         {
             m_ClickHeld = false;
             m_RightClickHeld = false;
+            m_MiddleClickHeld = false;
         }
-
+        //Drawing
         if ( (!m_IsClicking && Event.current.isMouse && Event.current.clickCount > 0 && Event.current.button == 0 ) || m_ClickHeld)
         {
             m_IsClicking = true;
@@ -144,7 +146,7 @@ public class ShipLayoutDrawer : Editor {
         {
             m_IsClicking = false;
         }
-
+        //Erasing
         if (!m_IsRightClicking && Event.current.isMouse && Event.current.clickCount > 0 && Event.current.button == 1 || m_RightClickHeld)
         {
             m_IsRightClicking = true;
@@ -153,6 +155,14 @@ public class ShipLayoutDrawer : Editor {
         else
         {
             m_IsRightClicking = false;
+        }
+        //Moving
+        if (m_MiddleClickHeld)
+        {           
+            Vector2 offset = Event.current.delta;          
+
+            shipLayout._LeftOffsetDrawerSaved += offset.x;
+            shipLayout._TopOffsetDrawerSaved += offset.y;
         }
     }
 
@@ -216,8 +226,8 @@ public class ShipLayoutDrawer : Editor {
 
     private void AssignTypeAt(Vector3 worldPosition, ShipLayout layout, bool erase = false)
     {
-        int x = (int)((worldPosition.x - m_LayoutLeft)/m_TileSize);
-        int y = (int)((worldPosition.y - m_LayoutTop)/m_TileSize);
+        int x = (int)((worldPosition.x - layout._LeftOffsetDrawerSaved) /m_TileSize);
+        int y = (int)((worldPosition.y - layout._TopOffsetDrawerSaved)/m_TileSize);
 
         if (x >= 0 && y >= 0 && layout.m_Layout.Length > x && layout.m_Layout[x].Row.Length > y)
         {
