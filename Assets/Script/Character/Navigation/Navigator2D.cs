@@ -88,8 +88,7 @@ public class Navigator2D : MonoBehaviour {
         OnLocationSelected(destination, Vector2.zero);
         m_WanderTimer.Stop();
         m_WanderTimer.OnDone = null;
-
-        m_HasDestination = true;
+                
         if (onDestinationReached != null)
         {
             m_OnDestinationReached += onDestinationReached;
@@ -157,6 +156,8 @@ public class Navigator2D : MonoBehaviour {
                     m_Path.Enqueue(path[i]);
                 }
             }
+
+
         }
     }
     #endregion

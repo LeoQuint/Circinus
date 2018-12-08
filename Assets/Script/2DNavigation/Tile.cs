@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     ////////////////////////////////
     private const float CUBE_SIZE = 1f;
     private const string GROUND_LAYER = "Ground";
-    private const string MODIFIER_LAYER = "GroundModifer";
+    private const string MODIFIER_LAYER = "GroundModifier";
     private const string COMPONENT_LAYER = "Component";
     ////////////////////////////////
     ///			Statics			 ///
@@ -95,7 +95,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     public void Deselect()
     {
         //testing
-        m_HealthComponent.Hit(10f);
+        Damage(20f);
         Debug.Log("Deselecting tile: " + gameObject.name);
     }
 
@@ -137,11 +137,29 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     public void Damage(float amount)
     {
         m_HealthComponent.Hit(amount);
+        if (m_HealthComponent.CurrentRatio <= 0f)
+        {
+            AddModifier(eTileModifier.BROKEN);
+        }
+        else if (m_HealthComponent.CurrentRatio < 1f)
+        {
+            AddModifier(eTileModifier.DAMAGED);
+        }
     }
 
     public void Repair(float amount)
     {
+        bool wasBroken = m_HealthComponent.CurrentRatio <= 0f;
         m_HealthComponent.Heal(amount);
+
+        if (wasBroken && m_HealthComponent.CurrentRatio > 0f)
+        {
+            RemoveModifier(eTileModifier.BROKEN);
+        }    
+        else if (m_HealthComponent.CurrentRatio >= 1f)
+        {
+            RemoveModifier(eTileModifier.DAMAGED);
+        }
     }
 
     public Vector2Int WorldPosition()
@@ -169,12 +187,9 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         m_TileRenderer.size = Vector2.one * CUBE_SIZE;
         m_TileRenderer.sortingLayerName = GROUND_LAYER;
         //Modifiers
+        m_ModifierRenderer = new List<SpriteRenderer>();
         for (int i = 0; i < m_Info.Modifiers.Count; ++i)
         {
-            if (i == 0)
-            {
-                m_ModifierRenderer = new List<SpriteRenderer>();
-            }
             SpriteRenderer sr = GetRenderer(string.Format("Modifier{0}", i.ToString()));
             sr.sprite = FloorLayout.SpriteData.GetSprite(m_Info.Modifiers[i]);
             sr.size = Vector2.one * CUBE_SIZE;
@@ -195,6 +210,57 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     {
         m_Collider = gameObject.AddComponent<BoxCollider2D>();
         m_Collider.size = Vector2.one * CUBE_SIZE;
+    }
+
+    protected void AddModifier(eTileModifier modifier)
+    {
+        if (!m_Info.Modifiers.Contains(modifier))
+        {
+            int index = -1;
+            for (int i = 0; i < m_Info.Modifiers.Count; ++i)
+            {
+                if (m_Info.Modifiers[i] == eTileModifier.NONE)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index >= 0)//reuse renderer
+            {
+                SpriteRenderer sr = m_ModifierRenderer[index];
+                sr.sprite = FloorLayout.SpriteData.GetSprite(modifier);
+                sr.size = Vector2.one * CUBE_SIZE;
+                sr.sortingLayerName = MODIFIER_LAYER;
+                sr.enabled = true;
+                m_Info.Modifiers[index] = modifier;
+            }
+            else//create new renderer
+            {
+                SpriteRenderer sr = GetRenderer("Modifer");
+                sr.sprite = FloorLayout.SpriteData.GetSprite(modifier);
+                sr.size = Vector2.one * CUBE_SIZE;
+                sr.sortingLayerName = MODIFIER_LAYER;
+                m_ModifierRenderer.Add(sr);
+                m_Info.Modifiers.Add(modifier);
+            }
+        }
+    }
+
+    protected void RemoveModifier(eTileModifier modifier)
+    {
+        if (m_Info.Modifiers.Contains(modifier))
+        {
+            for (int i = 0; i < m_Info.Modifiers.Count; ++i)
+            {
+                if (m_Info.Modifiers[i] == modifier)
+                {
+                    m_ModifierRenderer[i].enabled = false;
+                    m_Info.Modifiers[i] = eTileModifier.NONE;
+                    break;
+                }
+            }            
+        }
     }
     #endregion
 

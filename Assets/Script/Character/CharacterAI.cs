@@ -85,7 +85,10 @@ public class CharacterAI : Character, Observer {
             if (m_CurrentTask == null)
             {
                 AITask newTask = AITaskManager.Instance.GetTask(task);
-                OnTaskReceived(newTask);
+                if (newTask != null)
+                {
+                    OnTaskReceived(newTask);
+                }
             }
         }
     }   
