@@ -31,8 +31,7 @@ public class CharacterAI : Character, Observer {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-    [SerializeField]
-    protected Navigator2D m_Navigator;
+   
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -43,7 +42,6 @@ public class CharacterAI : Character, Observer {
     protected AITask m_CurrentTask;
     //Internal list of priority so this character.
     protected Dictionary<int, List<TaskType>> m_TaskPriorityList = new Dictionary<int, List<TaskType>>();
-
     protected Action<float> TaskUpdate;
     ////////////////////////////////
     ///			Private			 ///
@@ -55,8 +53,8 @@ public class CharacterAI : Character, Observer {
     #region Unity API
     private void Start()
     {
-        //Temp location for Init
-        Init();
+        m_Navigator.Init();
+        Init();        
     }
 
     protected void Update()
@@ -69,8 +67,9 @@ public class CharacterAI : Character, Observer {
     #endregion
 
     #region Public API
-    public void Init()
+    public override void Init()
     {
+        base.Init();
         AITaskManager.Instance.Register(this);
         m_State = AIState.Idle;
         m_Navigator.Wander();
@@ -108,7 +107,7 @@ public class CharacterAI : Character, Observer {
         console.log("New task received: " + task.m_Type);
         IDamageable toRepair = task.m_Parameters["target"] as IDamageable;
 
-        m_Navigator.SetDestination(toRepair.Transform(), OnDestinationReached);
+        m_Navigator.SetDestination(toRepair.WorldPosition(), OnDestinationReached);
     }
 
     protected void OnDestinationReached()
@@ -174,8 +173,16 @@ public class CharacterAI : Character, Observer {
         AITaskManager.Instance.OnTaskDone(m_CurrentTask);
         m_CurrentTask = null;
         TaskUpdate = null;
-        m_State = AIState.Idle;
-        m_Navigator.Wander();
+        AITask newTask = AITaskManager.Instance.CheckForTask();
+        if (newTask != null)
+        {
+            OnTaskReceived(newTask);
+        }
+        else
+        {
+            m_State = AIState.Idle;
+            m_Navigator.Wander();
+        }
     }   
     #endregion
 }

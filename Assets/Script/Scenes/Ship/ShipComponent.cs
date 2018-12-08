@@ -33,7 +33,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
     protected long m_Id;
     protected Ship m_Ship;
 
-    [SerializeField]
+    protected Tile m_Tile;
     protected HealthComponent m_HealthComponent;
     protected Character m_MainCharacterSlot;
     protected AITask m_RepairTask = null;
@@ -157,9 +157,9 @@ public class ShipComponent : MonoBehaviour, IDamageable
         m_HealthComponent.Heal(amount);
     }
 
-    public Transform Transform()
+    public Vector2Int WorldPosition()
     {
-        return transform;
+        return m_Tile.Position;
     }
     #endregion
 

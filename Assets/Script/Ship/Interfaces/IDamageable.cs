@@ -11,5 +11,5 @@ public interface IDamageable {
     bool CanRepair();
     void Damage(float amount);
     void Repair(float amount);
-    Transform Transform();
+    Vector2Int WorldPosition();
 }

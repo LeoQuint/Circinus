@@ -141,9 +141,7 @@ public class AITaskManager : Subject {
 
     public AITask CheckForTask(/*TODO: Get list of priorities*/)
     {
-        GetHighestPriorityTask();
-
-        return new AITask();
+        return GetHighestPriorityTask();
     }
 
     public void ClearAllTasks()
@@ -179,7 +177,15 @@ public class AITaskManager : Subject {
     #region Private
     private AITask GetHighestPriorityTask(/*TODO: Get list of priorities*/)
     {
-        return new AITask();
+        AITask highestPriority = null;
+        foreach (KeyValuePair<TaskType, List<AITask>> pair in m_PendingTasks)
+        {
+            if (pair.Value != null && pair.Value.Count > 0)
+            {
+                return GetTask(pair.Key);
+            }
+        }
+        return highestPriority;
     }
     #endregion
 }

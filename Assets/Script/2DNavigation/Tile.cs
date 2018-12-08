@@ -144,9 +144,9 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         m_HealthComponent.Heal(amount);
     }
 
-    public Transform Transform()
+    public Vector2Int WorldPosition()
     {
-        return transform;
+        return m_Info.Position;
     }
     #endregion
 
