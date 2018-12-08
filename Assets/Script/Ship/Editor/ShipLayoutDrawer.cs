@@ -303,7 +303,7 @@ public class ShipLayoutDrawer : Editor {
                     }
                     else
                     {
-                        newLayout[i][j] = new sTileInfo();
+                        newLayout[i][j] = new sTileInfo(i,j);
                     }
                 }
             }
@@ -315,9 +315,13 @@ public class ShipLayoutDrawer : Editor {
     private void Empty(ShipLayout layout)
     {
         sTileInfo[][] newLayout = new sTileInfo[layout._Width][];
-        for (int i = 0; i < newLayout.Length; ++i)
+        for (int x = 0; x < newLayout.Length; ++x)
         {
-            newLayout[i] = new sTileInfo[layout._Height];
+            newLayout[x] = new sTileInfo[layout._Height];
+            for (int y = 0; y < newLayout[x].Length; ++y)
+            {
+                newLayout[x][y] = new sTileInfo(x,y);
+            }
         }
         layout.SetLayout(newLayout);
         SaveChanges(layout);

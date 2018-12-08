@@ -32,8 +32,22 @@ public class TileUtilities
         TileType.EMPTY, TileType.INNER_WALL, TileType.OUTER_WALL
     };
 
+    private static readonly Dictionary<TileType, float> TileHealthMap = new Dictionary<TileType, float>()
+    {
+        { TileType.EMPTY , 0f},
+        { TileType.DOOR , 5f},
+        { TileType.INNER_WALL , 25f},
+        { TileType.OUTER_WALL , 100f},
+        { TileType.STEEL , 100f}
+    };
+
     public static bool IsWalkable(TileType type)
     {
         return !UNWALKABLE_TILES.Contains(type);
+    }
+
+    public static float TileHealth(TileType type)
+    {
+        return TileHealthMap[type];
     }
 }

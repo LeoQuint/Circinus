@@ -16,7 +16,7 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-
+    public static SpriteTileData SpriteData;
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////     
@@ -25,10 +25,7 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-    public Material _TEMP_EMPTY;
-    public Material _TEMP_STEEL;
-    public Material _TEMP_INNER_WALL;
-    public Material _TEMP_OUTER_WALL;
+    public SpriteTileData data;
 
     ////////////////////////////////
     ///			Protected		 ///
@@ -46,6 +43,8 @@ public class FloorLayout : MonoBehaviour {
     #region Public API
     public void Init(ShipLayout layout)
     {
+        SpriteData = data;
+        SpriteData.Init();
         m_Layout = layout.GetLayout();
         finder.SetLayout(m_Layout);
         BuildLayout();
@@ -67,7 +66,7 @@ public class FloorLayout : MonoBehaviour {
                     go.transform.parent = transform;
                     go.transform.localPosition = position + iVector + (Vector3.up * y * SQUARE_SIZE);
                     Tile tile = go.AddComponent<Tile>();
-                    tile.Init(m_Layout[x][y], GetTileMaterial(m_Layout[x][y].Type));
+                    tile.Init(m_Layout[x][y]);
                 }
             }
         }
@@ -75,24 +74,5 @@ public class FloorLayout : MonoBehaviour {
     #endregion
 
     #region Private
-    private Material GetTileMaterial(TileType type)
-    {
-        switch (type)
-        {
-            case TileType.EMPTY:
-                return _TEMP_EMPTY;
-
-            case TileType.INNER_WALL:
-                return _TEMP_INNER_WALL;
-
-            case TileType.OUTER_WALL:
-                return _TEMP_OUTER_WALL;
-
-            case TileType.STEEL:
-                return _TEMP_STEEL;
-        }
-
-        return _TEMP_EMPTY;
-    }
     #endregion
 }

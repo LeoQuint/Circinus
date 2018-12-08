@@ -41,3 +41,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: lowest
+    uniqueID: 66022141
+    locked: 0
+  - name: low
+    uniqueID: 342155933
+    locked: 0
+  - name: UnderGround
+    uniqueID: 280511517
+    locked: 0
+  - name: Ground
+    uniqueID: 705036485
+    locked: 0
+  - name: GroundModifier
+    uniqueID: 3305835481
+    locked: 0
+  - name: Component
+    uniqueID: 1731448467
+    locked: 0
+  - name: Character
+    uniqueID: 1030055381
+    locked: 0
+  - name: Overlay
+    uniqueID: 2725388221
+    locked: 0
+  - name: UI
+    uniqueID: 848849455
+    locked: 0

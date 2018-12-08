@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShipLayout", menuName = "Ship/Layout", order = 2)]
+[CreateAssetMenu(fileName = "ShipLayout", menuName = "Data/Layout", order = 2)]
 public class ShipLayout : ScriptableObject {
 
     [System.Serializable]

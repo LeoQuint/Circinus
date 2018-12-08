@@ -41,4 +41,12 @@ public struct sTileInfo
         Component = component;
         Modifiers = new List<eTileModifier>(modifier);
     }
+
+    public sTileInfo(int x, int y)
+    {
+        Type = TileType.EMPTY;
+        Position = new Vector2Int(x, y);
+        Component = eShipComponent.EMPTY;
+        Modifiers = new List<eTileModifier>();
+    }
 }

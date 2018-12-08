@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, ISelectable {
     ///			Constants		 ///
     ////////////////////////////////
     private const float RUN_VELOCITY_THRESHOLD = 3f;
+    private const bool MOVE_TO_CENTER_OF_TILES = true;
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -127,7 +128,7 @@ public class Character : MonoBehaviour, ISelectable {
         {
             for (int i = 0; i < path.Count; ++i)
             {
-                if (i == path.Count - 1)
+                if (!MOVE_TO_CENTER_OF_TILES && i == path.Count - 1)
                 {
                     m_Path.Enqueue(path[i] + innerPosition);
                 }

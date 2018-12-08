@@ -7,12 +7,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour, ISelectable {
+public class Tile : MonoBehaviour, ISelectable, IDamageable {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const float CUBE_HALF_SIZE = 0.5f;
+    private const float CUBE_SIZE = 1f;
+    private const string GROUND_LAYER = "Ground";
+    private const string MODIFIER_LAYER = "GroundModifer";
+    private const string COMPONENT_LAYER = "Component";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
@@ -32,11 +35,14 @@ public class Tile : MonoBehaviour, ISelectable {
     ///			Protected		 ///
     ////////////////////////////////
     protected sTileInfo m_Info;
-    protected MeshRenderer m_Renderer;
-    protected MeshFilter m_MeshFilter;
-    protected Mesh m_Mesh;
-    protected Material m_Material;
+    protected SpriteRenderer m_TileRenderer;
+    protected List<SpriteRenderer> m_ModifierRenderer;
+    protected SpriteRenderer m_ComponentRenderer;
     protected BoxCollider2D m_Collider;
+
+    protected HealthComponent m_HealthComponent;
+    protected Character m_MainCharacterSlot;
+    protected AITask m_RepairTask = null;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -73,11 +79,12 @@ public class Tile : MonoBehaviour, ISelectable {
     #endregion
 
     #region Public API
-    public void Init(sTileInfo info, Material mat)
+    public void Init(sTileInfo info)
     {
         m_Info = info;
+        InitHealth();        
         m_IsWalkable = TileUtilities.IsWalkable(m_Info.Type);
-        Build(mat);
+        Build();
     }
 
     public void Select()
@@ -87,54 +94,119 @@ public class Tile : MonoBehaviour, ISelectable {
 
     public void Deselect()
     {
+        //testing
+        m_HealthComponent.Hit(10f);
         Debug.Log("Deselecting tile: " + gameObject.name);
+    }
+
+    protected virtual void OnHit(float amount)
+    {
+        //create task
+        if (CanRepair() && m_RepairTask == null)
+        {
+            CreateRepairTask();
+        }
+        //once repair
+        if (!CanRepair() && m_RepairTask != null)
+        {
+            m_RepairTask = null;
+        }
+    }
+
+    protected void CreateRepairTask()
+    {
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("target", this);
+        m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
+
+        AITaskManager.Instance.AddTask(m_RepairTask);
+    }
+
+    protected virtual void OnComponentDestroyed()
+    {
+        //stub
+    }
+    #endregion
+
+    #region IDamageable
+    public bool CanRepair()
+    {
+        return m_HealthComponent.CurrentRatio < 1f;
+    }
+
+    public void Damage(float amount)
+    {
+        m_HealthComponent.Hit(amount);
+    }
+
+    public void Repair(float amount)
+    {
+        m_HealthComponent.Heal(amount);
+    }
+
+    public Transform Transform()
+    {
+        return transform;
     }
     #endregion
 
     #region Protect
-    protected void Build(Material mat)
+    protected void InitHealth()
     {
-        m_Renderer = gameObject.AddComponent<MeshRenderer>();
-        m_MeshFilter = gameObject.AddComponent<MeshFilter>();
-        m_MeshFilter.mesh = CreateMesh();
-        m_Renderer.sharedMaterial = mat;
+        m_HealthComponent = gameObject.AddComponent<HealthComponent>();
+        m_HealthComponent.Init(TileUtilities.TileHealth(m_Info.Type));
+        m_HealthComponent.OnHit -= OnHit;
+        m_HealthComponent.OnHit += OnHit;
+        m_HealthComponent.OnHealthDepleted -= OnComponentDestroyed;
+        m_HealthComponent.OnHealthDepleted += OnComponentDestroyed;
+    }
+
+    protected void Build()
+    {
+        //Ground
+        m_TileRenderer = GetRenderer("Ground");
+        m_TileRenderer.sprite = FloorLayout.SpriteData.GetSprite(m_Info.Type);
+        m_TileRenderer.size = Vector2.one * CUBE_SIZE;
+        m_TileRenderer.sortingLayerName = GROUND_LAYER;
+        //Modifiers
+        for (int i = 0; i < m_Info.Modifiers.Count; ++i)
+        {
+            if (i == 0)
+            {
+                m_ModifierRenderer = new List<SpriteRenderer>();
+            }
+            SpriteRenderer sr = GetRenderer(string.Format("Modifier{0}", i.ToString()));
+            sr.sprite = FloorLayout.SpriteData.GetSprite(m_Info.Modifiers[i]);
+            sr.size = Vector2.one * CUBE_SIZE;
+            sr.sortingLayerName = MODIFIER_LAYER;
+            sr.sortingOrder = i;
+            m_ModifierRenderer.Add(sr);
+        }
+        //Component
+        m_ComponentRenderer = GetRenderer("Component");
+        m_ComponentRenderer.sprite = FloorLayout.SpriteData.GetSprite(m_Info.Component);
+        m_ComponentRenderer.size = Vector2.one * CUBE_SIZE;
+        m_ComponentRenderer.sortingLayerName = COMPONENT_LAYER;
+
         AddCollider();
     }
 
     protected void AddCollider()
     {
         m_Collider = gameObject.AddComponent<BoxCollider2D>();
-        m_Collider.size = Vector2.one * CUBE_HALF_SIZE * 2f;
+        m_Collider.size = Vector2.one * CUBE_SIZE;
     }
     #endregion
 
     #region Private
-    private Mesh CreateMesh()
+    private SpriteRenderer GetRenderer(string name)
     {
-        m_Mesh = new Mesh();
-        Vector3[] vertices = new Vector3[4];
-        vertices[0] = BottomLeft * CUBE_HALF_SIZE;
-        vertices[1] = TopLeft * CUBE_HALF_SIZE;
-        vertices[2] = TopRight * CUBE_HALF_SIZE;
-        vertices[3] = BottomRight * CUBE_HALF_SIZE;
+        GameObject go = new GameObject(name);
+        go.transform.SetParent(transform, false);
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.drawMode = SpriteDrawMode.Sliced;
 
-        Vector2[] UVs = new Vector2[4];
-        UVs[0] = Vector2.zero;
-        UVs[1] = Vector2.up;
-        UVs[2] = Vector2.one;
-        UVs[3] = Vector2.right;
-
-        int[] triangles = new int[] 
-        {
-            0,1,2,
-            0,2,3
-        };
-               
-        m_Mesh.vertices = vertices;
-        m_Mesh.uv = UVs;
-        m_Mesh.triangles = triangles;
-
-        return m_Mesh;
-    }
+        return sr;
+    }    
     #endregion
 }
