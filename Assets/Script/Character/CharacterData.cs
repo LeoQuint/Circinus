@@ -6,7 +6,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PilotingStation : ShipComponent {
+using TaskType = AITask.TaskType;
+
+[CreateAssetMenu(fileName = "NewCharacter", menuName = "Data/Character", order = 3)]
+public class CharacterData : MonoBehaviour {
+
+    public struct sTaskPriority
+    {
+        public TaskType Type;
+        public int Priority;
+
+        public sTaskPriority(TaskType type, int priority)
+        {
+            Type = type;
+            Priority = priority;
+        }
+    }
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -19,7 +34,7 @@ public class PilotingStation : ShipComponent {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -27,7 +42,8 @@ public class PilotingStation : ShipComponent {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    protected AITask m_PilotingTask = null;
+    public Dictionary<int, List<TaskType>> m_TaskPriorities = new Dictionary<int, List<TaskType>>();
+    public List<sTaskPriority> m_Priorities = new List<sTaskPriority>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -36,31 +52,19 @@ public class PilotingStation : ShipComponent {
     #endregion
 
     #region Public API
-    public override void OnShipUpdate(float deltaTime)
+    public bool IsHigherPriority(TaskType newTask, TaskType currentTask)
     {
-        base.OnShipUpdate(deltaTime);
+
+        return false;
     }
 
-    public override void Interact(Character character)
+    public void SetPriority(TaskType type)
     {
-        base.Interact(character);
-    }
 
-    public override void Disengage(Character character)
-    {
-        base.Disengage(character);
     }
     #endregion
 
     #region Protect
-    protected void CreatePilotingTask()
-    {
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
-        parameters.Add("target", this);
-        m_PilotingTask = new AITask(AITask.TaskType.Pilot, parameters);
-
-        AITaskManager.Instance.AddTask(m_PilotingTask);
-    }
     #endregion
 
     #region Private

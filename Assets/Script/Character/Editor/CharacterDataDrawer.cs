@@ -5,8 +5,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System;
 
-public class Ship : Subject {
+[CustomEditor(typeof(CharacterData))]
+public class CharacterDataDrawer : Editor
+{
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -27,59 +31,35 @@ public class Ship : Subject {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
-    [SerializeField] protected ShipLayout m_Layout;
-    [SerializeField] protected FloorLayout m_Floors;
+
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-    private float m_DeltaTime;
-    #region Unity API
-    protected virtual void Awake()
-    {
-        ServiceLocator.RegisterService<Ship>(this);
-        Initialize();//Temp location to Init
-    }
 
-    private void Start()
+    #region Unity API 
+    public override void OnInspectorGUI()
     {
+        CharacterData data = target as CharacterData;
 
-    }
-
-    protected virtual void Update()
-    {
-        m_DeltaTime = Time.deltaTime;
-        for (int i = 0; i < m_ShipComponents.Count; ++i)
+        for (int i = 0; i < data.m_Priorities.Count; ++i)
         {
-            m_ShipComponents[i].OnShipUpdate(m_DeltaTime);
+            DrawPriorityBox(data.m_Priorities[i]);
         }
-    }
 
-    private void OnDestroy()
-    {
-        ServiceLocator.UnregisterService<Ship>(this);
+        DrawDefaultInspector();
     }
     #endregion
 
     #region Public API
-    public void Initialize()
-    {
-        LoadLayout();
-    }
-
-    public void RegisterComponent(ShipComponent component)
-    {
-        m_ShipComponents.Add(component);
-    }
     #endregion
 
     #region Protect
-    protected void LoadLayout()
-    {
-        m_Floors.Init(m_Layout);
-    }
     #endregion
 
     #region Private
+    private void DrawPriorityBox(CharacterData.sTaskPriority priotrity)
+    {
+
+    }
     #endregion
 }

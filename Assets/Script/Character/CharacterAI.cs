@@ -49,6 +49,7 @@ public class CharacterAI : Character, Observer {
     private AIState m_State = AIState.Tasking;
     //cached targets
     private IDamageable m_RepairTarget = null;
+    private ShipComponent m_InteractingComponent = null;
 
     #region Unity API
     private void Start()
@@ -108,9 +109,8 @@ public class CharacterAI : Character, Observer {
         m_State = AIState.Tasking;
         m_CurrentTask = task;
         console.log("New task received: " + task.m_Type);
-        IDamageable toRepair = task.m_Parameters["target"] as IDamageable;
-
-        m_Navigator.SetDestination(toRepair.WorldPosition(), OnDestinationReached);
+        IDamageable target = task.m_Parameters["target"] as IDamageable;
+        m_Navigator.SetDestination(target.WorldPosition(), OnDestinationReached);
     }
 
     protected void OnDestinationReached()
@@ -127,6 +127,7 @@ public class CharacterAI : Character, Observer {
             case TaskType.GoTo:
                 break;
             case TaskType.Pilot:
+                StartPilotTask();
                 break;
             case TaskType.FireFight:
                 break;
@@ -156,7 +157,7 @@ public class CharacterAI : Character, Observer {
         console.logStatus("Repair starts");
         TaskUpdate += UpdateRepairTask;
         m_RepairTarget = m_CurrentTask.m_Parameters["target"] as IDamageable;       
-    }
+    }    
 
     private void UpdateRepairTask(float deltaTime)
     {
@@ -168,6 +169,19 @@ public class CharacterAI : Character, Observer {
         {
             OnTaskCompleted();
         }
+    }
+
+    private void StartPilotTask()
+    {
+        console.logStatus("Piloting starts");
+        TaskUpdate += UpdatePilotingTask;
+        m_InteractingComponent = m_CurrentTask.m_Parameters["target"] as PilotingStation;
+        m_InteractingComponent.Interact(this);
+    }
+
+    private void UpdatePilotingTask(float deltaTime)
+    {
+        //stubb
     }
 
     private void OnTaskCompleted()
@@ -186,6 +200,37 @@ public class CharacterAI : Character, Observer {
             m_State = AIState.Idle;
             m_Navigator.Wander();
         }
-    }   
+    }
+
+    private void OnTaskInterrupt(AITask replacementTask = null)
+    {
+        console.logStatus("OnTaskInterrupt");
+
+        if (m_InteractingComponent != null)
+        {
+            m_InteractingComponent.Disengage(this);
+        }
+        //return the task back.
+        AITaskManager.Instance.AddTask(m_CurrentTask);
+        m_CurrentTask = null;
+        TaskUpdate = null;
+        if (replacementTask != null)
+        {
+            OnTaskReceived(replacementTask);
+        }
+        else
+        {
+            AITask newTask = AITaskManager.Instance.CheckForTask();
+            if (newTask != null)
+            {
+                OnTaskReceived(newTask);
+            }
+            else
+            {
+                m_State = AIState.Idle;
+                m_Navigator.Wander();
+            }
+        }       
+    }
     #endregion
 }

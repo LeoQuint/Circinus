@@ -198,10 +198,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
             m_ModifierRenderer.Add(sr);
         }
         //Component
-        m_ComponentRenderer = GetRenderer("Component");
-        m_ComponentRenderer.sprite = FloorLayout.SpriteData.GetSprite(m_Info.Component);
-        m_ComponentRenderer.size = Vector2.one * CUBE_SIZE;
-        m_ComponentRenderer.sortingLayerName = COMPONENT_LAYER;
+        BuildComponent(m_Info.Component);
 
         AddCollider();
     }
@@ -273,6 +270,22 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         sr.drawMode = SpriteDrawMode.Sliced;
 
         return sr;
-    }    
+    }
+
+    private void BuildComponent(eShipComponent component)
+    {
+        if (component != eShipComponent.EMPTY)
+        {
+            //visuals
+            m_ComponentRenderer = GetRenderer("Component");
+            m_ComponentRenderer.sprite = FloorLayout.SpriteData.GetSprite(component);
+            m_ComponentRenderer.size = Vector2.one * CUBE_SIZE;
+            m_ComponentRenderer.sortingLayerName = COMPONENT_LAYER;
+            //scripts
+            ShipComponent sc = m_ComponentRenderer.gameObject.AddShipComponent(component);
+            Ship ship = ServiceLocator.GetService<Ship>() as Ship;
+            sc.Initialize(ship, this);
+        }
+    }
     #endregion
 }

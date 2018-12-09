@@ -65,13 +65,15 @@ public class ShipComponent : MonoBehaviour, IDamageable
     #endregion
 
     #region Public API
-    public void Initialize(Ship ship)
+    public void Initialize(Ship ship, Tile tile)
     {
         if (m_Id != 0)
         {
             Debug.LogError("Error trying to Initialize this component more than once.");
             return;
         }
+
+        m_Tile = tile;
         m_Id = UniqueIdManager.Instance.GetID();
 
         LoadData();
@@ -177,5 +179,5 @@ public class ShipComponent : MonoBehaviour, IDamageable
         Repair(10f);
     }
 #endif
-    #endregion
+    #endregion   
 }
