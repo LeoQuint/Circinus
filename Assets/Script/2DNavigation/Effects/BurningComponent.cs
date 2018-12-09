@@ -40,6 +40,7 @@ public class BurningComponent : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private eBurningStatus m_Status;
+    private FloorLayout m_Layout;
     private Timer m_Timer;
     private List<BurningComponent> m_NeighbourComponents = new List<BurningComponent>();
 
@@ -55,8 +56,9 @@ public class BurningComponent : MonoBehaviour {
     #endregion
 
     #region Public API
-    public void Init(float rankValue = 0f, float igniteTicks = 0)
+    public void Init(FloorLayout layout, float rankValue = 0f, float igniteTicks = 0)
     {
+        m_Layout = layout;
         m_FireRank = rankValue;
         m_IgniteTicks = igniteTicks;
     }
@@ -95,7 +97,25 @@ public class BurningComponent : MonoBehaviour {
     #region Private
     private void UpdateBurning(float deltaTime)
     {
+        m_FireRank += GameConstants.FIRE_GROWTH_PER_SECS * deltaTime;
+        m_FireRank = Mathf.Clamp(m_FireRank, 0f, GameConstants.MAX_FIRE_RANK);
+    }
 
+    private void AddIgniteTicks(float amount)
+    {
+        if (m_Status == eBurningStatus.IGNITING)
+        {
+            m_IgniteTicks += amount;
+            if (m_IgniteTicks >= GameConstants.IGNITE_TICKS_REQUIRED)
+            {
+                //Reset the ignite ticks to half whats required in case this gets exinguished.
+                m_IgniteTicks = GameConstants.IGNITE_TICKS_REQUIRED * GameConstants.IGNITE_TICKS_RATIO_AFTER_IGNITION;
+                //Set on fire
+                m_Status = eBurningStatus.BURNING;
+                //Add/get neighbours
+                
+            }
+        }
     }
 
     private void SetVisuals()
