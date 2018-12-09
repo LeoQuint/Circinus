@@ -86,16 +86,20 @@ public class Character : MonoBehaviour, ISelectable {
 
     public void Select()
     {
-        ScreenInputController.instance.OnLocationSelected += m_Navigator.OnLocationSelected;
+        ScreenInputController.instance.OnLocationSelected += OnOrderGiven;
     }
 
     public void Deselect()
     {
-        ScreenInputController.instance.OnLocationSelected -= m_Navigator.OnLocationSelected;
+        ScreenInputController.instance.OnLocationSelected -= OnOrderGiven;
     }
     #endregion
 
-    #region Protect      
+    #region Protect     
+    protected virtual void OnOrderGiven(Tile tile, Vector2 innerPosition)
+    {
+        m_Navigator.OnLocationSelected(tile, innerPosition);
+    } 
     #endregion
 
     #region Private

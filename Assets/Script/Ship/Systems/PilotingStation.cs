@@ -36,6 +36,13 @@ public class PilotingStation : ShipComponent {
     #endregion
 
     #region Public API
+    public override void Init(Ship ship, Tile tile)
+    {
+        base.Init(ship, tile);
+
+        CreatePilotingTask();
+    }
+
     public override void OnShipUpdate(float deltaTime)
     {
         base.OnShipUpdate(deltaTime);

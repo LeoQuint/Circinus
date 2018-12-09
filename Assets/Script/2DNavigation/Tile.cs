@@ -43,6 +43,10 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     protected HealthComponent m_HealthComponent;
     protected Character m_MainCharacterSlot;
     protected AITask m_RepairTask = null;
+
+    //statuses
+    protected BurningComponent m_BurningComponent;
+
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -74,6 +78,12 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         {
             return eSelectableType.TILE;
         }
+    }
+
+    public BurningComponent BurningComponent
+    {
+        get { return m_BurningComponent; }
+        set { m_BurningComponent = value; }
     }
     #region Unity API
     #endregion
@@ -131,7 +141,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     #region IDamageable
     public bool CanRepair()
     {
-        return m_HealthComponent.CurrentRatio < 1f;
+        return m_HealthComponent.CurrentRatio < 1f && !m_Info.Modifiers.Contains(eTileModifier.BRUNING);
     }
 
     public void Damage(float amount)
@@ -284,7 +294,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
             //scripts
             ShipComponent sc = m_ComponentRenderer.gameObject.AddShipComponent(component);
             Ship ship = ServiceLocator.GetService<Ship>() as Ship;
-            sc.Initialize(ship, this);
+            sc.Init(ship, this);
         }
     }
     #endregion

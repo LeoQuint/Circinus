@@ -30,6 +30,8 @@ public class Ship : Subject {
     [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
     [SerializeField] protected ShipLayout m_Layout;
     [SerializeField] protected FloorLayout m_Floors;
+
+    protected List<Tile> m_BurningTiles = new List<Tile>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -78,8 +80,20 @@ public class Ship : Subject {
     {
         m_Floors.Init(m_Layout);
     }
+
+    protected void UpdateFire()
+    {
+        for (int i = 0; i < m_BurningTiles.Count; ++i)
+        {
+            UpdateBurningTile(m_BurningTiles[i]);
+        }
+    }
     #endregion
 
     #region Private
+    private void UpdateBurningTile(Tile tile)
+    {
+        
+    }
     #endregion
 }

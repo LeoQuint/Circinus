@@ -23,7 +23,9 @@ public enum eTileModifier
 
     DAMAGED = 100,
 
-    BROKEN = 200
+    BROKEN = 200,
+
+    BRUNING = 300
 }
 
 [System.Serializable]

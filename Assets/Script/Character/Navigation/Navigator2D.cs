@@ -77,8 +77,7 @@ public class Navigator2D : MonoBehaviour {
     public void Init()
     {
         m_Pathfinder = PathFinder.instance;
-        m_WanderTimer = new Timer();
-        m_WanderTimer.Init(2f);
+        m_WanderTimer = new Timer(2f);
         m_LayoutPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
     }
 

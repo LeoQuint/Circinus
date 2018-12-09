@@ -107,7 +107,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 1, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 1, y: 8}
       Component: 0
@@ -164,11 +164,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 2, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 2, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 2, y: 8}
       Component: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 5, y: 3}
-      Component: 0
+      Component: 300
       Modifiers: 00000000
     - Type: 10
       Position: {x: 5, y: 4}
@@ -347,11 +347,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 5, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 5, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 3
       Position: {x: 5, y: 8}
       Component: 0
@@ -359,11 +359,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 5, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 5, y: 10}
-      Component: 0
-      Modifiers: 
+      Component: 300
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 5, y: 11}
       Component: 0
@@ -404,15 +404,15 @@ MonoBehaviour:
     - Type: 7
       Position: {x: 6, y: 5}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 6, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 6, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 7
       Position: {x: 6, y: 8}
       Component: 0
@@ -420,11 +420,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 6, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 6, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 6, y: 11}
       Component: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 7, y: 3}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 7, y: 4}
       Component: 0
@@ -469,11 +469,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 7, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 7, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 3
       Position: {x: 7, y: 8}
       Component: 0
@@ -481,11 +481,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 7, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 7, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 7, y: 11}
       Component: 0
@@ -522,7 +522,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 8, y: 4}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 3
       Position: {x: 8, y: 5}
       Component: 0
@@ -530,11 +530,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 8, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 8, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 3
       Position: {x: 8, y: 8}
       Component: 0
@@ -542,11 +542,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 8, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 8, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 8, y: 11}
       Component: 0
@@ -591,11 +591,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 9, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 9, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 3
       Position: {x: 9, y: 8}
       Component: 0
@@ -603,11 +603,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 9, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 9, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 9, y: 11}
       Component: 0
@@ -692,8 +692,8 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 11, y: 1}
-      Component: 200
-      Modifiers: 
+      Component: 0
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 11, y: 2}
       Component: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 11, y: 3}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 11, y: 4}
       Component: 0
@@ -729,14 +729,14 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 11, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 11, y: 11}
       Component: 0
       Modifiers: 00000000
     - Type: 10
       Position: {x: 11, y: 12}
-      Component: 200
+      Component: 0
       Modifiers: 00000000
     - Type: 2
       Position: {x: 11, y: 13}
@@ -754,11 +754,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 12, y: 1}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 12, y: 2}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 12, y: 3}
       Component: 0
@@ -904,23 +904,23 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 14, y: 8}
       Component: 0
-      Modifiers: 
+      Modifiers: 0000000000000000
     - Type: 10
       Position: {x: 14, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 0000000000000000
     - Type: 10
       Position: {x: 14, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 14, y: 11}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 14, y: 12}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 14, y: 13}
       Component: 0
@@ -941,7 +941,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 15, y: 2}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 3}
       Component: 0
@@ -953,31 +953,31 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 15, y: 5}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 6}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 7}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 8}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 11}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 15, y: 12}
       Component: 0
@@ -998,11 +998,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 16, y: 1}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 16, y: 2}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 16, y: 3}
       Component: 0
@@ -1030,11 +1030,11 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 16, y: 9}
       Component: 0
-      Modifiers: 
+      Modifiers: 0000000000000000
     - Type: 10
       Position: {x: 16, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 16, y: 11}
       Component: 0
@@ -1042,7 +1042,7 @@ MonoBehaviour:
     - Type: 10
       Position: {x: 16, y: 12}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 2
       Position: {x: 16, y: 13}
       Component: 0
@@ -1058,19 +1058,19 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 17, y: 1}
-      Component: 0
+      Component: 200
       Modifiers: 
     - Type: 10
       Position: {x: 17, y: 2}
       Component: 0
-      Modifiers: 
+      Modifiers: 00000000
     - Type: 10
       Position: {x: 17, y: 3}
       Component: 0
       Modifiers: 00000000
     - Type: 10
       Position: {x: 17, y: 4}
-      Component: 0
+      Component: 200
       Modifiers: 00000000
     - Type: 2
       Position: {x: 17, y: 5}
@@ -1090,19 +1090,19 @@ MonoBehaviour:
       Modifiers: 
     - Type: 10
       Position: {x: 17, y: 9}
-      Component: 0
-      Modifiers: 
+      Component: 200
+      Modifiers: 0000000000000000
     - Type: 10
       Position: {x: 17, y: 10}
       Component: 0
-      Modifiers: 
+      Modifiers: 0000000000000000
     - Type: 10
       Position: {x: 17, y: 11}
       Component: 0
       Modifiers: 
     - Type: 10
       Position: {x: 17, y: 12}
-      Component: 0
+      Component: 200
       Modifiers: 
     - Type: 2
       Position: {x: 17, y: 13}

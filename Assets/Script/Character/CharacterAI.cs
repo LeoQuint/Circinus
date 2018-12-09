@@ -130,24 +130,74 @@ public class CharacterAI : Character, Observer {
                 StartPilotTask();
                 break;
             case TaskType.FireFight:
+                StartFireFightingTask();
                 break;
             case TaskType.Repair:
                 StartRepairTask();
                 break;
             case TaskType.Shield:
+                StartShieldTask();
                 break;
             case TaskType.Weapons:
+                StartWeaponTask();
                 break;
             case TaskType.Fight:
+                StartCombatTask();
                 break;
             default:
                 break;
         }
     }
+
+    protected override void OnOrderGiven(Tile tile, Vector2 innerPosition)
+    {
+        base.OnOrderGiven(tile, innerPosition);
+        OnTaskInterrupt();
+    }
     #endregion
 
     #region Private
     private void SetDestination()
+    {
+
+    }
+
+    private void StartFireFightingTask()
+    {
+        console.logStatus("Firefighting starts");
+    }
+
+    private void UpdateFireFightingTask(float deltaTime)
+    {
+
+    }
+
+    private void StartShieldTask()
+    {
+        console.logStatus("Shield starts");
+    }
+
+    private void UpdateShieldTask(float deltaTime)
+    {
+
+    }
+
+    private void StartWeaponTask()
+    {
+        console.logStatus("Weapon starts");
+    }
+
+    private void UpdateWeaponTask()
+    {
+
+    }
+
+    private void StartCombatTask()
+    {
+        console.logStatus("Combat starts");
+    }
+
+    private void UpdateCombatTask()
     {
 
     }
@@ -210,27 +260,31 @@ public class CharacterAI : Character, Observer {
         {
             m_InteractingComponent.Disengage(this);
         }
+
         //return the task back.
-        AITaskManager.Instance.AddTask(m_CurrentTask);
-        m_CurrentTask = null;
-        TaskUpdate = null;
-        if (replacementTask != null)
+        if (m_CurrentTask != null)
         {
-            OnTaskReceived(replacementTask);
-        }
-        else
-        {
-            AITask newTask = AITaskManager.Instance.CheckForTask();
-            if (newTask != null)
+            AITaskManager.Instance.AddTask(m_CurrentTask);
+            m_CurrentTask = null;
+            TaskUpdate = null;
+            if (replacementTask != null)
             {
-                OnTaskReceived(newTask);
+                OnTaskReceived(replacementTask);
             }
             else
             {
-                m_State = AIState.Idle;
-                m_Navigator.Wander();
+                AITask newTask = AITaskManager.Instance.CheckForTask();
+                if (newTask != null)
+                {
+                    OnTaskReceived(newTask);
+                }
+                else
+                {
+                    m_State = AIState.Idle;
+                    m_Navigator.Wander();
+                }
             }
-        }       
+        }  
     }
     #endregion
 }

@@ -65,7 +65,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
     #endregion
 
     #region Public API
-    public void Initialize(Ship ship, Tile tile)
+    public virtual void Init(Ship ship, Tile tile)
     {
         if (m_Id != 0)
         {
@@ -73,6 +73,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
             return;
         }
 
+        m_Ship = ship;
         m_Tile = tile;
         m_Id = UniqueIdManager.Instance.GetID();
 

@@ -48,7 +48,7 @@ namespace CoreUtility
         #endregion
 
         #region Public API
-        public void Init(float duration, bool useScaledTime = true)
+        public Timer(float duration, bool useScaledTime = true)
         {
             m_Elapsed = 0f;
             m_UseScaledTime = useScaledTime;
