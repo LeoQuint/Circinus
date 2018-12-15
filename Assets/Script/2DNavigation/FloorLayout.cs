@@ -38,6 +38,30 @@ public class FloorLayout : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
 
+
+    public int Width
+    {
+        get
+        {
+            if (m_Tiles != null)
+            {
+                return m_Tiles.Length;
+            }
+            return 0;
+        }
+    }
+
+    public int Height
+    {
+        get
+        {
+            if (m_Tiles != null && m_Tiles.Length > 0)
+            {
+                return m_Layout[0].Length;
+            }
+            return 0;
+        }
+    }
     #region Unity API
     #endregion
 

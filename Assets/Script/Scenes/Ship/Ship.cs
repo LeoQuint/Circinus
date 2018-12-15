@@ -31,6 +31,7 @@ public class Ship : Subject {
     [SerializeField] protected ShipLayout m_Layout;
     [SerializeField] protected FloorLayout m_Floors;
 
+    protected BurningController m_BurningController;
     protected List<Tile> m_BurningTiles = new List<Tile>();
     ////////////////////////////////
     ///			Private			 ///
@@ -67,6 +68,7 @@ public class Ship : Subject {
     public void Initialize()
     {
         LoadLayout();
+        m_BurningController = gameObject.AddComponent<BurningController>();
     }
 
     public void RegisterComponent(ShipComponent component)

@@ -17,13 +17,14 @@ public partial class GameConstants {
     public const int MAX_DECISION_NORMAL = 5;
 
 
-    //SHIP
-    //How fast does the fire grow.
+    ///SHIP
+    //Fire:
     public const float MAX_FIRE_RANK = 100f;
     public const float FIRE_GROWTH_PER_SECS = 1f;
     public const float FIRE_ADJACENTE_IGNITE_TICKS_PER_RANK_SECS = 0.1f;
     public const float IGNITE_TICKS_REQUIRED = 100f;
-    public const float IGNITE_TICKS_RATIO_AFTER_IGNITION = 0.5f;
-    //
+    public const float IGNITE_TICKS_RATIO_AFTER_IGNITION = 0.5f;   
     public const float FIRE_DAMAGE_PER_RANK_PER_SECS = 0.1f;
+
+
 }

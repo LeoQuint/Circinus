@@ -45,7 +45,6 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     protected AITask m_RepairTask = null;
 
     //statuses
-    protected BurningComponent m_BurningComponent;
 
     ////////////////////////////////
     ///			Private			 ///
@@ -79,12 +78,6 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
             return eSelectableType.TILE;
         }
     }
-
-    public BurningComponent BurningComponent
-    {
-        get { return m_BurningComponent; }
-        set { m_BurningComponent = value; }
-    }
     #region Unity API
     #endregion
 
@@ -107,35 +100,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         //testing
         Damage(20f);
         Debug.Log("Deselecting tile: " + gameObject.name);
-    }
-
-    protected virtual void OnHit(float amount)
-    {
-        //create task
-        if (CanRepair() && m_RepairTask == null)
-        {
-            CreateRepairTask();
-        }
-        //once repair
-        if (!CanRepair() && m_RepairTask != null)
-        {
-            m_RepairTask = null;
-        }
-    }
-
-    protected void CreateRepairTask()
-    {
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
-        parameters.Add("target", this);
-        m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
-
-        AITaskManager.Instance.AddTask(m_RepairTask);
-    }
-
-    protected virtual void OnComponentDestroyed()
-    {
-        //stub
-    }
+    }   
     #endregion
 
     #region IDamageable
@@ -211,6 +176,34 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         BuildComponent(m_Info.Component);
 
         AddCollider();
+    }
+
+    protected virtual void OnHit(float amount)
+    {
+        //create task
+        if (CanRepair() && m_RepairTask == null)
+        {
+            CreateRepairTask();
+        }
+        //once repair
+        if (!CanRepair() && m_RepairTask != null)
+        {
+            m_RepairTask = null;
+        }
+    }
+
+    protected void CreateRepairTask()
+    {
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("target", this);
+        m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
+
+        AITaskManager.Instance.AddTask(m_RepairTask);
+    }
+
+    protected virtual void OnComponentDestroyed()
+    {
+        //stub
     }
 
     protected void AddCollider()
