@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4776483154624108}
+  - component: {fileID: 114228693748916668}
   m_Layer: 0
   m_Name: FireAnimation
   m_TagString: Untagged
@@ -88,6 +89,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114228693748916668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866453398590276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf65dc799c8950944bfbf786cf51a45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95256089443702122}
 --- !u!212 &212506180461654252
 SpriteRenderer:
   m_ObjectHideFlags: 1

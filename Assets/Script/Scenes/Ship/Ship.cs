@@ -31,8 +31,7 @@ public class Ship : Subject {
     [SerializeField] protected ShipLayout m_Layout;
     [SerializeField] protected FloorLayout m_Floors;
 
-    protected BurningController m_BurningController;
-    protected List<Tile> m_BurningTiles = new List<Tile>();
+    [SerializeField] protected BurningController m_BurningController;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -56,6 +55,8 @@ public class Ship : Subject {
         {
             m_ShipComponents[i].OnShipUpdate(m_DeltaTime);
         }
+
+        m_BurningController.OnShipUpdate(m_DeltaTime);
     }
 
     private void OnDestroy()
@@ -68,7 +69,7 @@ public class Ship : Subject {
     public void Initialize()
     {
         LoadLayout();
-        m_BurningController = gameObject.AddComponent<BurningController>();
+        m_BurningController.Init(m_Floors);
     }
 
     public void RegisterComponent(ShipComponent component)
@@ -81,21 +82,9 @@ public class Ship : Subject {
     protected void LoadLayout()
     {
         m_Floors.Init(m_Layout);
-    }
-
-    protected void UpdateFire()
-    {
-        for (int i = 0; i < m_BurningTiles.Count; ++i)
-        {
-            UpdateBurningTile(m_BurningTiles[i]);
-        }
-    }
+    }   
     #endregion
 
     #region Private
-    private void UpdateBurningTile(Tile tile)
-    {
-        
-    }
     #endregion
 }
