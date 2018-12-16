@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const float CUBE_SIZE = 1f;
+    public const float CUBE_SIZE = 1f;
     private const string GROUND_LAYER = "Ground";
     private const string MODIFIER_LAYER = "GroundModifier";
     private const string COMPONENT_LAYER = "Component";

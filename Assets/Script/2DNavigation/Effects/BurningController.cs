@@ -15,7 +15,7 @@ public class BurningController : MonoBehaviour {
         BURNING
     }
 
-    public struct sBurningInfo
+    public class BurningInfo
     {
         public eBurningStatus Status;
         public Vector2Int Position;
@@ -34,7 +34,8 @@ public class BurningController : MonoBehaviour {
             get { return m_FireRank; }
             set
             {
-                m_FireRank = value;
+                m_FireRank = Mathf.Clamp( value, 0f, GameConstants.MAX_FIRE_RANK);
+                
                 if (m_FireRank > 0)
                 {
                     Status = eBurningStatus.BURNING;
@@ -47,6 +48,11 @@ public class BurningController : MonoBehaviour {
                 else
                 {
                     Status = eBurningStatus.NONE;
+                }
+
+                if (ActiveBurningComponent != null)
+                {
+                    ActiveBurningComponent.SetFireRank(m_FireRank);
                 }
             }
         }
@@ -64,7 +70,7 @@ public class BurningController : MonoBehaviour {
             }
         }
 
-        public sBurningInfo(Vector2Int position)
+        public BurningInfo(Vector2Int position)
         {
             Position = position;
             Status = eBurningStatus.NONE;
@@ -74,7 +80,7 @@ public class BurningController : MonoBehaviour {
             m_WasExtinguished = false;
         }
 
-        public sBurningInfo(int x, int y)
+        public BurningInfo(int x, int y)
         {
             Position = new Vector2Int(x,y);
             Status = eBurningStatus.NONE;
@@ -121,8 +127,50 @@ public class BurningController : MonoBehaviour {
     ////////////////////////////////
     private FloorLayout m_Layout;
    
-    private sBurningInfo[][] m_ActiveBurningComponent;
+    private BurningInfo[][] m_ActiveBurningComponent;
+    private List<BurningInfo> m_BurningLocations = new List<BurningInfo>();
+    private List<BurningInfo> m_IgnitingLocations = new List<BurningInfo>();
+
     private Queue<BurningComponent> m_PooledBurningComponent = new Queue<BurningComponent>();
+
+#if UNITY_EDITOR
+    #region DEBUG
+    private void OnDrawGizmosSelected()
+    {
+        if (m_ActiveBurningComponent != null)
+        {
+            for (int x = 0; x < m_ActiveBurningComponent.Length; ++x)
+            {
+                for (int y = 0; y < m_ActiveBurningComponent[0].Length; ++y)
+                {
+                    Vector3 localPosition = new Vector3(x * Tile.CUBE_SIZE, y * Tile.CUBE_SIZE, 0f);
+                    switch (m_ActiveBurningComponent[x][y].Status)
+                    {
+                        case eBurningStatus.NONE:
+                            { }
+                            break;
+                        case eBurningStatus.IGNITING:
+                            {
+                                float col = m_ActiveBurningComponent[x][y].IgnitionRank / GameConstants.IGNITE_TICKS_REQUIRED;
+                                Gizmos.color = new Color(col, col, 0, 0.5F);
+                                Gizmos.DrawCube(transform.position + localPosition, Vector3.one * Tile.CUBE_SIZE);
+                            }
+                            break;
+                        case eBurningStatus.BURNING:
+                            {
+                                float col = m_ActiveBurningComponent[x][y].FireRank / GameConstants.MAX_FIRE_RANK;
+                                Gizmos.color = new Color(col, 0f, 0, 0.5F);
+                                Gizmos.DrawCube(transform.position + localPosition, Vector3.one * Tile.CUBE_SIZE);
+                            }
+                            break;
+                    }                   
+                }
+            }
+        }
+       
+    }
+    #endregion
+#endif
 
     #region Unity API
     [ContextMenu("Add Fire Rank")]
@@ -142,10 +190,14 @@ public class BurningController : MonoBehaviour {
     public void Init(FloorLayout layout)
     {
         m_Layout = layout;
-        m_ActiveBurningComponent = new sBurningInfo[m_Layout.Width][];
-        for (int i = 0; i < m_Layout.Width; ++i)
+        m_ActiveBurningComponent = new BurningInfo[m_Layout.Width][];
+        for (int x = 0; x < m_Layout.Width; ++x)
         {
-            m_ActiveBurningComponent[i] = new sBurningInfo[m_Layout.Height];
+            m_ActiveBurningComponent[x] = new BurningInfo[m_Layout.Height];
+            for (int y = 0; y < m_Layout.Height; ++y)
+            {
+                m_ActiveBurningComponent[x][y] = new BurningInfo(x,y);
+            }
         }
 
         FillPool();
@@ -153,7 +205,7 @@ public class BurningController : MonoBehaviour {
 
     public void OnShipUpdate(float deltaTime)
     {
-        SetFireRanks(deltaTime);
+        UpdateBurningBehaviour(deltaTime);
     }
 
     public void AddFireRank(Vector2Int location, float amount)
@@ -171,10 +223,10 @@ public class BurningController : MonoBehaviour {
             BurningComponent bc = GetFire();
             bc.Init(location);
             m_ActiveBurningComponent[location.x][location.y].ActiveBurningComponent = bc;
+            m_BurningLocations.Add(m_ActiveBurningComponent[location.x][location.y]);
         }
 
-        m_ActiveBurningComponent[location.x][location.y].FireRank 
-            = Mathf.Clamp(m_ActiveBurningComponent[location.x][location.y].FireRank + amount, 0f, GameConstants.MAX_FIRE_RANK);
+        m_ActiveBurningComponent[location.x][location.y].FireRank += amount;
     }
 
     public void RemoveFireRank(Vector2Int location, float amount)
@@ -186,65 +238,30 @@ public class BurningController : MonoBehaviour {
             return;
         }
 
-        m_ActiveBurningComponent[location.x][location.y].FireRank
-            = Mathf.Clamp(m_ActiveBurningComponent[location.x][location.y].FireRank - amount, 0f, GameConstants.MAX_FIRE_RANK);
+        m_ActiveBurningComponent[location.x][location.y].FireRank -= amount;
 
         if (m_ActiveBurningComponent[location.x][location.y].ActiveBurningComponent != null)
         {
-            ReleaseFire(m_ActiveBurningComponent[location.x][location.y]);
-            m_ActiveBurningComponent[location.x][location.y] = null;
+            ReleaseFire(m_ActiveBurningComponent[location.x][location.y].ActiveBurningComponent);
+            m_ActiveBurningComponent[location.x][location.y].ActiveBurningComponent = null;
+            m_BurningLocations.Remove(m_ActiveBurningComponent[location.x][location.y]);
         }
-    }
-
-    public void AddIgnitionRank(Vector2Int location, int amount)
-    {
-        if (location.x < 0 || location.x >= m_FireRank.Length ||
-           location.y < 0 || location.y >= m_FireRank[0].Length)
-        {
-            Debug.LogError("Trying to Ignite a Location outside this Layout.");
-            return;
-        }
-    }
-
-    public bool IsBurning(Vector2Int location)
-    {
-        return m_FireRank[location.x][location.y] > 0;
     }
     #endregion
 
     #region Protect
     //Adds damage to tiles, increase fire rank and ignition in nearby tiles.
-    protected void UpdateBurningBehaviour()
+    protected void UpdateBurningBehaviour(float deltaTime)
     {
-
-    }
-    //asigns the ranks
-    protected void SetFireRanks(float deltaTime)
-    {
-        for (int x = 0; x < m_FireRank.Length; ++x)
+        //each burning tile grow in strengh
+        for (int i = 0; i < m_BurningLocations.Count; ++i)
         {
-            for (int y = 0; y < m_FireRank[0].Length; ++y)
-            {
-                if (m_ActiveBurningComponent[x][y] != null)
-                {
-                    m_ActiveBurningComponent[x][y].SetFireRank(m_FireRank[x][y]);
-                }
-            }
+            m_BurningLocations[i].FireRank += (GameConstants.FIRE_GROWTH_PER_SECS * deltaTime);         
         }
-    }
+    }  
     #endregion
 
     #region Private
-    private void UpdateTasks()
-    {
-
-    }
-
-    private void GenerateTask()
-    {
-
-    }
-
     private void FillPool()
     {
         for (int i = 0; i < FIRE_ANIMATION_POOL_SIZE; ++i)
@@ -275,6 +292,25 @@ public class BurningController : MonoBehaviour {
         burningComponent.ResetComponent();
         //re queue
         m_PooledBurningComponent.Enqueue(burningComponent);
+    }
+    #endregion
+
+    #region Task Generation
+    private List<AITask> m_ActiveTasks = new List<AITask>();
+
+    private void UpdateTasks()
+    {
+
+    }
+
+    private void GenerateTask(Vector2Int location)
+    {
+
+    }
+
+    private void SetFirefightingTasks()
+    {
+
     }
     #endregion
 }
