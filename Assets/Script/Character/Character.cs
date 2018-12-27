@@ -29,6 +29,7 @@ public class Character : MonoBehaviour, ISelectable {
     ///			Protected		 ///
     ////////////////////////////////   
     protected float m_RepairPerSeconds = 5f;
+    protected float m_FireFightingPerSeconds = 5f;
     protected float m_RepairRange = 2f;
     protected Navigator2D m_Navigator;
 
@@ -63,11 +64,6 @@ public class Character : MonoBehaviour, ISelectable {
     ////////////////////////////////
 
     #region Unity API
-    private void Awake()
-    {
-        Init();
-    }
-
     private void Update()
     {
         m_Navigator.Move();
@@ -75,13 +71,13 @@ public class Character : MonoBehaviour, ISelectable {
     #endregion
 
     #region Public API
-    public virtual void Init()
+    public virtual void Init(FloorLayout layout)
     {
         if (m_Navigator == null)
         {
             m_Navigator = gameObject.AddComponent<Navigator2D>();
         }
-        m_Navigator.Init();
+        m_Navigator.Init(layout);
     }
 
     public void Select()

@@ -28,10 +28,12 @@ public class Ship : Subject {
     ///			Protected		 ///
     ////////////////////////////////
     [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
-    [SerializeField] protected ShipLayout m_Layout;
-    [SerializeField] protected FloorLayout m_Floors;
+    [SerializeField] protected ShipLayout m_ShipLayout;
+    [SerializeField] protected FloorLayout m_Layout;
 
     [SerializeField] protected BurningController m_BurningController;
+
+    [SerializeField] protected List<Character> m_Crew = new List<Character>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -69,7 +71,8 @@ public class Ship : Subject {
     public void Initialize()
     {
         LoadLayout();
-        m_BurningController.Init(m_Floors);
+        m_BurningController.Init(m_Layout);
+        InitCrew();
     }
 
     public void RegisterComponent(ShipComponent component)
@@ -81,8 +84,16 @@ public class Ship : Subject {
     #region Protect
     protected void LoadLayout()
     {
-        m_Floors.Init(m_Layout);
-    }   
+        m_Layout.Init(m_ShipLayout);
+    }
+
+    protected void InitCrew()
+    {
+        foreach (Character c in m_Crew)
+        {
+            c.Init(m_Layout);
+        }
+    }
     #endregion
 
     #region Private

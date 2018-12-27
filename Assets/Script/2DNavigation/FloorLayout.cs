@@ -62,6 +62,14 @@ public class FloorLayout : MonoBehaviour {
             return 0;
         }
     }
+
+    public Tile[] this[int x]
+    {
+        get
+        {
+            return m_Tiles[x];
+        }
+    }
     #region Unity API
     #endregion
 

@@ -35,8 +35,8 @@ public class Navigator2D : MonoBehaviour {
     ///			Protected		 ///
     ////////////////////////////////
     protected Action m_OnDestinationReached;
-    protected float m_WanderSpeed = 5f;
-    protected float m_RunSpeed;
+    protected float m_WanderSpeed = 2f;
+    protected float m_RunSpeed = 10f;
 
     protected Vector2Int m_LayoutPosition;
     protected Vector2 m_TilePosition;
@@ -68,26 +68,26 @@ public class Navigator2D : MonoBehaviour {
             m_WanderTimer.Update();
         }
 
-
         Move();       
     }
     #endregion
 
     #region Public API
-    public void Init()
+    public void Init(FloorLayout layout)
     {
+        m_Layout = layout;
         m_Pathfinder = PathFinder.instance;
         m_WanderTimer = new Timer(2f);
         m_LayoutPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
     }
 
-    public void SetDestination(Vector2Int destination, Action onDestinationReached = null)
+    public void SetDestination(Vector2Int destination, Action onDestinationReached = null, bool isWandering = false)
     {
         console.logStatus("Set Destination");
         OnLocationSelected(destination, Vector2.zero);
         m_WanderTimer.Stop();
         m_WanderTimer.OnDone = null;
-                
+        m_MovementSpeed = isWandering ? m_WanderSpeed : m_RunSpeed;
         if (onDestinationReached != null)
         {
             m_OnDestinationReached += onDestinationReached;
@@ -96,7 +96,7 @@ public class Navigator2D : MonoBehaviour {
 
     public void Wander()
     {
-        m_WanderTimer.Start();
+        m_WanderTimer.Start(UnityEngine.Random.Range(1f, 3f));
         m_WanderTimer.OnDone -= GetNewWanderDestination;
         m_WanderTimer.OnDone += GetNewWanderDestination;
     }
@@ -168,8 +168,38 @@ public class Navigator2D : MonoBehaviour {
     #region Private
     private void GetNewWanderDestination()
     {
-        //m_NavMeshAgent.SetDestination(RandomNavmeshLocation(3f));
-        m_WanderTimer.Start();
+        List<Vector2Int> neighbours = new List<Vector2Int>();
+
+        //up
+        if (m_LayoutPosition.y < m_Layout.Height - 1 && m_Layout[m_LayoutPosition.x][m_LayoutPosition.y+1].IsWalkable)
+        {
+            neighbours.Add(new Vector2Int(m_LayoutPosition.x, m_LayoutPosition.y + 1));
+        }
+        //down
+        if (m_LayoutPosition.y > 0 && m_Layout[m_LayoutPosition.x][m_LayoutPosition.y - 1].IsWalkable)
+        {
+            neighbours.Add(new Vector2Int(m_LayoutPosition.x, m_LayoutPosition.y - 1));
+        }
+        //left
+        if (m_LayoutPosition.y > 0 && m_Layout[m_LayoutPosition.x - 1][m_LayoutPosition.y].IsWalkable)
+        {
+            neighbours.Add(new Vector2Int(m_LayoutPosition.x - 1, m_LayoutPosition.y));
+        }
+        //right
+        if (m_LayoutPosition.y < m_Layout.Width - 1 && m_Layout[m_LayoutPosition.x + 1][m_LayoutPosition.y].IsWalkable)
+        {
+            neighbours.Add(new Vector2Int(m_LayoutPosition.x + 1, m_LayoutPosition.y));
+        }
+
+        if (neighbours.Count > 0)
+        {
+            SetDestination(neighbours[UnityEngine.Random.Range(0, neighbours.Count)], Wander, true);
+        }
+        else
+        {
+            m_WanderTimer.Start();
+        }        
     }
+    
     #endregion
 }

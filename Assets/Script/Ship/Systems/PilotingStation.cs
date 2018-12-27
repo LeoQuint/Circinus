@@ -64,6 +64,7 @@ public class PilotingStation : ShipComponent {
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("target", this);
+        parameters.Add("position", WorldPosition());
         m_PilotingTask = new AITask(AITask.TaskType.Pilot, parameters);
 
         AITaskManager.Instance.AddTask(m_PilotingTask);

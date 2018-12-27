@@ -155,7 +155,7 @@ public class BurningController : MonoBehaviour {
     private BurningInfo[][] m_BurningComponents;
     private List<BurningInfo> m_BurningLocations = new List<BurningInfo>();
 
-    private Queue<BurningComponent> m_PooledBurningComponent = new Queue<BurningComponent>();
+    private Queue<BurningComponent> m_PooledBurningComponent = new Queue<BurningComponent>();    
 
 #if UNITY_EDITOR
     #region DEBUG
@@ -236,33 +236,49 @@ public class BurningController : MonoBehaviour {
 
         if (m_BurningComponents[location.x][location.y].ActiveBurningComponent == null)
         {
+            //we got a new fire burning
+
             //add animation
             BurningComponent bc = GetFire();
             bc.Init(location);
             m_BurningComponents[location.x][location.y].ActiveBurningComponent = bc;
             m_BurningLocations.Add(m_BurningComponents[location.x][location.y]);
+            //generate task
+            GenerateTask(m_BurningComponents[location.x][location.y]);
         }
 
         m_BurningComponents[location.x][location.y].FireRank += amount;
     }
 
-    public void RemoveFireRank(Vector2Int location, float amount)
+    public bool RemoveFireRank(Vector2Int location, float amount)
     {
         if (location.x < 0 || location.x >= m_Layout.Width ||
              location.y < 0 || location.y >= m_Layout.Height)
         {
             Debug.LogError("Trying to add Fire to a Location outside this Layout.");
-            return;
+            return true;
         }
 
         m_BurningComponents[location.x][location.y].FireRank -= amount;
 
         if (m_BurningComponents[location.x][location.y].ActiveBurningComponent != null)
         {
-            ReleaseFire(m_BurningComponents[location.x][location.y].ActiveBurningComponent);
-            m_BurningComponents[location.x][location.y].ActiveBurningComponent = null;
-            m_BurningLocations.Remove(m_BurningComponents[location.x][location.y]);
+            if (m_BurningComponents[location.x][location.y].IsExtinguished)
+            {
+                ReleaseFire(m_BurningComponents[location.x][location.y].ActiveBurningComponent);
+                m_BurningComponents[location.x][location.y].ActiveBurningComponent = null;
+                m_BurningLocations.Remove(m_BurningComponents[location.x][location.y]);
+                m_BurningComponents[location.x][location.y].IgnitionRank = 0f;
+                m_BurningComponents[location.x][location.y].Status = eBurningStatus.NONE;
+                return true;
+            }
+            return false;
         }
+        else
+        {
+            return true;
+        }
+
     }
     #endregion
 
@@ -377,21 +393,13 @@ public class BurningController : MonoBehaviour {
     #endregion
 
     #region Task Generation
-    private List<AITask> m_ActiveTasks = new List<AITask>();
-
-    private void UpdateTasks()
-    {
-
-    }
-
-    private void GenerateTask(Vector2Int location)
-    {
-
-    }
-
-    private void SetFirefightingTasks()
-    {
-
+    private void GenerateTask(BurningInfo bi)
+    {        
+        Dictionary<string, object> parameters = new Dictionary<string, object>();
+        parameters.Add("position", bi.Position);
+        parameters.Add("controller", this);
+        AITask firefightingTask = new AITask(AITask.TaskType.FireFight, parameters);
+        AITaskManager.Instance.AddTask(firefightingTask);
     }
     #endregion
 }

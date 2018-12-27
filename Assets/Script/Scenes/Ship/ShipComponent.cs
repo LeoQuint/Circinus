@@ -125,6 +125,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("target", this);
+        parameters.Add("position", this.WorldPosition());
         m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
 
         AITaskManager.Instance.AddTask(m_RepairTask);

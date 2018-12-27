@@ -48,16 +48,12 @@ public class CharacterAI : Character, Observer {
     ////////////////////////////////
     private AIState m_State = AIState.Tasking;
     //cached targets
+    private Vector2Int m_TargetPosition = Vector2Int.zero;
     private IDamageable m_RepairTarget = null;
     private ShipComponent m_InteractingComponent = null;
+    private BurningController m_BurningController = null;
 
     #region Unity API
-    private void Start()
-    {
-        m_Navigator.Init();
-        Init();        
-    }
-
     protected void Update()
     {
         if (TaskUpdate != null)
@@ -68,9 +64,9 @@ public class CharacterAI : Character, Observer {
     #endregion
 
     #region Public API
-    public override void Init()
+    public override void Init(FloorLayout layout)
     {
-        base.Init();
+        base.Init(layout);
         AITaskManager.Instance.Register(this);
         m_State = AIState.Idle;
         m_Navigator.Wander();
@@ -109,8 +105,8 @@ public class CharacterAI : Character, Observer {
         m_State = AIState.Tasking;
         m_CurrentTask = task;
         console.log("New task received: " + task.m_Type);
-        IDamageable target = task.m_Parameters["target"] as IDamageable;
-        m_Navigator.SetDestination(target.WorldPosition(), OnDestinationReached);
+        m_TargetPosition = (Vector2Int)task.m_Parameters["position"];
+        m_Navigator.SetDestination(m_TargetPosition, OnDestinationReached);
     }
 
     protected void OnDestinationReached()
@@ -165,11 +161,18 @@ public class CharacterAI : Character, Observer {
     private void StartFireFightingTask()
     {
         console.logStatus("Firefighting starts");
+        TaskUpdate += UpdateFireFightingTask;
+        m_BurningController = m_CurrentTask.m_Parameters["controller"] as BurningController;
     }
 
     private void UpdateFireFightingTask(float deltaTime)
     {
-
+        bool hasExtinghuisedFire = m_BurningController.RemoveFireRank(m_TargetPosition, m_FireFightingPerSeconds * deltaTime);
+        if (hasExtinghuisedFire)
+        {
+            Debug.Log("Fire task done");
+            OnTaskCompleted();
+        }
     }
 
     private void StartShieldTask()
@@ -240,14 +243,18 @@ public class CharacterAI : Character, Observer {
         AITaskManager.Instance.OnTaskDone(m_CurrentTask);
         m_CurrentTask = null;
         TaskUpdate = null;
+        m_State = AIState.Idle;
+        m_BurningController = null;
+
         AITask newTask = AITaskManager.Instance.CheckForTask();
         if (newTask != null)
         {
+            Debug.Log("Starting a new task");
             OnTaskReceived(newTask);
         }
         else
         {
-            m_State = AIState.Idle;
+            Debug.Log("No new task to start.");
             m_Navigator.Wander();
         }
     }

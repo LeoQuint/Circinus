@@ -19,10 +19,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    private static Vector3 BottomLeft = new Vector3(-1f,-1f, 0f);
-    private static Vector3 BottomRight = new Vector3(1f, -1f, 0f);
-    private static Vector3 TopLeft = new Vector3(-1f, 1f, 0f);
-    private static Vector3 TopRight = new Vector3(1f, 1f, 0f);
+
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -196,6 +193,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>();
         parameters.Add("target", this);
+        parameters.Add("position", WorldPosition());
         m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
 
         AITaskManager.Instance.AddTask(m_RepairTask);
