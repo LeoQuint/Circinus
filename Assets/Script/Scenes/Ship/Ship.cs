@@ -69,6 +69,7 @@ public class Ship : Subject {
             m_ShipComponents[i].OnShipUpdate(m_DeltaTime);
         }
 
+        m_Navigator.OnShipUpdate(m_DeltaTime);
         m_BurningController.OnShipUpdate(m_DeltaTime);
     }
 

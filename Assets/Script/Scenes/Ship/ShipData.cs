@@ -32,6 +32,8 @@ public class ShipData {
     //propulsion
     public float BaseAcceleration;
     public float BaseMaxSpeed;
+    //break
+    public float BaseDeceleration;
     //steering
     public float BaseSteeringAccelerationSpeed;
     public float BaseSteeringMaxSpeed;

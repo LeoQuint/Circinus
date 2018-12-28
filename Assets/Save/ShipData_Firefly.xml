@@ -3,6 +3,7 @@
   <Name>Firefly</Name>
   <BaseAcceleration>1</BaseAcceleration>
   <BaseMaxSpeed>10</BaseMaxSpeed>
+  <BaseDeceleration>2</BaseDeceleration>
   <BaseSteeringAccelerationSpeed>0.5</BaseSteeringAccelerationSpeed>
   <BaseSteeringMaxSpeed>5</BaseSteeringMaxSpeed>
   <HullWeight>50</HullWeight>
