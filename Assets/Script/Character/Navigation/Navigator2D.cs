@@ -155,8 +155,6 @@ public class Navigator2D : MonoBehaviour {
                     m_Path.Enqueue(path[i]);
                 }
             }
-
-
         }
     }
     #endregion

@@ -47,6 +47,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     ///			Private			 ///
     ////////////////////////////////
     private bool m_IsWalkable = true;
+    private bool m_IsFlammable = false;
 
     public Vector2Int Position
     {
@@ -68,6 +69,11 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         get { return m_IsWalkable; }
     }
 
+    public bool IsFlammable
+    {
+        get { return m_IsFlammable; }
+    }
+
     public eSelectableType SelectableType
     {
         get
@@ -84,6 +90,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         m_Info = info;
         InitHealth();        
         m_IsWalkable = TileUtilities.IsWalkable(m_Info.Type);
+        m_IsFlammable = TileUtilities.IsFlammable(m_Info.Type);
         Build();
     }
 

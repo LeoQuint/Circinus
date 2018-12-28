@@ -32,6 +32,11 @@ public class TileUtilities
         TileType.EMPTY, TileType.INNER_WALL, TileType.OUTER_WALL
     };
 
+    private static readonly List<TileType> FLAMMABLE_TILES = new List<TileType>()
+    {
+        TileType.STEEL, TileType.DOOR
+    };
+
     private static readonly Dictionary<TileType, float> TileHealthMap = new Dictionary<TileType, float>()
     {
         { TileType.EMPTY , 0f},
@@ -40,6 +45,11 @@ public class TileUtilities
         { TileType.OUTER_WALL , 100f},
         { TileType.STEEL , 100f}
     };
+
+    public static bool IsFlammable(TileType type)
+    {
+        return FLAMMABLE_TILES.Contains(type);
+    }
 
     public static bool IsWalkable(TileType type)
     {

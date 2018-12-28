@@ -21,6 +21,7 @@ public class BurningController : MonoBehaviour {
         public Vector2Int Position;
         public float m_FireRank;
         public float m_IgnitionRank;
+        public bool m_IsFlammable;
 
         public BurningComponent ActiveBurningComponent;
         private bool m_WasExtinguished;
@@ -98,9 +99,10 @@ public class BurningController : MonoBehaviour {
             m_IgnitionRank = 0f;
             ActiveBurningComponent = null;
             m_WasExtinguished = false;
+            m_IsFlammable = true;
         }
 
-        public BurningInfo(int x, int y)
+        public BurningInfo(int x, int y, bool isFlammable)
         {
             Position = new Vector2Int(x,y);
             Status = eBurningStatus.NONE;
@@ -108,6 +110,7 @@ public class BurningController : MonoBehaviour {
             m_IgnitionRank = 0f;
             ActiveBurningComponent = null;
             m_WasExtinguished = false;
+            m_IsFlammable = isFlammable;
         }
 
         public void Reset()
@@ -234,6 +237,11 @@ public class BurningController : MonoBehaviour {
             return;
         }
 
+        if (!m_BurningComponents[location.x][location.y].m_IsFlammable)
+        {
+            return;
+        }
+
         if (m_BurningComponents[location.x][location.y].ActiveBurningComponent == null)
         {
             //we got a new fire burning
@@ -320,7 +328,8 @@ public class BurningController : MonoBehaviour {
             m_BurningComponents[x] = new BurningInfo[m_Layout.Height];
             for (int y = 0; y < m_Layout.Height; ++y)
             {
-                m_BurningComponents[x][y] = new BurningInfo(x, y);
+
+                m_BurningComponents[x][y] = new BurningInfo(x, y, m_Layout[x][y].IsFlammable);
             }
         }
         //set all the neighbours
@@ -369,22 +378,22 @@ public class BurningController : MonoBehaviour {
     {
         List<BurningInfo> neighbours = new List<BurningInfo>();
         //up
-        if (y < m_Layout.Height-1)
+        if (y < m_Layout.Height-1 && m_BurningComponents[x][y + 1].m_IsFlammable)
         {
             neighbours.Add(m_BurningComponents[x][y + 1]);
         }
         //down
-        if (y > 0)
+        if (y > 0 && m_BurningComponents[x][y - 1].m_IsFlammable)
         {
             neighbours.Add(m_BurningComponents[x][y - 1]);
         }
         //left
-        if (x > 0)
+        if (x > 0 && m_BurningComponents[x - 1][y].m_IsFlammable)
         {
             neighbours.Add(m_BurningComponents[x - 1][y]);
         }
         //right
-        if (x < m_Layout.Width - 1)
+        if (x < m_Layout.Width - 1 && m_BurningComponents[x + 1][y].m_IsFlammable)
         {
             neighbours.Add(m_BurningComponents[x + 1][y]);
         }
