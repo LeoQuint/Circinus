@@ -29,7 +29,8 @@ public class Ship : Subject {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
-
+    //temp for debug
+    public string DEBUG_SAVED_KEY_FOR_SHIP = "";
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -40,6 +41,11 @@ public class Ship : Subject {
     private float m_DeltaTime;
 
     //properties
+    public ShipData Data
+    {
+        get { return m_ShipData; }
+    }
+
     public FloorLayout Layout
     {
         get { return m_Layout; }
@@ -74,11 +80,12 @@ public class Ship : Subject {
     #region Public API
     public void Initialize()
     {
+        LoadData();
         LoadLayout();
         m_BurningController.Init(this);
         InitComponents();
         m_Navigator.Init(this);
-        InitCrew();    
+        InitCrew();
     }
 
     public void RegisterComponent(ShipComponent component)
@@ -88,6 +95,22 @@ public class Ship : Subject {
     #endregion
 
     #region Protect
+    protected void LoadData()
+    {
+        if (!string.IsNullOrEmpty(DEBUG_SAVED_KEY_FOR_SHIP))
+        {
+            ShipData sd = ShipData.Load(DEBUG_SAVED_KEY_FOR_SHIP);
+            if (sd != null)
+            {
+                m_ShipData = sd;
+            }
+            else
+            {
+                Debug.LogError("Ship mdata failed to load.");
+            }
+        }
+    }
+
     protected void LoadLayout()
     {
         m_Layout.Init(m_ShipLayout, this);

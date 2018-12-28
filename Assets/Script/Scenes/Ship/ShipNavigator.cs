@@ -28,8 +28,11 @@ public class ShipNavigator : MonoBehaviour {
     ///			Protected		 ///
     ////////////////////////////////
     protected Ship m_Ship;
+    protected ShipData m_Data;
 
     protected Vector3 m_Destination;
+    protected float m_CurrentSpeed;
+    protected float m_CurrentSteeringSpeed;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -50,7 +53,9 @@ public class ShipNavigator : MonoBehaviour {
     #region Public API
     public void Init(Ship ship)
     {
+        m_Destination = transform.localPosition;
         m_Ship = ship;
+        m_Data = m_Ship.Data;
     }
     #endregion
 
@@ -60,15 +65,17 @@ public class ShipNavigator : MonoBehaviour {
     #region Private
     private void Move(float deltaTime)
     {
-        
+        //accelerate towards max speed
+
+        //move
+
     }
 
     private void Steer(float deltaTime)
     {
         Vector3 direction = (m_Destination - transform.localPosition);
         float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        Debug.Log(rotation + " From " + direction);
+        
         Vector3 rot = Vector3.zero;
         rot.z = rotation + 180f;
         transform.localEulerAngles = rot;

@@ -15,11 +15,12 @@ public class ShipData {
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-
+    private const string FILENAME = "ShipData";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
 
+    private static Type[] m_Types = new Type[1] { typeof(ShipData) };
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -38,11 +39,11 @@ public class ShipData {
     public float HullWeight;
     public float BaseHullHealth;
 
-	////////////////////////////////
+    ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
 
-	////////////////////////////////
+    ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 
@@ -66,7 +67,29 @@ public class ShipData {
     #endregion
 
     #region Public API
-    #endregion
+    public static void Save(ShipData data)
+    {
+        console.logStatus("Saving " + FILENAME + "_" + data.Name);
+        Serializer_Deserializer<ShipData>.Save(data, SavedPath.GameData, FILENAME + "_" + data.Name, m_Types);
+    }
+
+    public static ShipData Load(string shipName)
+    {
+        console.logStatus("Loading " + shipName);
+        return Serializer_Deserializer<ShipData>.Load(SavedPath.GameData, FILENAME + "_" + shipName, m_Types);
+    }
+#if UNITY_EDITOR
+    [UnityEditor.MenuItem("CreateConfigs/Create New ShipData")]
+    static void CreateShipData()
+    {        
+        ShipData sd = new ShipData();
+        sd.Name = "NEW_SHIPDATA";
+        ShipData.Save(sd);
+        console.log("Ship data template created");
+    }
+#endif
+
+#endregion
 
     #region Protect
     #endregion

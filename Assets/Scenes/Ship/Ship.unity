@@ -2646,6 +2646,7 @@ MonoBehaviour:
   - {fileID: 999425715}
   m_TaskManager: {fileID: 854548538}
   m_Navigator: {fileID: 2067752714}
+  DEBUG_SAVED_KEY_FOR_SHIP: Firefly
 --- !u!114 &2067752714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2972,6 +2973,7 @@ MonoBehaviour:
   - {fileID: 282624953}
   m_TaskManager: {fileID: 1021521170}
   m_Navigator: {fileID: 2142435205}
+  DEBUG_SAVED_KEY_FOR_SHIP: 
 --- !u!4 &2142435204
 Transform:
   m_ObjectHideFlags: 0

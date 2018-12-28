@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ShipData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Firefly</Name>
+  <BaseAcceleration>1</BaseAcceleration>
+  <BaseMaxSpeed>10</BaseMaxSpeed>
+  <BaseSteeringAccelerationSpeed>0.5</BaseSteeringAccelerationSpeed>
+  <BaseSteeringMaxSpeed>5</BaseSteeringMaxSpeed>
+  <HullWeight>50</HullWeight>
+  <BaseHullHealth>1000</BaseHullHealth>
+</ShipData>
