@@ -18,8 +18,6 @@ public class AITaskManager : Subject {
     ///			Statics			 ///
     ////////////////////////////////
 
-    private static AITaskManager instance;
-
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -31,46 +29,13 @@ public class AITaskManager : Subject {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-
     protected Dictionary<TaskType, List<AITask>> m_PendingTasks = new Dictionary<TaskType, List<AITask>>();
     protected HashSet<long> m_CompletedTasks = new HashSet<long>();
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
 
-    public static AITaskManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject holder = new GameObject("AITaskManager");
-                AITaskManager atm = holder.AddComponent<AITaskManager>();
-                instance = atm;
-            }
-            return instance;
-        }
-    }
-
     #region Unity API
-    protected void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }        
-    }
-
-    protected void Update()
-    {
-
-    }
-
     protected void OnDestroy()
     {
         ClearAllTasks();

@@ -32,6 +32,7 @@ public class Character : MonoBehaviour, ISelectable {
     protected float m_FireFightingPerSeconds = 5f;
     protected float m_RepairRange = 2f;
     protected Navigator2D m_Navigator;
+    protected Ship m_Ship;
 
     protected bool m_IsSelected = false;
 
@@ -71,13 +72,14 @@ public class Character : MonoBehaviour, ISelectable {
     #endregion
 
     #region Public API
-    public virtual void Init(FloorLayout layout)
+    public virtual void Init(Ship ship)
     {
         if (m_Navigator == null)
         {
             m_Navigator = gameObject.AddComponent<Navigator2D>();
         }
-        m_Navigator.Init(layout);
+        m_Ship = ship;
+        m_Navigator.Init(ship.Layout);
     }
 
     public void Select()

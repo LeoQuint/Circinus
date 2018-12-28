@@ -19,7 +19,13 @@ public class Ship : Subject {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-
+    [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
+    [SerializeField] protected ShipLayout m_ShipLayout;
+    [SerializeField] protected FloorLayout m_Layout;
+    [SerializeField] protected BurningController m_BurningController;
+    [SerializeField] protected List<Character> m_Crew = new List<Character>();
+    [SerializeField] protected AITaskManager m_TaskManager;
+    [SerializeField] protected ShipNavigator m_Navigator;
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -27,27 +33,26 @@ public class Ship : Subject {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    [SerializeField] protected List<ShipComponent> m_ShipComponents = new List<ShipComponent>();
-    [SerializeField] protected ShipLayout m_ShipLayout;
-    [SerializeField] protected FloorLayout m_Layout;
-
-    [SerializeField] protected BurningController m_BurningController;
-
-    [SerializeField] protected List<Character> m_Crew = new List<Character>();
+    protected ShipData m_ShipData;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
     private float m_DeltaTime;
+
+    //properties
+    public FloorLayout Layout
+    {
+        get { return m_Layout; }
+    }
+    
+    public AITaskManager TaskManager
+    {
+        get { return m_TaskManager; }
+    }
     #region Unity API
     protected virtual void Awake()
     {
-        ServiceLocator.RegisterService<Ship>(this);
         Initialize();//Temp location to Init
-    }
-
-    private void Start()
-    {
-
     }
 
     protected virtual void Update()
@@ -63,7 +68,6 @@ public class Ship : Subject {
 
     private void OnDestroy()
     {
-        ServiceLocator.UnregisterService<Ship>(this);
     }
     #endregion
 
@@ -71,8 +75,10 @@ public class Ship : Subject {
     public void Initialize()
     {
         LoadLayout();
-        m_BurningController.Init(m_Layout);
-        InitCrew();
+        m_BurningController.Init(this);
+        InitComponents();
+        m_Navigator.Init(this);
+        InitCrew();    
     }
 
     public void RegisterComponent(ShipComponent component)
@@ -84,14 +90,23 @@ public class Ship : Subject {
     #region Protect
     protected void LoadLayout()
     {
-        m_Layout.Init(m_ShipLayout);
+        m_Layout.Init(m_ShipLayout, this);
+
     }
 
     protected void InitCrew()
     {
         foreach (Character c in m_Crew)
         {
-            c.Init(m_Layout);
+            c.Init(this);
+        }
+    }
+
+    protected void InitComponents()
+    {
+        for (int i = 0; i < m_ShipComponents.Count; ++i)
+        {
+            m_ShipComponents[i].Init(this);
         }
     }
     #endregion

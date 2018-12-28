@@ -64,10 +64,10 @@ public class CharacterAI : Character, Observer {
     #endregion
 
     #region Public API
-    public override void Init(FloorLayout layout)
+    public override void Init(Ship ship)
     {
-        base.Init(layout);
-        AITaskManager.Instance.Register(this);
+        base.Init(ship);
+        ship.TaskManager.Register(this);
         m_State = AIState.Idle;
         m_Navigator.Wander();
     }
@@ -81,7 +81,7 @@ public class CharacterAI : Character, Observer {
             //TODO : above
             if (m_CurrentTask == null)
             {
-                AITask newTask = AITaskManager.Instance.GetTask(task);
+                AITask newTask = m_Ship.TaskManager.GetTask(task);
                 if (newTask != null)
                 {
                     OnTaskReceived(newTask);
@@ -240,13 +240,13 @@ public class CharacterAI : Character, Observer {
     private void OnTaskCompleted()
     {
         console.logStatus("OnTaskCompleted");
-        AITaskManager.Instance.OnTaskDone(m_CurrentTask);
+        m_Ship.TaskManager.OnTaskDone(m_CurrentTask);
         m_CurrentTask = null;
         TaskUpdate = null;
         m_State = AIState.Idle;
         m_BurningController = null;
 
-        AITask newTask = AITaskManager.Instance.CheckForTask();
+        AITask newTask = m_Ship.TaskManager.CheckForTask();
         if (newTask != null)
         {
             Debug.Log("Starting a new task");
@@ -271,7 +271,7 @@ public class CharacterAI : Character, Observer {
         //return the task back.
         if (m_CurrentTask != null)
         {
-            AITaskManager.Instance.AddTask(m_CurrentTask);
+            m_Ship.TaskManager.AddTask(m_CurrentTask);
             m_CurrentTask = null;
             TaskUpdate = null;
             if (replacementTask != null)
@@ -280,7 +280,7 @@ public class CharacterAI : Character, Observer {
             }
             else
             {
-                AITask newTask = AITaskManager.Instance.CheckForTask();
+                AITask newTask = m_Ship.TaskManager.CheckForTask();
                 if (newTask != null)
                 {
                     OnTaskReceived(newTask);

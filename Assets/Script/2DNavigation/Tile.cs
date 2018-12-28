@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     protected HealthComponent m_HealthComponent;
     protected Character m_MainCharacterSlot;
     protected AITask m_RepairTask = null;
-
+    protected AITaskManager m_TaskManager;
     //statuses
 
     ////////////////////////////////
@@ -85,13 +85,14 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     #endregion
 
     #region Public API
-    public void Init(sTileInfo info)
+    public void Init(sTileInfo info, Ship ship)
     {
         m_Info = info;
+        m_TaskManager = ship.TaskManager;
         InitHealth();        
         m_IsWalkable = TileUtilities.IsWalkable(m_Info.Type);
         m_IsFlammable = TileUtilities.IsFlammable(m_Info.Type);
-        Build();
+        Build(ship);
     }
 
     public void Select()
@@ -158,7 +159,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         m_HealthComponent.OnHealthDepleted += OnComponentDestroyed;
     }
 
-    protected void Build()
+    protected void Build(Ship ship)
     {
         //Ground
         m_TileRenderer = GetRenderer("Ground");
@@ -177,7 +178,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
             m_ModifierRenderer.Add(sr);
         }
         //Component
-        BuildComponent(m_Info.Component);
+        BuildComponent(m_Info.Component, ship);
 
         AddCollider();
     }
@@ -202,8 +203,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         parameters.Add("target", this);
         parameters.Add("position", WorldPosition());
         m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
-
-        AITaskManager.Instance.AddTask(m_RepairTask);
+        m_TaskManager.AddTask(m_RepairTask);
     }
 
     protected virtual void OnComponentDestroyed()
@@ -280,7 +280,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
         return sr;
     }
 
-    private void BuildComponent(eShipComponent component)
+    private void BuildComponent(eShipComponent component, Ship ship)
     {
         if (component != eShipComponent.EMPTY)
         {
@@ -290,9 +290,8 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
             m_ComponentRenderer.size = Vector2.one * CUBE_SIZE;
             m_ComponentRenderer.sortingLayerName = COMPONENT_LAYER;
             //scripts
-            ShipComponent sc = m_ComponentRenderer.gameObject.AddShipComponent(component);
-            Ship ship = ServiceLocator.GetService<Ship>() as Ship;
-            sc.Init(ship, this);
+            ShipComponent sc = m_ComponentRenderer.gameObject.AddShipComponent(component, this);
+            ship.RegisterComponent(sc);
         }
     }
     #endregion

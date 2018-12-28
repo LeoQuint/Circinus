@@ -20,24 +20,21 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////     
-    [SerializeField] protected int _Width;
-    [SerializeField] protected int _Height;
+
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
     public SpriteTileData data;
-
+    public PathFinder m_PathFinder;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////    
     protected sTileInfo[][] m_Layout;
-    protected Tile[][] m_Tiles;
-    //test
-    public PathFinder finder;
+    protected Tile[][] m_Tiles;    
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
+    private Ship m_Ship;
 
     public int Width
     {
@@ -74,12 +71,13 @@ public class FloorLayout : MonoBehaviour {
     #endregion
 
     #region Public API
-    public void Init(ShipLayout layout)
+    public void Init(ShipLayout layout, Ship ship)
     {
+        m_Ship = ship;
         SpriteData = data;
         SpriteData.Init();
         m_Layout = layout.GetLayout();
-        finder.SetLayout(m_Layout);
+        m_PathFinder.SetLayout(m_Layout);
         BuildLayout();
     }
 
@@ -121,7 +119,8 @@ public class FloorLayout : MonoBehaviour {
     {
         if (m_Layout != null && m_Layout.Length > 0)
         {
-            Vector3 position = transform.position;
+            transform.localPosition = new Vector3((SQUARE_SIZE * m_Layout.Length) / -2f, (SQUARE_SIZE * m_Layout[0].Length) / -2f, 0f);
+           
             m_Tiles = new Tile[m_Layout.Length][];
             for (int x = 0; x < m_Layout.Length; ++x)
             {
@@ -131,9 +130,9 @@ public class FloorLayout : MonoBehaviour {
                 {
                     GameObject go = new GameObject(string.Format("Tile{0}{1}", x, y));
                     go.transform.parent = transform;
-                    go.transform.localPosition = position + iVector + (Vector3.up * y * SQUARE_SIZE);
+                    go.transform.localPosition = iVector + (Vector3.up * y * SQUARE_SIZE);
                     Tile tile = go.AddComponent<Tile>();
-                    tile.Init(m_Layout[x][y]);
+                    tile.Init(m_Layout[x][y], m_Ship);
                     m_Tiles[x][y] = tile;
                 }
             }

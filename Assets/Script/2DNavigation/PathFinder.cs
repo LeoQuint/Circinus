@@ -46,7 +46,7 @@ public class PathFinder : MonoBehaviour {
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-    public static PathFinder instance;
+
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -69,15 +69,7 @@ public class PathFinder : MonoBehaviour {
     #region Unity API
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            Init();
-        }
-        else
-        {
-            Destroy(this);
-        }
+        Init();
     }
     #endregion
 

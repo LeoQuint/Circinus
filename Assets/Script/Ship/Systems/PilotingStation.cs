@@ -36,9 +36,9 @@ public class PilotingStation : ShipComponent {
     #endregion
 
     #region Public API
-    public override void Init(Ship ship, Tile tile)
+    public override void Init(Ship ship)
     {
-        base.Init(ship, tile);
+        base.Init(ship);
 
         CreatePilotingTask();
     }
@@ -67,7 +67,7 @@ public class PilotingStation : ShipComponent {
         parameters.Add("position", WorldPosition());
         m_PilotingTask = new AITask(AITask.TaskType.Pilot, parameters);
 
-        AITaskManager.Instance.AddTask(m_PilotingTask);
+        m_Ship.TaskManager.AddTask(m_PilotingTask);
     }
     #endregion
 

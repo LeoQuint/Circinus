@@ -9,32 +9,39 @@ using UnityEngine;
 public static class ShipHelper {
 
     #region Static
-    public static ShipComponent AddShipComponent(this GameObject g, eShipComponent component)
-    {        
+    public static ShipComponent AddShipComponent(this GameObject g, eShipComponent component, Tile tile)
+    {
+        ShipComponent sc = null;
         switch (component)
         {
             case eShipComponent.WEAPON_STATION:
                 {
-                    ShipComponent sc = g.AddComponent<WeaponStation>();
-                    return sc;
+                    sc = g.AddComponent<WeaponStation>();
+                    break;
                 }
 
             case eShipComponent.ENGINE_DEFAULT:
                 {
-                    ShipComponent sc = g.AddComponent<EngineStation>();
-                    return sc;
+                    sc = g.AddComponent<EngineStation>();
+                    break;
                 }
 
             case eShipComponent.PILOTING_STATION_DEFAULT:
                 {
-                    ShipComponent sc = g.AddComponent<PilotingStation>();
-                    return sc;
+                    sc = g.AddComponent<PilotingStation>();
+                    break;
                 }
 
             case eShipComponent.EMPTY:
                 return null;
         }
-        return null;
+
+        if (sc != null)
+        {
+            sc.Tile = tile;
+        }
+
+        return sc;
     }
     #endregion
 }

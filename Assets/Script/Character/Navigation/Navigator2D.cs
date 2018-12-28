@@ -76,9 +76,9 @@ public class Navigator2D : MonoBehaviour {
     public void Init(FloorLayout layout)
     {
         m_Layout = layout;
-        m_Pathfinder = PathFinder.instance;
+        m_Pathfinder = layout.m_PathFinder;
         m_WanderTimer = new Timer(2f);
-        m_LayoutPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        m_LayoutPosition = new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
     }
 
     public void SetDestination(Vector2Int destination, Action onDestinationReached = null, bool isWandering = false)
@@ -105,8 +105,8 @@ public class Navigator2D : MonoBehaviour {
     {
         if (m_HasDestination)
         {
-            transform.position = Vector3.MoveTowards(transform.position, m_TargetLerpPosition, Time.deltaTime * m_MovementSpeed);
-            if (Vector2.Distance(transform.position, m_TargetLerpPosition) <= 0.1f)
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, m_TargetLerpPosition, Time.deltaTime * m_MovementSpeed);
+            if (Vector2.Distance(transform.localPosition, m_TargetLerpPosition) <= 0.1f)
             {
                 m_HasDestination = false;
                 m_LayoutPosition = m_TargetLerpPosition.ToInt();
@@ -135,7 +135,7 @@ public class Navigator2D : MonoBehaviour {
 
     public void OnLocationSelected(Vector2Int destination, Vector2 innerPosition)
     {
-        List<Vector2Int> path = PathFinder.instance.GetPath(m_LayoutPosition, destination);
+        List<Vector2Int> path = m_Pathfinder.GetPath(m_LayoutPosition, destination);
         m_Path.Clear();
         m_HasDestination = false;
         if (path != null && path.Count > 0)
@@ -148,7 +148,7 @@ public class Navigator2D : MonoBehaviour {
                 }
                 else if (i == 0)
                 {
-                    m_Path.Enqueue(transform.position);
+                    m_Path.Enqueue(transform.localPosition);
                 }
                 else
                 {

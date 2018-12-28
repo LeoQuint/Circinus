@@ -154,6 +154,7 @@ public class BurningController : MonoBehaviour {
     ///			Private			 ///
     ////////////////////////////////
     private FloorLayout m_Layout;
+    private AITaskManager m_TaskManager;
    
     private BurningInfo[][] m_BurningComponents;
     private List<BurningInfo> m_BurningLocations = new List<BurningInfo>();
@@ -214,10 +215,10 @@ public class BurningController : MonoBehaviour {
     #endregion
 
     #region Public API
-    public void Init(FloorLayout layout)
+    public void Init(Ship ship)
     {
-        m_Layout = layout;
-
+        m_Layout = ship.Layout;
+        m_TaskManager = ship.TaskManager;
         InitFireData();
 
         FillPool();
@@ -408,7 +409,7 @@ public class BurningController : MonoBehaviour {
         parameters.Add("position", bi.Position);
         parameters.Add("controller", this);
         AITask firefightingTask = new AITask(AITask.TaskType.FireFight, parameters);
-        AITaskManager.Instance.AddTask(firefightingTask);
+        m_TaskManager.AddTask(firefightingTask);
     }
     #endregion
 }

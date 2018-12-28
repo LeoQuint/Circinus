@@ -43,6 +43,12 @@ public class ShipComponent : MonoBehaviour, IDamageable
     ////////////////////////////////
 
     #region Properties
+    public Tile Tile
+    {
+        get { return m_Tile; }
+        set { m_Tile = value; }
+    }
+
     public float Health
     {
         get { return m_HealthComponent.CurrentHealth; }
@@ -57,15 +63,12 @@ public class ShipComponent : MonoBehaviour, IDamageable
     #region Unity API
     protected virtual void Awake()
     {
-        if (m_HealthComponent == null)
-        {
-            m_HealthComponent = GetComponent<HealthComponent>();
-        }
+       
     }
     #endregion
 
     #region Public API
-    public virtual void Init(Ship ship, Tile tile)
+    public virtual void Init(Ship ship)
     {
         if (m_Id != 0)
         {
@@ -73,8 +76,12 @@ public class ShipComponent : MonoBehaviour, IDamageable
             return;
         }
 
+        if (m_HealthComponent == null)
+        {
+            m_HealthComponent = GetComponent<HealthComponent>();
+        }
+
         m_Ship = ship;
-        m_Tile = tile;
         m_Id = UniqueIdManager.Instance.GetID();
 
         LoadData();
@@ -128,7 +135,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
         parameters.Add("position", this.WorldPosition());
         m_RepairTask = new AITask(AITask.TaskType.Repair, parameters);
 
-        AITaskManager.Instance.AddTask(m_RepairTask);
+        m_Ship.TaskManager.AddTask(m_RepairTask);
     }
 
     protected virtual void OnComponentDestroyed()
