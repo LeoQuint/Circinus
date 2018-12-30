@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    protected sTileInfo m_Info;
+    protected TileInfo m_Info;
     protected SpriteRenderer m_TileRenderer;
     protected List<SpriteRenderer> m_ModifierRenderer;
     protected SpriteRenderer m_ComponentRenderer;
@@ -85,7 +85,7 @@ public class Tile : MonoBehaviour, ISelectable, IDamageable {
     #endregion
 
     #region Public API
-    public void Init(sTileInfo info, Ship ship)
+    public void Init(TileInfo info, Ship ship)
     {
         m_Info = info;
         m_TaskManager = ship.TaskManager;

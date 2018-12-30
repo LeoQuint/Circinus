@@ -1,0 +1,4029 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<LayoutData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Firefly</Name>
+  <Layout>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>0</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>0</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>0</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>0</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>0</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>1</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>1</x>
+          <y>6</y>
+        </Position>
+        <Component>PILOTING_STATION_DEFAULT</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>1</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>1</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>1</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>2</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>2</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>2</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>2</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>2</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>3</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>3</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>3</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>3</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>3</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>4</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>4</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>DOOR</Type>
+        <Position>
+          <x>4</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>4</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>4</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>4</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>4</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>5</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>5</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>5</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>3</y>
+        </Position>
+        <Component>WEAPON_STATION</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>5</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>5</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>5</x>
+          <y>10</y>
+        </Position>
+        <Component>WEAPON_STATION</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>5</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>5</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>5</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>5</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>6</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>6</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>6</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>DOOR</Type>
+        <Position>
+          <x>6</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>DOOR</Type>
+        <Position>
+          <x>6</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>6</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>6</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>6</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>6</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>6</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>7</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>7</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>7</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>7</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>7</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>7</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>7</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>7</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>7</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>7</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>8</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>8</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>8</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>8</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>8</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>8</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>8</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>8</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>8</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>8</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>9</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>9</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>9</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>9</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>9</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>9</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>9</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>9</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>9</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>9</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>DOOR</Type>
+        <Position>
+          <x>10</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>INNER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>10</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>10</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>11</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>11</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>11</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>11</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>12</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>12</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>12</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>12</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>13</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>13</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>13</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>13</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>14</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>14</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>14</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>14</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>15</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>15</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>15</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>15</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>16</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>16</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>16</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>17</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>1</y>
+        </Position>
+        <Component>ENGINE_DEFAULT</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>4</y>
+        </Position>
+        <Component>ENGINE_DEFAULT</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>17</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>17</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>17</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>17</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>9</y>
+        </Position>
+        <Component>ENGINE_DEFAULT</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers>
+          <eTileModifier>NONE</eTileModifier>
+          <eTileModifier>NONE</eTileModifier>
+        </Modifiers>
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>STEEL</Type>
+        <Position>
+          <x>17</x>
+          <y>12</y>
+        </Position>
+        <Component>ENGINE_DEFAULT</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>17</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>17</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>18</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>18</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>OUTER_WALL</Type>
+        <Position>
+          <x>18</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>18</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>19</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>20</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>21</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>22</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>23</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+    <ArrayOfTileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>0</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>1</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>2</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>3</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>4</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>5</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>6</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>7</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>8</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>9</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>10</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>11</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>12</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>13</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+      <TileInfo>
+        <Type>EMPTY</Type>
+        <Position>
+          <x>24</x>
+          <y>14</y>
+        </Position>
+        <Component>EMPTY</Component>
+        <ComponentName />
+        <Modifiers />
+      </TileInfo>
+    </ArrayOfTileInfo>
+  </Layout>
+</LayoutData>

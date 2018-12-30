@@ -79,7 +79,7 @@ public class PathFinder : MonoBehaviour {
 
     }
 
-    public void SetLayout(sTileInfo[][] layout)
+    public void SetLayout(TileInfo[][] layout)
     {
         m_NodeLayout = new Node[layout.Length][];
         for (int x =0; x < layout.Length; ++x)

@@ -12,14 +12,14 @@ public class ShipLayout : ScriptableObject {
     [System.Serializable]
     public struct sRowLayout
     {
-        public sTileInfo[] Row;
+        public TileInfo[] Row;
 
-        public sRowLayout(sTileInfo[] row)
+        public sRowLayout(TileInfo[] row)
         {
             Row = row;
         }
 
-        public sTileInfo this[int index]
+        public TileInfo this[int index]
         {
             get { return Row[index]; }
             set { Row[index] = value; }
@@ -60,9 +60,9 @@ public class ShipLayout : ScriptableObject {
     #endregion
 
     #region Public API
-    public sTileInfo[][] GetLayout()
+    public TileInfo[][] GetLayout()
     {
-        sTileInfo[][] layout = new sTileInfo[m_Layout.Length][];
+        TileInfo[][] layout = new TileInfo[m_Layout.Length][];
 
         for (int i = 0; i < m_Layout.Length; ++i)
         {
@@ -71,7 +71,7 @@ public class ShipLayout : ScriptableObject {
         return layout;
     }
 
-    public void SetLayout(sTileInfo[][] layout)
+    public void SetLayout(TileInfo[][] layout)
     {
         m_Layout = new sRowLayout[layout.Length];
 
@@ -81,7 +81,7 @@ public class ShipLayout : ScriptableObject {
         }
     }
 
-    public sTileInfo this[int x, int y]
+    public TileInfo this[int x, int y]
     {
         get
         {

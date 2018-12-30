@@ -135,6 +135,6 @@ public class Ship : Subject {
     }
     #endregion
 
-    #region Private
+    #region Private   
     #endregion
 }

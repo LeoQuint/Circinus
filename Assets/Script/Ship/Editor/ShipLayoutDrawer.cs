@@ -173,7 +173,7 @@ public class ShipLayoutDrawer : Editor {
         EditorGUI.DrawRect(rect, GetGizmosColor(type));
     }
 
-    private void DrawComponents(Rect rect, sTileInfo info)
+    private void DrawComponents(Rect rect, TileInfo info)
     {
         if (info.Component != eShipComponent.EMPTY)
         {
@@ -183,7 +183,7 @@ public class ShipLayoutDrawer : Editor {
         }
     }
 
-    private void DrawModifier(Rect rect, sTileInfo info)
+    private void DrawModifier(Rect rect, TileInfo info)
     {
         if(info.Modifiers != null)
         {
@@ -289,10 +289,10 @@ public class ShipLayoutDrawer : Editor {
     
     private void RefreshArray(ShipLayout layout)
     {
-        sTileInfo[][] newLayout = new sTileInfo[layout._Width][];
+        TileInfo[][] newLayout = new TileInfo[layout._Width][];
         for (int i = 0; i < newLayout.Length; ++i)
         {
-            newLayout[i] = new sTileInfo[layout._Height];
+            newLayout[i] = new TileInfo[layout._Height];
             if (layout.m_Layout != null && layout.m_Layout.Length > i)
             {
                 for (int j = 0; j < newLayout[i].Length; ++j)
@@ -303,7 +303,7 @@ public class ShipLayoutDrawer : Editor {
                     }
                     else
                     {
-                        newLayout[i][j] = new sTileInfo(i,j);
+                        newLayout[i][j] = new TileInfo(i,j);
                     }
                 }
             }
@@ -314,13 +314,13 @@ public class ShipLayoutDrawer : Editor {
     
     private void Empty(ShipLayout layout)
     {
-        sTileInfo[][] newLayout = new sTileInfo[layout._Width][];
+        TileInfo[][] newLayout = new TileInfo[layout._Width][];
         for (int x = 0; x < newLayout.Length; ++x)
         {
-            newLayout[x] = new sTileInfo[layout._Height];
+            newLayout[x] = new TileInfo[layout._Height];
             for (int y = 0; y < newLayout[x].Length; ++y)
             {
-                newLayout[x][y] = new sTileInfo(x,y);
+                newLayout[x][y] = new TileInfo(x,y);
             }
         }
         layout.SetLayout(newLayout);
@@ -334,7 +334,7 @@ public class ShipLayoutDrawer : Editor {
 
         if (x >= 0 && y >= 0 && layout.m_Layout.Length > x && layout.m_Layout[x].Row.Length > y)
         {
-            sTileInfo tileInfo = layout[x, y];
+            TileInfo tileInfo = layout[x, y];
             switch (m_CurrentBrush)
             {
                 case eBrushType.GROUND:

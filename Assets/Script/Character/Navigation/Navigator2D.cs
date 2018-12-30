@@ -83,7 +83,6 @@ public class Navigator2D : MonoBehaviour {
 
     public void SetDestination(Vector2Int destination, Action onDestinationReached = null, bool isWandering = false)
     {
-        console.logStatus("Set Destination");
         OnLocationSelected(destination, Vector2.zero);
         m_WanderTimer.Stop();
         m_WanderTimer.OnDone = null;
@@ -112,7 +111,6 @@ public class Navigator2D : MonoBehaviour {
                 m_LayoutPosition = m_TargetLerpPosition.ToInt();
                 if (m_Path.Count == 0)
                 {
-                    console.logStatus("On Destination Reached");
                     if (m_OnDestinationReached != null)
                     {
                         m_OnDestinationReached();

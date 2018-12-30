@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<EngineData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>ION_DRIVE_MK_1</Name>
+  <Acceleration>1</Acceleration>
+  <MaxSpeed>2</MaxSpeed>
+  <Deceleration>0.5</Deceleration>
+  <SteeringAccelerationSpeed>0.25</SteeringAccelerationSpeed>
+  <SteeringMaxSpeed>0.1</SteeringMaxSpeed>
+  <Weight>5</Weight>
+  <Health>100</Health>
+</EngineData>

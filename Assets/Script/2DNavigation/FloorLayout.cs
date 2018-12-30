@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class FloorLayout : MonoBehaviour {
 
@@ -24,12 +25,14 @@ public class FloorLayout : MonoBehaviour {
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
+    public string LayoutName;
     public SpriteTileData data;
     public PathFinder m_PathFinder;
     ////////////////////////////////
     ///			Protected		 ///
-    ////////////////////////////////    
-    protected sTileInfo[][] m_Layout;
+    //////////////////////////////// 
+    protected LayoutData m_Data;   
+    protected TileInfo[][] m_Layout;
     protected Tile[][] m_Tiles;    
     ////////////////////////////////
     ///			Private			 ///
@@ -76,7 +79,18 @@ public class FloorLayout : MonoBehaviour {
         m_Ship = ship;
         SpriteData = data;
         SpriteData.Init();
-        m_Layout = layout.GetLayout();
+        LoadLayoutData();
+        if(m_Data != null)
+        {
+            m_Layout = m_Data.GetLayout();
+            console.logStatus("Loading layout from data");
+        }
+        else
+        {
+            m_Layout = layout.GetLayout();
+            console.logWarning("Loading layout from defaults");
+        }       
+       
         m_PathFinder.SetLayout(m_Layout);
         BuildLayout();
     }
@@ -112,6 +126,8 @@ public class FloorLayout : MonoBehaviour {
 
         return neighbours;
     }
+
+  
     #endregion
 
     #region Protect
@@ -141,5 +157,41 @@ public class FloorLayout : MonoBehaviour {
     #endregion
 
     #region Private
+    private void LoadLayoutData()
+    {
+        if (m_Ship.Data != null)
+        {
+            m_Data = LayoutData.Load(m_Ship.Data.Name);
+        }
+        else
+        {
+            m_Data = null;
+        }
+    }
+
+    [ContextMenu("Save Layout")]
+    private void SaveLayout()
+    {
+        if (m_Data == null)
+        {
+            m_Data = new LayoutData();
+            m_Data.Name = m_Ship.Data.Name;
+            m_Data.Layout = new List<List<TileInfo>>();
+        }
+
+        m_Data.Layout.Clear();
+
+        for (int x = 0; x < m_Layout.Length; ++x)
+        {
+            List<TileInfo> infoList = new List<TileInfo>();           
+            for (int y = 0; y < m_Layout[0].Length; ++y)
+            {
+                infoList.Add(m_Layout[x][y]);
+            }
+            m_Data.Layout.Add(infoList);
+        }
+
+        LayoutData.Save(m_Data);
+    }
     #endregion
 }

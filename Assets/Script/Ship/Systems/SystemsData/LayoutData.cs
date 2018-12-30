@@ -9,21 +9,20 @@ using System.Xml.Serialization;
 using System;
 
 [System.Serializable]
-[XmlRoot("ShipData")]
-public class ShipData {
+[XmlRoot("LayoutData")]
+public class LayoutData {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const string FOLDER = "Ship";
-    private const string FILENAME = "ShipData";
+    private const string FOLDER = "Ship/Layout";
+    private const string FILENAME = "LayoutData";
     private const char SEPERATOR = '_';
     private const string PATH_FORMAT = "{0}/{1}{2}{3}";
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
-
-    private static Type[] m_Types = new Type[1] { typeof(ShipData) };
+    private static Type[] m_Types = new Type[2] { typeof(LayoutData), typeof(TileInfo) };
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -32,18 +31,7 @@ public class ShipData {
     ///			Public			 ///
     ////////////////////////////////
     public string Name;
-    //propulsion
-    public float BaseAcceleration;
-    public float BaseMaxSpeed;
-    //break
-    public float BaseDeceleration;
-    //steering
-    public float BaseSteeringAccelerationSpeed;
-    public float BaseSteeringMaxSpeed;
-    //stats
-    public float HullWeight;
-    public float BaseHullHealth;
-
+    public List<List<TileInfo>> Layout;
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
@@ -52,33 +40,47 @@ public class ShipData {
     ///			Private			 ///
     ////////////////////////////////
 
-    //properties    
     #region Unity API
     #endregion
 
     #region Public API
-    public static void Save(ShipData data)
+    public TileInfo[][] GetLayout()
+    {
+        TileInfo[][] toReturn = new TileInfo[Layout.Count][];
+        for (int x = 0; x < Layout.Count; ++x)
+        {
+            toReturn[x] = new TileInfo[Layout[x].Count];
+            for (int y = 0; y < Layout[0].Count; ++y)
+            {
+                toReturn[x][y] = Layout[x][y];
+            }
+        }
+
+        return toReturn;
+    }
+
+    public static void Save(LayoutData data)
     {
         console.logStatus("Saving " + FILENAME + "_" + data.Name);
-        Serializer_Deserializer<ShipData>.Save(data, SavedPath.GameData, GetPath(data.Name), m_Types);
+        Serializer_Deserializer<LayoutData>.Save(data, SavedPath.GameData, GetPath(data.Name), m_Types);
     }
 
-    public static ShipData Load(string shipName)
+    public static LayoutData Load(string name)
     {
-        console.logStatus("Loading " + shipName);
-        return Serializer_Deserializer<ShipData>.Load(SavedPath.GameData, GetPath(shipName), m_Types);
+        console.logStatus("Loading " + name);
+        return Serializer_Deserializer<LayoutData>.Load(SavedPath.GameData, GetPath(name), m_Types);
     }
 #if UNITY_EDITOR
-    [UnityEditor.MenuItem("CreateConfigs/Create New ShipData")]
-    static void CreateShipData()
-    {        
-        ShipData sd = new ShipData();
-        sd.Name = "NEW_SHIPDATA";
-        ShipData.Save(sd);
-        console.log("Ship data template created");
+    [UnityEditor.MenuItem("CreateConfigs/Create New LayoutData")]
+    static void CreateData()
+    {
+        LayoutData sd = new LayoutData();
+        sd.Name = "NEW_LayoutData";
+        sd.Layout = new List<List<TileInfo>>();
+        LayoutData.Save(sd);
+        console.log("LayoutData template created");
     }
 #endif
-
     #endregion
 
     #region Protect

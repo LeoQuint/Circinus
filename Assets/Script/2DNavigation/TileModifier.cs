@@ -29,26 +29,38 @@ public enum eTileModifier
 }
 
 [System.Serializable]
-public struct sTileInfo
+public class TileInfo
 {
     public TileType Type;
     public Vector2Int Position;
     public eShipComponent Component;
+    public string ComponentName;
     public List<eTileModifier> Modifiers;
 
-    public sTileInfo(TileType type, int x, int y, eShipComponent component, List<eTileModifier> modifier)
+    public TileInfo()
+    {
+        Type = TileType.EMPTY;
+        Position = new Vector2Int(0, 0);
+        Component = eShipComponent.EMPTY;
+        ComponentName = "";
+        Modifiers = new List<eTileModifier>();
+    }
+
+    public TileInfo(TileType type, int x, int y, eShipComponent component, string componentName, List<eTileModifier> modifier)
     {
         Type = type;
         Position = new Vector2Int(x,y);
         Component = component;
+        ComponentName = componentName;
         Modifiers = new List<eTileModifier>(modifier);
     }
 
-    public sTileInfo(int x, int y)
+    public TileInfo(int x, int y)
     {
         Type = TileType.EMPTY;
         Position = new Vector2Int(x, y);
         Component = eShipComponent.EMPTY;
+        ComponentName = "";
         Modifiers = new List<eTileModifier>();
     }
 }

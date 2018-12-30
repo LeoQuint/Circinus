@@ -19,16 +19,17 @@ public class AITask {
         None = 0,
         Wait = 1,
         GoTo = 2,
-
-        Pilot = 10,
+       
 
         FireFight = 20,
         Repair = 30,
-        
-        Shield = 100,
-        Weapons = 150,
 
-        Fight = 200
+        Pilot = 100,
+        Shield = 200,
+        Weapons = 300,
+        Engine = 400,
+
+        Fight = 10000
     }
 
     ////////////////////////////////

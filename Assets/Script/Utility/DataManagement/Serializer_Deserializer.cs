@@ -61,7 +61,7 @@ public class Serializer_Deserializer<T> {
         string formatedPath = string.Format("{0}{1}{2}", SAVED_PATH[path] , filename , EXTENTION);
         if (!File.Exists(formatedPath))
         {
-            Debug.LogError(formatedPath + " NOT FOUND!");
+            console.logError(formatedPath + " NOT FOUND! Returning default values.");
             return default(T);
         }
         XmlSerializer serializer = new XmlSerializer(typeof(T), Types);

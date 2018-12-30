@@ -9,21 +9,22 @@ using System.Xml.Serialization;
 using System;
 
 [System.Serializable]
-[XmlRoot("ShipData")]
-public class ShipData {
+[XmlRoot("EngineData")]
+public class EngineData {
 
     ////////////////////////////////
     ///			Constants		 ///
     ////////////////////////////////
-    private const string FOLDER = "Ship";
-    private const string FILENAME = "ShipData";
+    private const string FOLDER = "Ship/Engine";
+    private const string FILENAME = "EngineData";
     private const char SEPERATOR = '_';
     private const string PATH_FORMAT = "{0}/{1}{2}{3}";
+
     ////////////////////////////////
     ///			Statics			 ///
     ////////////////////////////////
 
-    private static Type[] m_Types = new Type[1] { typeof(ShipData) };
+    private static Type[] m_Types = new Type[1] { typeof(EngineData) };
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
@@ -32,17 +33,17 @@ public class ShipData {
     ///			Public			 ///
     ////////////////////////////////
     public string Name;
-    //propulsion
-    public float BaseAcceleration;
-    public float BaseMaxSpeed;
+
+    public float Acceleration;
+    public float MaxSpeed;
     //break
-    public float BaseDeceleration;
+    public float Deceleration;
     //steering
-    public float BaseSteeringAccelerationSpeed;
-    public float BaseSteeringMaxSpeed;
+    public float SteeringAccelerationSpeed;
+    public float SteeringMaxSpeed;
     //stats
-    public float HullWeight;
-    public float BaseHullHealth;
+    public float Weight;
+    public float Health;
 
     ////////////////////////////////
     ///			Protected		 ///
@@ -52,30 +53,31 @@ public class ShipData {
     ///			Private			 ///
     ////////////////////////////////
 
-    //properties    
+    //properties   
+
     #region Unity API
     #endregion
 
     #region Public API
-    public static void Save(ShipData data)
+    public static void Save(EngineData data)
     {
         console.logStatus("Saving " + FILENAME + "_" + data.Name);
-        Serializer_Deserializer<ShipData>.Save(data, SavedPath.GameData, GetPath(data.Name), m_Types);
+        Serializer_Deserializer<EngineData>.Save(data, SavedPath.GameData, GetPath(data.Name), m_Types);
     }
 
-    public static ShipData Load(string shipName)
+    public static EngineData Load(string name)
     {
-        console.logStatus("Loading " + shipName);
-        return Serializer_Deserializer<ShipData>.Load(SavedPath.GameData, GetPath(shipName), m_Types);
+        console.logStatus("Loading " + name);
+        return Serializer_Deserializer<EngineData>.Load(SavedPath.GameData, GetPath(name), m_Types);
     }
 #if UNITY_EDITOR
-    [UnityEditor.MenuItem("CreateConfigs/Create New ShipData")]
-    static void CreateShipData()
-    {        
-        ShipData sd = new ShipData();
-        sd.Name = "NEW_SHIPDATA";
-        ShipData.Save(sd);
-        console.log("Ship data template created");
+    [UnityEditor.MenuItem("CreateConfigs/Create New EngineData")]
+    static void CreateData()
+    {
+        EngineData sd = new EngineData();
+        sd.Name = "NEW_EngineData";
+        EngineData.Save(sd);
+        console.log("Engine Data template created");
     }
 #endif
 

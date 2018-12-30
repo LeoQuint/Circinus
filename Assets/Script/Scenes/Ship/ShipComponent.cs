@@ -142,14 +142,14 @@ public class ShipComponent : MonoBehaviour, IDamageable
     {
         //stub
     }
+
+    protected virtual void LoadData()
+    {
+       //stub
+    }
     #endregion
 
     #region Private
-    private void LoadData()
-    {
-        //TODO get Data from Config/load
-        m_HealthComponent.Init(100f);
-    }
     #endregion
 
     #region IDamageable
