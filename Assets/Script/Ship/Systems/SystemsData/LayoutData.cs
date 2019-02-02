@@ -71,7 +71,7 @@ public class LayoutData {
         return Serializer_Deserializer<LayoutData>.Load(SavedPath.GameData, GetPath(name), m_Types);
     }
 #if UNITY_EDITOR
-    [UnityEditor.MenuItem("CreateConfigs/Create New LayoutData")]
+    [UnityEditor.MenuItem("CreateConfigs/Data/LayoutData")]
     static void CreateData()
     {
         LayoutData sd = new LayoutData();

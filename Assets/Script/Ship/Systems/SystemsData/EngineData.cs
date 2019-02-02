@@ -71,7 +71,7 @@ public class EngineData {
         return Serializer_Deserializer<EngineData>.Load(SavedPath.GameData, GetPath(name), m_Types);
     }
 #if UNITY_EDITOR
-    [UnityEditor.MenuItem("CreateConfigs/Create New EngineData")]
+    [UnityEditor.MenuItem("CreateConfigs/Data/EngineData")]
     static void CreateData()
     {
         EngineData sd = new EngineData();

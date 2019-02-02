@@ -69,7 +69,7 @@ public class ShipData {
         return Serializer_Deserializer<ShipData>.Load(SavedPath.GameData, GetPath(shipName), m_Types);
     }
 #if UNITY_EDITOR
-    [UnityEditor.MenuItem("CreateConfigs/Create New ShipData")]
+    [UnityEditor.MenuItem("CreateConfigs/Data/ShipData")]
     static void CreateShipData()
     {        
         ShipData sd = new ShipData();

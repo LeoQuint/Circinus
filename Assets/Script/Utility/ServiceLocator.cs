@@ -59,7 +59,7 @@ public static class ServiceLocator {
         }
         else
         {
-            Debug.LogError("You are unregistering a serive that is not currently registered.");
+            Debug.LogError("You are unregistering a service that is not currently registered.");
         }
     }
 

@@ -94,7 +94,7 @@ public class ShipComponent : MonoBehaviour, IDamageable
 
     public virtual void OnShipUpdate(float deltaTime)
     {
-
+        //stubb
     }
 
     public virtual void Interact(Character character)
