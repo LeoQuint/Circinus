@@ -6,22 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using TaskType = AITask.TaskType;
-
-[CreateAssetMenu(fileName = "NewCharacter", menuName = "Data/Character", order = 3)]
-public class CharacterData : ScriptableObject {
-
-    public struct sTaskPriority
-    {
-        public TaskType Type;
-        public int Priority;
-
-        public sTaskPriority(TaskType type, int priority)
-        {
-            Type = type;
-            Priority = priority;
-        }
-    }
+public class ProjectileComponent : MonoBehaviour {
 
     ////////////////////////////////
     ///			Constants		 ///
@@ -34,7 +19,7 @@ public class CharacterData : ScriptableObject {
     ////////////////////////////////
     ///	  Serialized In Editor	 ///
     ////////////////////////////////
-    
+
     ////////////////////////////////
     ///			Public			 ///
     ////////////////////////////////
@@ -42,8 +27,8 @@ public class CharacterData : ScriptableObject {
     ////////////////////////////////
     ///			Protected		 ///
     ////////////////////////////////
-    public Dictionary<int, List<TaskType>> m_TaskPriorities = new Dictionary<int, List<TaskType>>();
-    public List<sTaskPriority> m_Priorities = new List<sTaskPriority>();
+    protected bool m_IsFired = false;
+    protected float m_Speed = 5f;
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
@@ -52,19 +37,38 @@ public class CharacterData : ScriptableObject {
     #endregion
 
     #region Public API
-    public bool IsHigherPriority(TaskType newTask, TaskType currentTask)
+    public void Init()
     {
 
-        return false;
     }
 
-    public void SetPriority(TaskType type)
+    public void ResetProjectile()
     {
+        transform.localPosition = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        m_IsFired = false;
+    }
 
+    public void OnFire()
+    {
+        m_IsFired = true; 
     }
     #endregion
 
     #region Protect
+    protected void Update()
+    {
+        if (m_IsFired)
+        {
+            transform.Translate(Vector3.right * m_Speed * Time.deltaTime, Space.Self);
+        }
+    }
+
+    protected void OnHit(bool isVisible)
+    {
+        //TODO: if visible spawn particles & sfx
+
+    }
     #endregion
 
     #region Private

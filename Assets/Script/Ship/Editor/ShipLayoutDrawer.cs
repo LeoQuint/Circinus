@@ -48,7 +48,6 @@ public class ShipLayoutDrawer : Editor {
     private bool m_ClickHeld = false;
     private bool m_RightClickHeld = false;
     private bool m_MiddleClickHeld = false;
-    private bool m_IsMouseScrolling = false;
 
     private eBrushType m_CurrentBrush = eBrushType.GROUND;
 

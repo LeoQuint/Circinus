@@ -188,9 +188,12 @@ public class CharacterAI : Character, Observer {
     private void StartWeaponTask()
     {
         console.logStatus("Weapon starts");
+        TaskUpdate += UpdateWeaponTask;
+        m_InteractingComponent = m_CurrentTask.m_Parameters["target"] as WeaponStation;
+        m_InteractingComponent.Interact(this);
     }
 
-    private void UpdateWeaponTask()
+    private void UpdateWeaponTask(float deltaTime)
     {
 
     }

@@ -35,6 +35,10 @@ public class WeaponStation : ShipComponent {
     //weapons stats
     protected float m_WeaponCooldown = 2f;
 
+    protected string m_ProjectilePrefabPath = "Weapons/Projectiles/Laser_1";
+    protected ProjectileComponent m_ProjectilePrefab;
+    protected Queue<ProjectileComponent> m_ProjectilePool = new Queue<ProjectileComponent>();
+
     protected Timer m_WeaponTimer;
     protected bool m_HasGunner = false;
     ////////////////////////////////
@@ -51,7 +55,11 @@ public class WeaponStation : ShipComponent {
         base.Init(ship);
 
         m_WeaponTimer = new Timer(m_WeaponCooldown);
+        m_WeaponTimer.OnDone = Fire;
         m_HasGunner = false;
+
+        m_ProjectilePrefab = Resources.Load<ProjectileComponent>(m_ProjectilePrefabPath);
+
         CreateWeaponControlTask();
     }
 
@@ -69,12 +77,14 @@ public class WeaponStation : ShipComponent {
     {
         base.Interact(character);
         m_HasGunner = true;
+        m_WeaponTimer.Start();
     }
 
     public override void Disengage(Character character)
     {
         base.Disengage(character);
         m_HasGunner = false;
+        m_WeaponTimer.Stop();
     }
     #endregion
 
@@ -97,12 +107,32 @@ public class WeaponStation : ShipComponent {
 
     protected void Fire()
     {
+        ProjectileComponent pc = GetProjectile();
+        pc.OnFire();
 
+        m_WeaponTimer.Start();
     }
 
     protected void SearchTarget()
     {
 
+    }
+
+    protected ProjectileComponent GetProjectile()
+    {
+        if (m_ProjectilePool.Count == 0)
+        {
+            ProjectileComponent pc = Instantiate<ProjectileComponent>(m_ProjectilePrefab);
+            m_ProjectilePool.Enqueue(pc);
+        }
+
+        return m_ProjectilePool.Dequeue();
+    }
+
+    protected void ReturnProjectile(ProjectileComponent projectile)
+    {
+        projectile.ResetProjectile();
+        m_ProjectilePool.Enqueue(projectile);
     }
     #endregion
 
