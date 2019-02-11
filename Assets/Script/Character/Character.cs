@@ -84,6 +84,7 @@ public class Character : MonoBehaviour, ISelectable {
 
     public void Select()
     {
+        ScreenInputController.instance.OnLocationSelected -= OnOrderGiven;
         ScreenInputController.instance.OnLocationSelected += OnOrderGiven;
     }
 

@@ -30,14 +30,17 @@ public class WeaponStation : ShipComponent {
     ////////////////////////////////
     protected AITask m_WeaponControlTask = null;
 
-    protected AnimatedVisuals m_Visuals;
-
+    protected AnchoredAnimatedVisuals m_Visuals;
+    protected Transform m_FiringAnchor;
     //weapons stats
     protected float m_WeaponCooldown = 2f;
 
     protected string m_ProjectilePrefabPath = "Weapons/Projectiles/Laser_1";
     protected ProjectileComponent m_ProjectilePrefab;
     protected Queue<ProjectileComponent> m_ProjectilePool = new Queue<ProjectileComponent>();
+
+    protected Transform m_Target = null;
+    protected Vector3 m_TargetAimLocation = Vector3.zero;
 
     protected Timer m_WeaponTimer;
     protected bool m_HasGunner = false;
@@ -54,9 +57,17 @@ public class WeaponStation : ShipComponent {
     {
         base.Init(ship);
 
+        //TODO: Temp flow for the visuals
+        GameObject g = new GameObject("WeaponVisuals");
+        m_Visuals = g.AddComponent<AnchoredAnimatedVisuals>();
+        g.transform.parent = transform;
+        g.transform.localPosition = Vector3.zero;
+
         m_WeaponTimer = new Timer(m_WeaponCooldown);
         m_WeaponTimer.OnDone = Fire;
         m_HasGunner = false;
+
+        m_FiringAnchor = m_Visuals.Anchor;
 
         m_ProjectilePrefab = Resources.Load<ProjectileComponent>(m_ProjectilePrefabPath);
 
@@ -108,6 +119,9 @@ public class WeaponStation : ShipComponent {
     protected void Fire()
     {
         ProjectileComponent pc = GetProjectile();
+
+        pc.transform.position = m_FiringAnchor.position;
+        pc.transform.rotation = m_FiringAnchor.rotation;
         pc.OnFire();
 
         m_WeaponTimer.Start();

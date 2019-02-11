@@ -61,8 +61,7 @@ public class MeshGenerator : MonoBehaviour
     ////////////////////////////////
     ///			Private			 ///
     ////////////////////////////////
-
-    private Dictionary<int, List<Triangle>> triangleDictionary = new Dictionary<int, List<Triangle>>();
+    
     private List<Vector3> vertices = new List<Vector3>();
     private List<int> triangles = new List<int>();
     private HashSet<int> checkedVertices = new HashSet<int>();

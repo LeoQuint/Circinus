@@ -17,7 +17,8 @@ public class CharacterAI : Character, Observer {
     public enum AIState
     {
         Idle,
-        Tasking
+        Tasking,
+        Selected
     }
 
     ////////////////////////////////
